@@ -1,0 +1,442 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "ricky",
+            "password": "123",
+            "email": "ricky@me.com",
+            "fullName": "Ricky Bruner",
+            "birthday": "12/10/1988"
+        }
+    ],
+    "pantryItems": [
+        {
+            "id": 1,
+            "userId": 1,
+            "name": "Olive Oil",
+            "quantity": 16,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "name": "Mrs. Dash Fiesta Lime Seasoning",
+            "quantity": 8,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 3,
+            "userId": 1,
+            "name": "Salsa",
+            "quantity": 16,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 4,
+            "userId": 1,
+            "name": "Lime",
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 5,
+            "userId": 1,
+            "name": "Chicken Breast",
+            "quantity": 8,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 6,
+            "userId": 1,
+            "name": "Green Bell Pepper",
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 7,
+            "userId": 1,
+            "name": "Red Bell Pepper",
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 8,
+            "userId": 1,
+            "name": "Flour Tortilla",
+            "quantity": 10,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 9,
+            "userId": 1,
+            "name": "Shredded Mexican Cheese",
+            "quantity": 1,
+            "quantityTypeId": 3
+        },
+        {
+            "id": 10,
+            "userId": 1,
+            "name": "Black Beans",
+            "quantity": 8,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 11,
+            "userId": 1,
+            "name": "Lettuce",
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 12,
+            "userId": 1,
+            "name": "Avacado",
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 13,
+            "userId": 1,
+            "name": "Sour Cream",
+            "quantity": 12,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 14,
+            "userId": 1,
+            "name": "Santitas Tortilla Chips",
+            "quantity": 1,
+            "quantityTypeId": 7
+        },
+        {
+            "id": 15,
+            "userId": 1,
+            "name": "Sweet Peppers",
+            "quantity": 1,
+            "quantityTypeId": 7
+        },
+        {
+            "id": 16,
+            "userId": 1,
+            "name": "Broccoli",
+            "quantity": 1,
+            "quantityTypeId": 10
+        },
+        {
+            "id": 17,
+            "userId": 1,
+            "name": "Liquid Aminos Soy Sauce",
+            "quantity": 16,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 18,
+            "userId": 1,
+            "name": "Chicken Stock Concentrate",
+            "quantity": 8,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 19,
+            "userId": 1,
+            "name": "White Wine Vinegar",
+            "quantity": 16,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 20,
+            "userId": 1,
+            "name": "Honey",
+            "quantity": 8,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 21,
+            "userId": 1,
+            "name": "Jasmine Rice",
+            "quantity": 1,
+            "quantityTypeId": 5
+        },
+        {
+            "id": 22,
+            "userId": 1,
+            "name": "Garlic",
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 23,
+            "userId": 1,
+            "name": "Ginger",
+            "quantity": 1,
+            "quantityTypeId": 13
+        },
+        {
+            "id": 24,
+            "userId": 1,
+            "name": "Rice Wine Vinegar",
+            "quantity": 16,
+            "quantityTypeId": 6
+        }
+    ],
+    "recipes": [
+        {
+            "id": 1,
+            "userId": 1,
+            "name": "Ricky's Fajitas",
+            "description": "Its just fajitas, but lower in sodium than anywhere else",
+            "image": "",
+            "instructions": "Limes are used strictly for their juice, and sour cream is optional"
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "name": "Sweet as Honey Chicken",
+            "description": "Chicken, sweet peppers, and broccoli served over Jasmine Rice with and Honey Soy Glaze!",
+            "image": "",
+            "instructions": "Spritz lime juice into rice water as cooking begins, balance temperatures during glaze making to not burn it!"
+        }
+    ],
+    "recipePantryItems": [
+        {
+            "id": 1,
+            "recipeId": 1,
+            "pantryItemId": 1,
+            "quantity": 2,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 2,
+            "recipeId": 1,
+            "pantryItemId": 2,
+            "quantity": 2,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 3,
+            "recipeId": 1,
+            "pantryItemId": 3,
+            "quantity": 2,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 4,
+            "recipeId": 1,
+            "pantryItemId": 4,
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 5,
+            "recipeId": 1,
+            "pantryItemId": 5,
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 6,
+            "recipeId": 1,
+            "pantryItemId": 6,
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 7,
+            "recipeId": 1,
+            "pantryItemId": 7,
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 8,
+            "recipeId": 1,
+            "pantryItemId": 8,
+            "quantity": 4,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 9,
+            "recipeId": 1,
+            "pantryItemId": 9,
+            "quantity": 4,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 10,
+            "recipeId": 1,
+            "pantryItemId": 10,
+            "quantity": 8,
+            "quantityTypeId": 6
+        },
+        {
+            "id": 11,
+            "recipeId": 1,
+            "pantryItemId": 11,
+            "quantity": 1,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 12,
+            "recipeId": 1,
+            "pantryItemId": 12,
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 13,
+            "recipeId": 1,
+            "pantryItemId": 13,
+            "quantity": 1,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 14,
+            "recipeId": 1,
+            "pantryItemId": 14,
+            "quantity": 0.5,
+            "quantityTypeId": 7
+        },
+        {
+            "id": 15,
+            "recipeId": 2,
+            "pantryItemId": 5,
+            "quantity": 2,
+            "quantityTypeId": 4
+        },
+        {
+            "id": 16,
+            "recipeId": 2,
+            "pantryItemId": 16,
+            "quantity": 1,
+            "quantityTypeId": 10
+        },
+        {
+            "id": 17,
+            "recipeId": 2,
+            "pantryItemId": 15,
+            "quantity": 1,
+            "quantityTypeId": 7
+        },
+        {
+            "id": 18,
+            "recipeId": 2,
+            "pantryItemId": 21,
+            "quantity": 1,
+            "quantityTypeId": 5
+        },
+        {
+            "id": 19,
+            "recipeId": 2,
+            "pantryItemId": 18,
+            "quantity": 1,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 20,
+            "recipeId": 2,
+            "pantryItemId": 23,
+            "quantity": 1,
+            "quantityTypeId": 13
+        },
+        {
+            "id": 21,
+            "recipeId": 2,
+            "pantryItemId": 22,
+            "quantity": 1,
+            "quantityTypeId": 14
+        },
+        {
+            "id": 22,
+            "recipeId": 2,
+            "pantryItemId": 17,
+            "quantity": 4,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 23,
+            "recipeId": 2,
+            "pantryItemId": 20,
+            "quantity": 8,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 24,
+            "recipeId": 2,
+            "pantryItemId": 19,
+            "quantity": 1,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 25,
+            "recipeId": 2,
+            "pantryItemId": 1,
+            "quantity": 2,
+            "quantityTypeId": 1
+        },
+        {
+            "id": 26,
+            "recipeId": 2,
+            "pantryItemId": 4,
+            "quantity": 1,
+            "quantityTypeId": 4
+        }
+    ],
+    "quantityTypes": [
+        {
+            "id": 1,
+            "name": "TBSP"
+        },
+        {
+            "id": 2,
+            "name": "TSP"
+        },
+        {
+            "id": 3,
+            "name": "LB"
+        },
+        {
+            "id": 4,
+            "name": "WHOLE"
+        },
+        {
+            "id": 5,
+            "name": "CUP"
+        },
+        {
+            "id": 6,
+            "name": "OZ"
+        },
+        {
+            "id": 7,
+            "name": "BAG"
+        },
+        {
+            "id": 8,
+            "name": "PINT"
+        },
+        {
+            "id": 9,
+            "name": "GALLON"
+        },
+        {
+            "id": 10,
+            "name": "CROWN"
+        },
+        {
+            "id": 11,
+            "name": "HEAD"
+        },
+        {
+            "id": 12,
+            "name": "BUNDLE"
+        },
+        {
+            "id": 13,
+            "name": "THUMB"
+        },
+        {
+            "id": 14,
+            "name": "CLOVE"
+        }
+    ]
+}
