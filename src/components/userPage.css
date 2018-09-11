@@ -1,0 +1,12 @@
+.user-view {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-container {
+    width: 40%;
+}
+
+.right-container {
+    width: 40%
+}

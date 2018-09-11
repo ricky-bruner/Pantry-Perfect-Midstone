@@ -4,6 +4,7 @@ import DataManager from "../modules/DataManager";
 import "./applicationViews.css";
 import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
+import "./userPage.css";
 
 export default class UserPage extends Component {
     state = {
@@ -34,8 +35,21 @@ export default class UserPage extends Component {
         return (
             <div>
                 <NavBar props={this.props} user={this.state.user} />
-                <RecipeList user={this.state.user} pantryItems={this.state.pantryItems} recipeItems={this.state.recipeItems} quantityTypes={this.state.quantityTypes} />
-                <PantryList user={this.state.user} pantryItems={this.state.pantryItems} quantityTypes={this.state.quantityTypes} />
+                <div className="user-view">
+                    <div className="left-container">
+                        <RecipeList user={this.state.user} 
+                                    recipes={this.state.recipes}
+                                    pantryItems={this.state.pantryItems} 
+                                    recipeItems={this.state.recipeItems} 
+                                    quantityTypes={this.state.quantityTypes} />
+                    
+                    </div>
+                    <div className="right-container">
+                        <PantryList user={this.state.user} 
+                                    pantryItems={this.state.pantryItems} 
+                                    quantityTypes={this.state.quantityTypes} />
+                    </div>
+                </div>
             </div>
         )
     }

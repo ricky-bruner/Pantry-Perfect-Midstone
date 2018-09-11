@@ -1,0 +1,7 @@
+.ingredient-card {
+    background: lightgray;
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
