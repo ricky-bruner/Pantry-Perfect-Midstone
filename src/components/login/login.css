@@ -9,10 +9,35 @@
     background-position-y: -200px;
 }
 
+.login-header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: .8em;
+}
+
 .logo {
-    width: 90%;
+    width: 130px;
+    height: 130px;
     display: block;
     margin: 0 auto;
+}
+
+.login-header h4 {
+    padding-top: 30%;
+    color: rgb(76, 196, 155);
+    margin: 0 .5em;
+}
+
+.error-p {
+    margin: 0;
+    text-align: center;
+    color: rgb(201, 0, 0);
+    font-size: .8em;
+}
+
+.error-input {
+    border: rgb(201, 0, 0) solid 3px !important;
+    border-radius: 2px;
 }
 
 .form-collection {
@@ -22,7 +47,7 @@
 }
 
 .limit-width {
-    width: 300px;
+    width: 330px;
 }
 
 .absolute-footer {
@@ -46,7 +71,7 @@
 
 .login-card {
     font-family: "Open Sans", sans-serif;
-    background: #fff;
+    background: linear-gradient(to top, #ece9e6, #ffffff);
     position: absolute;
     transition: 0.3s ease all;
     border-radius: 10px;
@@ -54,6 +79,10 @@
 
 .card-body {
     padding: 20px;
+}
+
+.card-body h5 {
+    text-align: center;
 }
 
 .card-footer {
@@ -84,10 +113,11 @@
 }
 
 .input-group {
-    border: 2px solid #eee;
+    border: linear-gradient(to bottom, #fdc830, #f79767);
     position: relative;
-    background: #eee;
-    margin: 25px 0;
+    background: linear-gradient(to bottom, #fdc830, #f79767);
+    margin: 1em 0;
+    margin-top: .2em;
     border-radius: 2px;
     overflow: hidden;
     padding: 10px;
@@ -101,6 +131,13 @@
     font-weight: 500;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
+    color: rgb(244, 244, 244);
+    text-shadow: .3px .3px black;
+}
+
+.input-group input::placeholder {
+    color: rgb(244, 244, 244);
+    text-shadow: .3px .3px black;
 }
 
 .input-group label {
@@ -119,12 +156,27 @@
     font-size: 1.5rem;
     text-transform: uppercase;
     font-weight: 600;
-    background: linear-gradient(to bottom, #43c6ac, #191654);
+    background: linear-gradient(to bottom, rgb(76, 196, 155), #191654);
     border: none;
     color: #fff;
     box-shadow: none;
     outline: none;
     cursor: pointer;
+}
+
+.signup-button button {
+    background: linear-gradient(to bottom, #fdc830, #f37335);
+}
+
+.log-in-card .input-group {
+    border: linear-gradient(to bottom, rgb(76, 196, 155), #191654);
+    position: relative;
+    background: linear-gradient(to bottom, rgb(76, 196, 155), #191654);
+    margin: 1em 0;
+    margin-top: .2em;
+    border-radius: 2px;
+    overflow: hidden;
+    padding: 10px;
 }
 
 .above {

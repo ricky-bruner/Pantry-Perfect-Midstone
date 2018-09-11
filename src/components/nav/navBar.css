@@ -1,0 +1,16 @@
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: .5em;
+    background: whitesmoke;
+}
+
+.nav-left {
+    display: flex;
+}
+
+.nav-left .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 2em;
+}
