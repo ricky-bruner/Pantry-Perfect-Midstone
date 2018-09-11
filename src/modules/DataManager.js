@@ -8,6 +8,12 @@ export default Object.create(null, {
             .then(res => res.json())
         }
     },
+    getUserData: {
+        value: (resource, userId) => {
+            return fetch(`${remoteURL}/${resource}?userId=${userId}`)
+            .then(res => res.json())
+        }
+    },
     add: {
         value: (resource, object) => {
             return fetch(`${remoteURL}/${resource}`, {
