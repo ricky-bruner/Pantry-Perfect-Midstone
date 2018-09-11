@@ -1,7 +1,7 @@
 .pantry-item-card {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background: lightgray;
     margin: 1em auto;
-    width: 40%;
+    width: 70%;
 }

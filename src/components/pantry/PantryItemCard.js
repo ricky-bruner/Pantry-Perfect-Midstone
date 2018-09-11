@@ -6,8 +6,7 @@ export default class PantryItemCard extends Component {
         return (
             <div className="pantry-item-card">
                 <p>{this.props.pantryItem.name}</p>
-                <p>{this.props.pantryItem.quantity}</p>
-                <p>{this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
+                <p>{this.props.pantryItem.quantity} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
             </div>
         )
     }

@@ -19,6 +19,7 @@ export default class PantryList extends Component {
         console.log("render", this.props)
         return (
             <div className="pantry-list-container">
+                <h2>Pantry Items</h2>
                 {
                     this.props.pantryItems.map(item => {
                         return <PantryItemCard key={item.id} pantryItem={item} quantityTypes={this.props.quantityTypes} />
