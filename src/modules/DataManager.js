@@ -7,5 +7,16 @@ export default Object.create(null, {
             return fetch(`${remoteURL}/users?username=${username}`)
             .then(res => res.json())
         }
+    },
+    add: {
+        value: (resource, object) => {
+            return fetch(`${remoteURL}/${resource}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            })
+        }
     }
 })

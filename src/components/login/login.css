@@ -4,8 +4,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background: url("https://images.unsplash.com/photo-1477589170743-6d8dd4da1e1b?ixlib=rb-0.3.5&s=736c7da3f0ed506046bd55dac7cb02a1&auto=format&fit=crop&w=1650&q=80") no-repeat fixed;
+    background: url("https://images.unsplash.com/photo-1511690169676-bb4e7af210db?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=04fbd962d672ada6020f7f272225ffc4&auto=format&fit=crop&w=802&q=80") no-repeat fixed;
     background-size: cover;
+    background-position-y: -200px;
+}
+
+.logo {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
 }
 
 .form-collection {

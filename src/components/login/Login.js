@@ -1,15 +1,19 @@
 import React from "react";
 import { Component } from "react";
 import "./login.css";
-import loginAnimation from "../modules/LoginAnimation";
-import DataManager from "../modules/DataManager";
+import loginAnimation from "../../modules/LoginAnimation";
+import DataManager from "../../modules/DataManager";
+import PantryLogo from "./PantryLogo.png";
 
 export default class Login extends Component {
     state = {
         username: "",
-        email: "",
+        password: "",
         registerUsername: "",
-        registerEmail: ""
+        registerPassword: "",
+        registerEmail: "",
+        isRegistered: false,
+        missedField: false
     }
 
     handleFieldChange = (evt) => {
@@ -19,20 +23,19 @@ export default class Login extends Component {
     }
 
     handleLogin = (e) => {
-        if(!this.state.username && !this.state.email){
+        if(!this.state.username && !this.state.password){
             loginAnimation(e)
             document.querySelector("#registerEmail").value = "";
             document.querySelector("#registerUsername").value = "";
+            document.querySelector("#registerPassword").value = "";
             this.setState({registerEmail: "", registerUsername: ""})
-        } else if(this.state.username && this.state.email){
-            DataManager.getAll("users").then((users)=>{
-                let loginUser = users.find(user => user.username === this.state.username && user.email === this.state.email)
-                if(loginUser){
-                    console.log("hello")
-                    sessionStorage.setItem("user", JSON.stringify(loginUser))
+        } else if(this.state.username && this.state.password){
+            DataManager.getUser(this.state.username).then((user)=>{
+                if(user.length !== 0){
+                    sessionStorage.setItem("user", JSON.stringify(user))
                     this.props.history.push("/userpage")
                 } else {
-                    alert("Please actually login")
+                    this.setState({missedField: true})
                 }
             })
         }
@@ -41,20 +44,19 @@ export default class Login extends Component {
     handleRegister = (e) => {
         if(!this.state.registerUsername && !this.state.registerEmail){
             loginAnimation(e)
-            document.querySelector("#email").value = "";
+            document.querySelector("#password").value = "";
             document.querySelector("#username").value = "";
-            this.setState({email: "", username: ""})
+            this.setState({email: "", username: "", missedField: false})
         } else if(this.state.registerUsername && this.state.registerEmail){
-            DataManager.getAll("users").then((users)=>{
-                let loginUser = users.find(user => user.username === this.state.registerUsername && user.email === this.state.registerEmail)
-                console.log(loginUser)
-                if(loginUser){
-                    alert("this user or email is already taken")
+            DataManager.getUser(this.state.registerUsername)
+            .then((user)=>{
+                if(user.length !== 0){
+                    this.setState({isRegistered: true})
                 } else {
                     let newUser = {
                         username: this.state.registerUsername,
+                        password: this.state.registerPassword,
                         email: this.state.registerEmail,
-                        bio: "Edit your profile to add a bio",
                         image: "Edit your profile to add an image!",
                         birthday: "Edit your profile to add your birthday"
                     }
@@ -64,6 +66,7 @@ export default class Login extends Component {
             })
         }
     }
+    
     
     render() {
         return (    
@@ -78,6 +81,10 @@ export default class Login extends Component {
                             <div className="input-group email">
                                 <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
                             </div>
+                            <div className="input-group password">
+                                <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
+                            </div>
+                            
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="signup-btn" onClick={this.handleRegister}>Sign Up</button>
@@ -85,14 +92,18 @@ export default class Login extends Component {
                     </div>
                     <div className="login-card elevation-2 limit-width sign-up-card above">
                         <div className="card-body">
-                            <h2>Welcome to NutShell</h2>
-                            {/* <small>Another dumb-ass Social Network</small> */}
+                            <img src={PantryLogo} alt="Logo" className="logo" />
                             <div className="input-group username">
                                 <input type="text" placeholder="Username" id="username" onChange={this.handleFieldChange} />
                             </div>
-                            <div className="input-group email">
-                                <input type="email" placeholder="Email" id="email" onChange={this.handleFieldChange} />
+                            <div className="input-group password">
+                                <input type="password" placeholder="Password" id="password" onChange={this.handleFieldChange} />
                             </div>
+                            {
+                                this.state.missedField &&
+                                <p className="error">Invalid username or password</p>
+                            }
+                            
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="login-btn" onClick={this.handleLogin}>Log in</button>
