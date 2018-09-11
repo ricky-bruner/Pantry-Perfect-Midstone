@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
-import DataManager from "../modules/DataManager"
+import DataManager from "../modules/DataManager";
+import "./applicationViews.css";
+import PantryList from "./pantry/PantryList";
+import RecipeList from "./recipes/RecipeList";
 
 export default class UserPage extends Component {
     state = {
@@ -31,7 +34,8 @@ export default class UserPage extends Component {
         return (
             <div>
                 <NavBar props={this.props} user={this.state.user} />
-                <h1>Hello Friend!</h1>
+                <RecipeList user={this.state.user} pantryItems={this.state.pantryItems} recipeItems={this.state.recipeItems} quantityTypes={this.state.quantityTypes} />
+                <PantryList user={this.state.user} pantryItems={this.state.pantryItems} quantityTypes={this.state.quantityTypes} />
             </div>
         )
     }
