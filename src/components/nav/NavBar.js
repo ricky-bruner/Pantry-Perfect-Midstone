@@ -3,6 +3,12 @@ import "./navBar.css";
 import PantryLogo from "../../PerfectPantry.png";
 
 export default class NavBar extends Component {
+    
+    handleLogout = () => {
+        sessionStorage.removeItem("user");
+        this.props.props.history.push("/login");
+    }
+
     render(){
         return (
             <div className="main-nav">
@@ -11,7 +17,7 @@ export default class NavBar extends Component {
                     <h3>Welcome Back, {this.props.user.username}</h3>
                 </div>
                 <div className="nav-right">
-                    <button className="logout-btn">Log out</button>
+                    <button className="logout-btn" onClick={this.handleLogout}>Log out</button>
                 </div>
             </div>
         )
