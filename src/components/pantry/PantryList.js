@@ -21,7 +21,10 @@ export default class PantryList extends Component {
         return (
             <div className="pantry-list-container">
                 <h2>Pantry Items</h2>
-                <PantryItemAdd user={this.props.user} addPantryItem={this.props.addPantryItem} quantityTypes={this.props.quantityTypes} />
+                <PantryItemAdd user={this.props.user}   
+                                addPantryItem={this.props.addPantryItem} 
+                                pantryItems={this.props.pantryItems} 
+                                quantityTypes={this.props.quantityTypes} />
                 {
                     this.props.pantryItems.map(item => {
                         return <PantryItemCard key={item.id} pantryItem={item} quantityTypes={this.props.quantityTypes} />

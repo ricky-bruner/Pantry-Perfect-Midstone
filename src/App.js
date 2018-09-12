@@ -14,10 +14,11 @@ export default class App extends Component {
                 {
                     !this.isAuthenticated() &&
                     <Route exact path="/login" render={(props) => {
-                        return <Login {...props} />
+                        return <Login {...props} isAuthenticated={this.isAuthenticated} />
                     }} />
                 }
                 {
+                    this.isAuthenticated() &&
                     <ApplicationViews isAuthenticated={this.isAuthenticated}/>
                 }
             </React.Fragment>

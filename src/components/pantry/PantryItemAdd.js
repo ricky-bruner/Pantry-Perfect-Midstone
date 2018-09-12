@@ -4,7 +4,9 @@ export default class PantryItemAdd extends Component {
     state = {
         itemName: "",
         itemAmount: "",
-        itemQuantityType: "" 
+        itemQuantityType: "",
+        similarItem: false,
+        duplicateItem: false
     }
 
     handleFieldChange = (evt) => {
@@ -20,17 +22,36 @@ export default class PantryItemAdd extends Component {
             quantity: this.state.itemAmount,
             quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
         }
-        this.props.addPantryItem(newItem)
-        .then(() => {
-            document.querySelector("#itemName").value = "";
-            document.querySelector("#itemAmount").value = "";
-            document.querySelector("#itemQuantityType").value = "Type";
+        if(this.props.pantryItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
             this.setState({
-                itemName: "",
-                itemAmount: "",
-                itemQuantityType: ""
+                duplicateItem: true,
+                similarItem: false,
             })
-        })
+        } else if(this.props.pantryItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+            this.setState({
+                duplicateItem: false,
+                similarItem: true,
+            })
+        } else if (this.props.pantryItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
+            this.setState({
+                duplicateItem: false,
+                similarItem: true,
+            })
+        } else {
+            this.props.addPantryItem(newItem)
+            .then(() => {
+                document.querySelector("#itemName").value = "";
+                document.querySelector("#itemAmount").value = "";
+                document.querySelector("#itemQuantityType").value = "Type";
+                this.setState({
+                    itemName: "",
+                    itemAmount: "",
+                    itemQuantityType: "",
+                    similarItem: false, 
+                    duplicateItem: false
+                })
+            })
+        }
     }
     
     render(){
@@ -45,6 +66,20 @@ export default class PantryItemAdd extends Component {
                     }   
                 </select>
                 <button onClick={this.handleItemAdd}>Add Item!</button>
+                {
+                    this.state.similarItem &&
+                    <div>
+                        <p className="error">You have a similar already in your pantry. Add anyways?</p>
+                        <button>Add Similar Item</button>
+                    </div>
+                }
+                {
+                    this.state.duplicateItem && 
+                    <div>
+                        <p>You already have this item in your Pantry. Consider changing what you call it to add a similar item, or update your quantity instead</p>
+                        <button>Update Quantity</button>
+                    </div>
+                }
                 
             </div>
         )
