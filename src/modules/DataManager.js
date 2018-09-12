@@ -30,5 +30,16 @@ export default Object.create(null, {
                 body: JSON.stringify(object)
             })
         }
+    },
+    edit: {
+        value: (resource, id, object) => {
+            return fetch(`${remoteURL}/${resource}/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            })
+        }
     }
 })
