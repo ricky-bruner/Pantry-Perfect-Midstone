@@ -31,16 +31,19 @@ export default class PantryItemAdd extends Component {
                 this.setState({
                     duplicateItem: true,
                     similarItem: false,
+                    emptyField: false
                 })
             } else if(this.props.pantryItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
+                    emptyField: false
                 })
             } else if (this.props.pantryItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
+                    emptyField: false
                 })
             } else {
                 this.props.addPantryItem(newItem)
@@ -53,7 +56,8 @@ export default class PantryItemAdd extends Component {
                         itemAmount: "",
                         itemQuantityType: "",
                         similarItem: false, 
-                        duplicateItem: false
+                        duplicateItem: false,
+                        emptyField: false
                     })
                 })
             }

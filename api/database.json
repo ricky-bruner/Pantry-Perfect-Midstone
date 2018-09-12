@@ -215,40 +215,48 @@
       "name": "Flour",
       "quantity": "0.5",
       "quantityTypeId": 3,
-      "id": 25,
-      "visible": true
+      "visible": true,
+      "id": 25
     },
     {
       "userId": 1,
       "name": "Sugar",
       "quantity": "1",
       "quantityTypeId": 3,
-      "id": 26,
-      "visible": true
+      "visible": true,
+      "id": 26
     },
     {
       "userId": 1,
       "name": "OatMeal",
       "quantity": "10",
       "quantityTypeId": 5,
-      "id": 27,
-      "visible": true
+      "visible": true,
+      "id": 27
     },
     {
       "userId": 1,
       "name": "olives",
       "quantity": "1",
       "quantityTypeId": 8,
-      "id": 28,
-      "visible": true
+      "visible": true,
+      "id": 28
     },
     {
       "userId": 1,
       "name": "chicken thighs",
       "quantity": "2",
       "quantityTypeId": 4,
-      "id": 29,
-      "visible": true
+      "visible": true,
+      "id": 29
+    },
+    {
+      "userId": 1,
+      "name": "Spinache",
+      "quantity": "1",
+      "quantityTypeId": 7,
+      "visible": true,
+      "id": 30
     }
   ],
   "recipes": [

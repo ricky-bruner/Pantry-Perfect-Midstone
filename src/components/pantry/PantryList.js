@@ -29,7 +29,11 @@ export default class PantryList extends Component {
                 {
                     !this.state.edit &&
                     this.props.pantryItems.map(item => {
-                        return <PantryItemCard key={item.id} pantryItem={item} quantityTypes={this.props.quantityTypes} />
+                        if(item.visible){
+                            return <PantryItemCard key={item.id} pantryItem={item} quantityTypes={this.props.quantityTypes} />
+                        } else {
+                            return null
+                        }
                     })
                 }
                 {
@@ -37,12 +41,18 @@ export default class PantryList extends Component {
                     <React.Fragment>
                         <button onClick={this.renderCards}>Finished Editing</button>
                         {
-                            this.props.pantryItems.map(item => <PantryItemEditCard key={item.id} 
-                                                                    pantryItem={item} 
-                                                                    editPantryItem={this.props.editPantryItem}
-                                                                    quantityTypes={this.props.quantityTypes} 
-                                                                    pantryItems={this.props.pantryItems} 
-                                                                    user={this.props.user} />)
+                            this.props.pantryItems.map(item => {
+                                if(item.visible){
+                                    return <PantryItemEditCard key={item.id} 
+                                                        pantryItem={item} 
+                                                        editPantryItem={this.props.editPantryItem}
+                                                        quantityTypes={this.props.quantityTypes} 
+                                                        pantryItems={this.props.pantryItems} 
+                                                        user={this.props.user} />
+                                } else {
+                                    return null
+                                }
+                            })
                         }
                     </React.Fragment>
                 }
