@@ -26,6 +26,16 @@ export default class PantryItemEditCard extends Component {
     renderEdit = () => {
         this.setState({renderEdit: true})
     }
+
+    handleEdit = () => {
+        let editedItem = {
+            name: this.state.itemName,
+            quantity: parseInt(this.state.itemAmount),
+            quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
+        }
+        this.props.editPantryItem(this.props.pantryItem.id, editedItem)
+        .then(() => this.setState({renderEdit: false}))
+    }
     
     render(){
         return (
@@ -55,7 +65,7 @@ export default class PantryItemEditCard extends Component {
                             })
                         }   
                     </select>
-                    <button>Save Changes</button>
+                    <button onClick={this.handleEdit}>Save Changes</button>
                 </div>
             }
             </div>

@@ -37,6 +37,12 @@ export default class UserPage extends Component {
         .then(pantryItems => this.setState({pantryItems: pantryItems}))
     }
 
+    editPantryItem = (id, object) => {
+        return DataManager.edit("pantryItems", id, object)
+        .then(() => DataManager.getUserData("pantryItems", this.state.user.id))
+        .then(pantryItems => this.setState({pantryItems: pantryItems}))
+    }
+
     render(){
         return (
             <div>
@@ -52,6 +58,7 @@ export default class UserPage extends Component {
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 
+                                    editPantryItem={this.editPantryItem}
                                     addPantryItem={this.addPantryItem}
                                     pantryItems={this.state.pantryItems} 
                                     quantityTypes={this.state.quantityTypes} />
