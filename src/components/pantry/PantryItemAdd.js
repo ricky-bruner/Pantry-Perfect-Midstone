@@ -6,7 +6,8 @@ export default class PantryItemAdd extends Component {
         itemAmount: "",
         itemQuantityType: "",
         similarItem: false,
-        duplicateItem: false
+        duplicateItem: false,
+        emptyInput: false
     }
 
     handleFieldChange = (evt) => {
@@ -16,41 +17,46 @@ export default class PantryItemAdd extends Component {
     }
 
     handleItemAdd = () => {
-        let newItem = {
-            userId: this.props.user.id,
-            name: this.state.itemName,
-            quantity: this.state.itemAmount,
-            quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
-        }
-        if(this.props.pantryItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
-            this.setState({
-                duplicateItem: true,
-                similarItem: false,
-            })
-        } else if(this.props.pantryItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
-            this.setState({
-                duplicateItem: false,
-                similarItem: true,
-            })
-        } else if (this.props.pantryItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
-            this.setState({
-                duplicateItem: false,
-                similarItem: true,
-            })
+        if(!this.state.itemQuantityType || this.state.itemQuantityType === "Type" || !this.state.itemName || !this.state.itemAmount){
+            this.setState({emptyInput: true})
         } else {
-            this.props.addPantryItem(newItem)
-            .then(() => {
-                document.querySelector("#itemName").value = "";
-                document.querySelector("#itemAmount").value = "";
-                document.querySelector("#itemQuantityType").value = "Type";
+            let newItem = {
+                userId: this.props.user.id,
+                name: this.state.itemName,
+                quantity: this.state.itemAmount,
+                quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
+                visible: true
+            }
+            if(this.props.pantryItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
                 this.setState({
-                    itemName: "",
-                    itemAmount: "",
-                    itemQuantityType: "",
-                    similarItem: false, 
-                    duplicateItem: false
+                    duplicateItem: true,
+                    similarItem: false,
                 })
-            })
+            } else if(this.props.pantryItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+                this.setState({
+                    duplicateItem: false,
+                    similarItem: true,
+                })
+            } else if (this.props.pantryItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
+                this.setState({
+                    duplicateItem: false,
+                    similarItem: true,
+                })
+            } else {
+                this.props.addPantryItem(newItem)
+                .then(() => {
+                    document.querySelector("#itemName").value = "";
+                    document.querySelector("#itemAmount").value = "";
+                    document.querySelector("#itemQuantityType").value = "Type";
+                    this.setState({
+                        itemName: "",
+                        itemAmount: "",
+                        itemQuantityType: "",
+                        similarItem: false, 
+                        duplicateItem: false
+                    })
+                })
+            }
         }
     }
     
@@ -65,6 +71,10 @@ export default class PantryItemAdd extends Component {
                         this.props.quantityTypes.map(type => <option key={type.id}>{type.name}</option>)
                     }   
                 </select>
+                {
+                    this.state.emptyInput &&
+                    <p className="error-p">Please Make sure everything is filled out!</p>
+                }
                 <button onClick={this.handleItemAdd}>Add Item!</button>
                 {
                     this.state.similarItem &&

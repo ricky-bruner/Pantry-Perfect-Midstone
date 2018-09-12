@@ -5,7 +5,8 @@ export default class PantryItemEditCard extends Component {
         itemName: "",
         itemAmount: "",
         itemQuantityType: "",
-        renderEdit: false
+        renderEdit: false,
+        nameTaken: false
     }
 
     componentDidMount(){
@@ -28,13 +29,26 @@ export default class PantryItemEditCard extends Component {
     }
 
     handleEdit = () => {
-        let editedItem = {
-            name: this.state.itemName,
-            quantity: parseInt(this.state.itemAmount),
-            quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
+        if(this.state.itemName === this.props.pantryItem.name){
+            let editedItem = {
+                quantity: parseInt(this.state.itemAmount),
+                quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
+            }
+            this.props.editPantryItem(this.props.pantryItem.id, editedItem)
+            .then(() => this.setState({renderEdit: false}))
+        } else {
+            let editedItem = {
+                name: this.state.itemName,
+                quantity: parseInt(this.state.itemAmount),
+                quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
+            }
+            if(this.props.pantryItems.find(item => item.name === editedItem.name)){
+                this.setState({nameTaken: true})
+            } else {
+                this.props.editPantryItem(this.props.pantryItem.id, editedItem)
+                .then(() => this.setState({renderEdit: false, nameTaken: false}))
+            }
         }
-        this.props.editPantryItem(this.props.pantryItem.id, editedItem)
-        .then(() => this.setState({renderEdit: false}))
     }
     
     render(){
@@ -52,7 +66,17 @@ export default class PantryItemEditCard extends Component {
             {
                 this.state.renderEdit &&
                 <div>
-                    <input type="text" id="itemName"  defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                    {
+                        this.state.nameTaken &&
+                        <div>
+                            <span className="error-p">Another item in your panty has this name</span>
+                            <input type="text" id="itemName" className="error" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />    
+                        </div>
+                    }
+                    {
+                        !this.state.nameTaken &&
+                        <input type="text" id="itemName"  defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                    }
                     <input type="text" id="itemAmount" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
                     <select id="itemQuantityType" defaultValue={this.state.itemQuantityType} onChange={this.handleFieldChange}>
                         {

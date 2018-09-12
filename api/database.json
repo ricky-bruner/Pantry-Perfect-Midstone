@@ -23,203 +23,232 @@
       "userId": 1,
       "name": "Olive Oil",
       "quantity": 16,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 2,
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
       "quantity": 8,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 3,
       "userId": 1,
       "name": "Salsa",
       "quantity": 16,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 4,
       "userId": 1,
       "name": "Lime",
       "quantity": 2,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 5,
       "userId": 1,
       "name": "Chicken Breast",
       "quantity": 8,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 6,
       "userId": 1,
       "name": "Green Bell Pepper",
       "quantity": 1,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 7,
       "userId": 1,
       "name": "Red Bell Pepper",
       "quantity": 1,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 8,
       "userId": 1,
       "name": "Flour Tortilla",
       "quantity": 10,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 9,
       "userId": 1,
       "name": "Shredded Mexican Cheese",
       "quantity": 1,
-      "quantityTypeId": 3
+      "quantityTypeId": 3,
+      "visible": true
     },
     {
       "id": 10,
       "userId": 1,
       "name": "Black Beans",
       "quantity": 8,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 11,
       "userId": 1,
       "name": "Lettuce",
       "quantity": 1,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 12,
       "userId": 1,
       "name": "Avacado",
       "quantity": 2,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 13,
       "userId": 1,
       "name": "Sour Cream",
       "quantity": 12,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 14,
       "userId": 1,
       "name": "Santitas Tortilla Chips",
       "quantity": 1,
-      "quantityTypeId": 7
+      "quantityTypeId": 7,
+      "visible": true
     },
     {
       "id": 15,
       "userId": 1,
       "name": "Sweet Peppers",
       "quantity": 1,
-      "quantityTypeId": 7
+      "quantityTypeId": 7,
+      "visible": true
     },
     {
       "id": 16,
       "userId": 1,
       "name": "Broccoli",
       "quantity": 1,
-      "quantityTypeId": 10
+      "quantityTypeId": 10,
+      "visible": true
     },
     {
       "id": 17,
       "userId": 1,
       "name": "Liquid Aminos Soy Sauce",
       "quantity": 16,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 18,
       "userId": 1,
       "name": "Chicken Stock Concentrate",
       "quantity": 8,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 19,
       "userId": 1,
       "name": "White Wine Vinegar",
       "quantity": 16,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 20,
       "userId": 1,
       "name": "Honey",
       "quantity": 8,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "id": 21,
       "userId": 1,
       "name": "Jasmine Rice",
       "quantity": 1,
-      "quantityTypeId": 5
+      "quantityTypeId": 5,
+      "visible": true
     },
     {
       "id": 22,
       "userId": 1,
       "name": "Garlic",
       "quantity": 1,
-      "quantityTypeId": 4
+      "quantityTypeId": 4,
+      "visible": true
     },
     {
       "id": 23,
       "userId": 1,
       "name": "Ginger",
       "quantity": 1,
-      "quantityTypeId": 13
+      "quantityTypeId": 13,
+      "visible": true
     },
     {
       "id": 24,
       "userId": 1,
       "name": "Rice Wine Vinegar",
       "quantity": 16,
-      "quantityTypeId": 6
+      "quantityTypeId": 6,
+      "visible": true
     },
     {
       "userId": 1,
       "name": "Flour",
       "quantity": "0.5",
       "quantityTypeId": 3,
-      "id": 25
+      "id": 25,
+      "visible": true
     },
     {
       "userId": 1,
       "name": "Sugar",
       "quantity": "1",
       "quantityTypeId": 3,
-      "id": 26
+      "id": 26,
+      "visible": true
     },
     {
       "userId": 1,
       "name": "OatMeal",
       "quantity": "10",
       "quantityTypeId": 5,
-      "id": 27
+      "id": 27,
+      "visible": true
     },
     {
       "userId": 1,
       "name": "olives",
       "quantity": "1",
       "quantityTypeId": 8,
-      "id": 28
+      "id": 28,
+      "visible": true
     },
     {
       "userId": 1,
       "name": "chicken thighs",
       "quantity": "2",
       "quantityTypeId": 4,
-      "id": 29
+      "id": 29,
+      "visible": true
     }
   ],
   "recipes": [
