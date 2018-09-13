@@ -23,6 +23,8 @@ export default class RecipeList extends Component {
                 {
                     this.state.addForm &&
                     <AddRecipeForm user={this.props.user} 
+                        updateRecipeState={this.props.updateRecipeState}    
+                        updateRecipeItemState={this.props.updateRecipeItemState}    
                         recipes={this.props.recipes}
                         pantryItems={this.props.pantryItems} 
                         recipeItems={this.props.recipeItems} 

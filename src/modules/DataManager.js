@@ -29,6 +29,7 @@ export default Object.create(null, {
                 },
                 body: JSON.stringify(object)
             })
+            .then(res => res.json())
         }
     },
     edit: {
@@ -40,6 +41,7 @@ export default Object.create(null, {
                 },
                 body: JSON.stringify(object)
             })
+            .then(res => res.json())
         }
     }
 })

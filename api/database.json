@@ -291,6 +291,54 @@
       "description": "Chicken, sweet peppers, and broccoli served over Jasmine Rice with and Honey Soy Glaze!",
       "image": "",
       "instructions": "Spritz lime juice into rice water as cooking begins, balance temperatures during glaze making to not burn it!"
+    },
+    {
+      "userId": 1,
+      "name": "Pineapple Tacos",
+      "description": "Beef tacos marinated with pineapple juice, sauteed in green bell peppers and pineapple, topped with fresh home made pico de gallo!",
+      "image": "",
+      "instructions": "remove the pineapple from the skillet before cooking the beef!",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "name": "test",
+      "description": "test",
+      "image": "",
+      "instructions": "test",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "name": "test 2",
+      "description": "test",
+      "image": "",
+      "instructions": "test",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "name": "hopefully final test",
+      "description": "test",
+      "image": "",
+      "instructions": "test",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "name": "afdrf",
+      "description": "arwferf",
+      "image": "",
+      "instructions": "arfre",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "name": "wwef",
+      "description": "werfwerf",
+      "image": "",
+      "instructions": "werfwerf",
+      "id": 8
     }
   ],
   "recipePantryItems": [
@@ -475,6 +523,103 @@
       "pantryItemId": 4,
       "quantity": 1,
       "quantityTypeId": 4
+    },
+    {
+      "pantryItemId": 1,
+      "quantity": "2",
+      "quantityTypeId": 1,
+      "id": 27
+    },
+    {
+      "pantryItemId": 2,
+      "recipeId": 3,
+      "quantity": 3,
+      "quantityTypeId": 1,
+      "id": 28
+    },
+    {
+      "pantryItemId": 11,
+      "recipeId": 3,
+      "quantity": 1,
+      "quantityTypeId": 11,
+      "id": 29
+    },
+    {
+      "pantryItemId": 6,
+      "recipeId": 1,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 30
+    },
+    {
+      "pantryItemId": 10,
+      "recipeId": 3,
+      "quantity": 8,
+      "quantityTypeId": 6,
+      "id": 31
+    },
+    {
+      "pantryItemId": 8,
+      "recipeId": 3,
+      "quantity": 4,
+      "quantityTypeId": 4,
+      "id": 32
+    },
+    {
+      "pantryItemId": 9,
+      "recipeId": 3,
+      "quantity": 5,
+      "quantityTypeId": 1,
+      "id": 33
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 10,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 34
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 5,
+      "quantity": 1,
+      "quantityTypeId": 3,
+      "id": 35
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 1,
+      "quantity": 4,
+      "quantityTypeId": 1,
+      "id": 36
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 3,
+      "quantity": 12,
+      "quantityTypeId": 2,
+      "id": 37
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 1,
+      "quantity": 2,
+      "quantityTypeId": 1,
+      "id": 38
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 2,
+      "quantity": 4,
+      "quantityTypeId": 1,
+      "id": 39
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 10,
+      "quantity": 4,
+      "quantityTypeId": 6,
+      "id": 40
     }
   ],
   "quantityTypes": [

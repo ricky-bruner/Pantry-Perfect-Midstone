@@ -43,6 +43,16 @@ export default class UserPage extends Component {
         .then(pantryItems => this.setState({pantryItems: pantryItems}))
     }
 
+    updateRecipeState = () => {
+        return DataManager.getUserData("recipes", this.state.user.id)
+        .then(recipes => this.setState({recipes: recipes}))
+    }
+
+    updateRecipeItemState = () => {
+        return DataManager.getUserData("recipePantryItems", this.state.user.id)
+        .then(recipesItems => this.setState({recipeItems: recipesItems}))
+    }
+
     render(){
         return (
             <div>
@@ -50,6 +60,8 @@ export default class UserPage extends Component {
                 <div className="user-view">
                     <div className="left-container">
                         <RecipeList user={this.state.user} 
+                                    updateRecipeState={this.updateRecipeState}
+                                    updateRecipeItemState={this.updateRecipeItemState}
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
                                     recipeItems={this.state.recipeItems} 
