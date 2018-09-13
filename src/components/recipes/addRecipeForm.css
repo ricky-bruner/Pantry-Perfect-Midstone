@@ -1,0 +1,8 @@
+.add-recipe-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    background: lightgray;
+    padding: .5em;
+}
