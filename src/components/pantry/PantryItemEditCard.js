@@ -31,7 +31,7 @@ export default class PantryItemEditCard extends Component {
     handleEdit = () => {
         if(this.state.itemName === this.props.pantryItem.name){
             let editedItem = {
-                quantity: parseInt(this.state.itemAmount),
+                quantity: parseInt(this.state.itemAmount, 0),
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
             }
             this.props.editPantryItem(this.props.pantryItem.id, editedItem)
@@ -39,7 +39,7 @@ export default class PantryItemEditCard extends Component {
         } else {
             let editedItem = {
                 name: this.state.itemName,
-                quantity: parseInt(this.state.itemAmount),
+                quantity: parseInt(this.state.itemAmount, 0),
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
             }
             if(this.props.pantryItems.find(item => item.name === editedItem.name)){
@@ -49,6 +49,10 @@ export default class PantryItemEditCard extends Component {
                 .then(() => this.setState({renderEdit: false, nameTaken: false}))
             }
         }
+    }
+
+    handleDelete = () => {
+        this.props.editPantryItem(this.props.pantryItem.id, {visible: false})
     }
     
     render(){
@@ -60,7 +64,7 @@ export default class PantryItemEditCard extends Component {
                     <p>{this.props.pantryItem.name}</p>
                     <p>{this.props.pantryItem.quantity} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
                     <button onClick={this.renderEdit}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={this.handleDelete}>Delete</button>
                 </div>
             }
             {

@@ -22,8 +22,8 @@
       "id": 1,
       "userId": 1,
       "name": "Olive Oil",
-      "quantity": 16,
-      "quantityTypeId": 6,
+      "quantity": "8",
+      "quantityTypeId": 1,
       "visible": true
     },
     {
@@ -38,7 +38,7 @@
       "id": 3,
       "userId": 1,
       "name": "Salsa",
-      "quantity": 16,
+      "quantity": "16",
       "quantityTypeId": 6,
       "visible": true
     },
@@ -46,7 +46,7 @@
       "id": 4,
       "userId": 1,
       "name": "Lime",
-      "quantity": 2,
+      "quantity": 5,
       "quantityTypeId": 4,
       "visible": true
     },
@@ -239,15 +239,15 @@
       "name": "olives",
       "quantity": "1",
       "quantityTypeId": 8,
-      "visible": true,
+      "visible": false,
       "id": 28
     },
     {
       "userId": 1,
       "name": "chicken thighs",
-      "quantity": "2",
+      "quantity": "1",
       "quantityTypeId": 4,
-      "visible": true,
+      "visible": false,
       "id": 29
     },
     {
@@ -255,8 +255,24 @@
       "name": "Spinache",
       "quantity": "1",
       "quantityTypeId": 7,
-      "visible": true,
+      "visible": false,
       "id": 30
+    },
+    {
+      "userId": 1,
+      "name": "olive",
+      "quantity": "5",
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 31
+    },
+    {
+      "userId": 1,
+      "name": "Snickers",
+      "quantity": "1",
+      "quantityTypeId": 7,
+      "visible": false,
+      "id": 32
     }
   ],
   "recipes": [

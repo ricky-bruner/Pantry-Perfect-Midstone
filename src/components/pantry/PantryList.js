@@ -22,7 +22,8 @@ export default class PantryList extends Component {
             <div className="pantry-list-container">
                 <h2>Pantry Items</h2>
                 <button onClick={this.renderEditCards}>Edit Pantry?</button>
-                <PantryItemAdd user={this.props.user}   
+                <PantryItemAdd user={this.props.user}  
+                                editPantryItem={this.props.editPantryItem} 
                                 addPantryItem={this.props.addPantryItem} 
                                 pantryItems={this.props.pantryItems} 
                                 quantityTypes={this.props.quantityTypes} />

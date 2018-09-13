@@ -7,7 +7,27 @@ export default class PantryItemAdd extends Component {
         itemQuantityType: "",
         similarItem: false,
         duplicateItem: false,
-        emptyInput: false
+        emptyInput: false,
+        similarRetired: false,
+        reviveItem: false,
+        revivedItemName: ""
+    }
+
+    resetState = () => {
+        document.querySelector("#itemName").value = "";
+        document.querySelector("#itemAmount").value = "";
+        document.querySelector("#itemQuantityType").value = "Type";
+        this.setState({
+            itemName: "",
+            itemAmount: "",
+            itemQuantityType: "",
+            similarItem: false,
+            duplicateItem: false,
+            emptyInput: false,
+            similarRetired: false,
+            reviveItem: false,
+            revivedItemName: ""
+        })
     }
 
     handleFieldChange = (evt) => {
@@ -27,41 +47,87 @@ export default class PantryItemAdd extends Component {
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
                 visible: true
             }
-            if(this.props.pantryItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
+            let currentItems = this.props.pantryItems.filter(item => item.visible);
+            let retiredItems = this.props.pantryItems.filter(item => !item.visible);
+            if(currentItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
                 this.setState({
                     duplicateItem: true,
                     similarItem: false,
-                    emptyField: false
+                    emptyField: false,
+                    similarRetired: false,
+                    reviveItem: false
                 })
-            } else if(this.props.pantryItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+            } else if(currentItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
-                    emptyField: false
+                    emptyField: false,
+                    similarRetired: false,
+                    reviveItem: false
                 })
-            } else if (this.props.pantryItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
+            } else if (currentItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
-                    emptyField: false
+                    emptyField: false,
+                    similarRetired: false,
+                    reviveItem: false
+                })
+            } else if(retiredItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
+                this.setState({
+                    reviveItem: true,
+                    duplicateItem: false,
+                    similarItem: false,
+                    emptyField: false,
+                    similarRetired: false,
+                    revivedItemName: this.state.itemName
+                })
+            } else if(retiredItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase())) || 
+                        retiredItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+                let similarRevivedItem = retiredItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase())) || 
+                retiredItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))
+                this.setState({
+                    similarRetired: true, 
+                    revivedItemName: similarRevivedItem.name
                 })
             } else {
                 this.props.addPantryItem(newItem)
-                .then(() => {
-                    document.querySelector("#itemName").value = "";
-                    document.querySelector("#itemAmount").value = "";
-                    document.querySelector("#itemQuantityType").value = "Type";
-                    this.setState({
-                        itemName: "",
-                        itemAmount: "",
-                        itemQuantityType: "",
-                        similarItem: false, 
-                        duplicateItem: false,
-                        emptyField: false
-                    })
-                })
+                .then(() => this.resetState())
             }
         }
+    }
+
+    reviveItem = () => {
+        let revivedItem = this.props.pantryItems.find(item => item.name.toLowerCase() === this.state.revivedItemName.toLowerCase())
+        revivedItem.visible = true;
+        revivedItem.quantity = this.state.itemAmount;
+        revivedItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id;
+        this.props.editPantryItem(revivedItem.id, revivedItem)
+        .then(() => this.resetState())
+    }
+
+    handleSimilarAdd = () => {
+        let similarItem = {
+            userId: this.props.user.id,
+            name: this.state.itemName,
+            quantity: this.state.itemAmount,
+            quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
+            visible: true
+        }
+        if(this.props.pantryItems.filter(item => item.visible === false).find(item => item.name.toLowerCase() === similarItem.name.toLowerCase())){
+            this.setState({reviveItem: true, similarItem: false, revivedItemName: this.state.itemName})
+        } else {
+            this.props.addPantryItem(similarItem)
+            .then(() => this.resetState())
+        }
+    }
+
+    handleDuplicateAdd = () => {
+        let duplicateItem = this.props.pantryItems.find(item => item.name.toLowerCase() === this.state.itemName.toLowerCase())
+        duplicateItem.quantity = this.state.itemAmount;
+        duplicateItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
+        this.props.editPantryItem(duplicateItem.id, duplicateItem)
+        .then(() => this.resetState())
     }
     
     render(){
@@ -84,14 +150,31 @@ export default class PantryItemAdd extends Component {
                     this.state.similarItem &&
                     <div>
                         <p className="error">You have a similar already in your pantry. Add anyways?</p>
-                        <button>Add Similar Item</button>
+                        <button onClick={this.handleSimilarAdd}>Add Similar Item</button>
                     </div>
                 }
                 {
                     this.state.duplicateItem && 
                     <div>
                         <p>You already have this item in your Pantry. Consider changing what you call it to add a similar item, or update your quantity instead</p>
-                        <button>Update Quantity</button>
+                        <button onClick={this.handleDuplicateAdd}>Update Quantity</button>
+                    </div>
+                }
+                {
+                    this.state.similarRetired &&
+                    <div>
+                        <p>This item is very similar to an item that used to live in your pantry! Would you like to add that item back, or go forth with this new item?</p>
+                        <p>Similar Item: {this.state.revivedItemName}</p>
+                        <button onClick={this.reviveItem}>Revive the item!</button>
+                        <button>Save Anyways</button>
+                    </div>
+                }
+                {
+                    this.state.reviveItem &&
+                    <div>
+                        <p>This item used to live in your pantry. Bring that item back from the grave?</p>
+                        <p>Item: {this.state.revivedItemName}</p>
+                        <button onClick={this.reviveItem}>Be a hero!</button>
                     </div>
                 }
                 
