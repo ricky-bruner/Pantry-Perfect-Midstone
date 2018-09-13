@@ -62,6 +62,8 @@ export default class UserPage extends Component {
                         <RecipeList user={this.state.user} 
                                     updateRecipeState={this.updateRecipeState}
                                     updateRecipeItemState={this.updateRecipeItemState}
+                                    editPantryItem={this.editPantryItem}
+                                    addPantryItem={this.addPantryItem}
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
                                     recipeItems={this.state.recipeItems} 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./addRecipeForm.css";
 import DataManager from "../../modules/DataManager";
+import PantryItemAdd from "../pantry/PantryItemAdd";
 
 export default class AddRecipeForm extends Component {
     state = {
@@ -12,6 +13,8 @@ export default class AddRecipeForm extends Component {
         quantityType: "",
         allIngredients: [],
         emptyForm: false,
+        pantryAdd: false,
+        duplicateIngredient: false,
         pantryItems: [],
         retiredItems: []
     }
@@ -29,6 +32,10 @@ export default class AddRecipeForm extends Component {
         this.setState(stateToChange)
     }
 
+    renderPantryAddForm = () => {
+        this.setState({pantryAdd: true})
+    }
+
     handleIngredientAdd = () => {
         let allIngredients = this.state.allIngredients;
         let newRecipeItem = {
@@ -39,16 +46,42 @@ export default class AddRecipeForm extends Component {
             quantityType: this.state.quantityType,
             quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.quantityType).id
         }
-        allIngredients.push(newRecipeItem);
+        if(this.state.allIngredients.find(ingredient => ingredient.name === newRecipeItem.name)){
+            this.setState({duplicateIngredient: true})
+        } else {
+            allIngredients.push(newRecipeItem);
+            document.querySelector("#recipeIngredient").value = "Select a Pantry Item"
+            document.querySelector("#itemQuantity").value = ""
+            document.querySelector("#quantityType").value = "Quantity Type"
+            this.setState({
+                allIngredients: allIngredients,
+                recipeIngredient: "",
+                itemQuantity: "",
+                quantityType: ""
+            })
+        }
+    }
+
+    resetState = () => {
         document.querySelector("#recipeIngredient").value = "Select a Pantry Item"
         document.querySelector("#itemQuantity").value = ""
         document.querySelector("#quantityType").value = "Quantity Type"
+        document.querySelector("#recipeName").value = ""
+        document.querySelector("#recipeDescription").value = ""
+        document.querySelector("#recipeInstructions").value = ""
         this.setState({
-            allIngredients: allIngredients,
+            recipeName: "",
+            recipeDescription: "",
+            recipeInstructions: "",
             recipeIngredient: "",
             itemQuantity: "",
-            quantityType: ""
+            quantityType: "",
+            allIngredients: [],
+            emptyForm: false,
+            pantryAdd: false,
+            duplicateIngredient: false
         })
+        
     }
 
     handleRecipeAdd = () => {
@@ -72,7 +105,7 @@ export default class AddRecipeForm extends Component {
                         let joinerIngredient = {
                             recipeId: recipe.id,
                             pantryItemId: ingredient.pantryItemId,
-                            quantity: parseInt(ingredient.quantity),
+                            quantity: parseInt(ingredient.quantity, 0),
                             quantityTypeId: ingredient.quantityTypeId
                         }
                         return allRecipeItems.push(joinerIngredient)
@@ -81,6 +114,7 @@ export default class AddRecipeForm extends Component {
                 })
                 .then(() => this.props.updateRecipeState())
                 .then(() => this.props.updateRecipeItemState())
+                .then(() => this.resetState())
             }
         }
     }
@@ -94,14 +128,22 @@ export default class AddRecipeForm extends Component {
                     <span className="error-p">Please Fill out all areas</span>
 
                 }
+                {
+                    this.state.duplicateRecipe &&
+                    <span className="error-p">Oops! It seems that you already have a recipe called this! Consider changing the name or double check that you are adding a recipe that you already have!</span>
+                }
                 <input type="text" id="recipeName" defaultValue={this.state.recipeName} placeholder="What is the meal called?" onChange={this.handleFieldChange} />
                 <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange}></textarea>
                 <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange}></textarea>
                 <h4>Now, add the ingredients based on what you have in your pantry!</h4>
+                {
+                    this.state.duplicateIngredient &&
+                    <span className="error-p">You've already added this Ingredient!</span>
+                }
                 <select id="recipeIngredient" onChange={this.handleFieldChange} defaultValue={this.state.recipeIngredient}>
                     <option>Select a Pantry Item</option>
                     {
-                        this.state.pantryItems.map(item => <option key={`pantryItem-${item.id}`}>{item.name}</option>)
+                        this.props.pantryItems.filter(item => item.visible).map(item => <option key={`pantryItem-${item.id}`}>{item.name}</option>)
                     }
                 </select>
                 <label htmlFor="itemQuantity">Add the amount!</label>
@@ -114,6 +156,21 @@ export default class AddRecipeForm extends Component {
                 </select>
                 <div>
                     <button onClick={this.handleIngredientAdd}>Add ingredient to recipe!</button>
+                </div>
+                <div>
+                    <h5>Is an ingredient you need for your recipe not in your pantry list yet?</h5>
+                    <button onClick={this.renderPantryAddForm}>Add the Ingredient to your Pantry!</button>
+                    {
+                        this.state.pantryAdd &&
+                        <div>
+                            <PantryItemAdd user={this.props.user}  
+                                        editPantryItem={this.props.editPantryItem} 
+                                        addPantryItem={this.props.addPantryItem} 
+                                        pantryItems={this.props.pantryItems} 
+                                        quantityTypes={this.props.quantityTypes} />
+                            <button>Finished adding items?</button>
+                        </div>
+                    }
                 </div>
                 <div>
                     <h5>Current Ingredients queued:</h5>
