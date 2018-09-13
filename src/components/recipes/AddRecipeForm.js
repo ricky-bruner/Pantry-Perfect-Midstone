@@ -36,6 +36,10 @@ export default class AddRecipeForm extends Component {
         this.setState({pantryAdd: true})
     }
 
+    hidePantryAddForm = () => {
+        this.setState({pantryAdd: false})
+    }
+
     handleIngredientAdd = () => {
         let allIngredients = this.state.allIngredients;
         let newRecipeItem = {
@@ -159,7 +163,10 @@ export default class AddRecipeForm extends Component {
                 </div>
                 <div>
                     <h5>Is an ingredient you need for your recipe not in your pantry list yet?</h5>
-                    <button onClick={this.renderPantryAddForm}>Add the Ingredient to your Pantry!</button>
+                    {
+                        !this.state.pantryAdd &&
+                        <button onClick={this.renderPantryAddForm}>Add the Ingredient to your Pantry!</button>
+                    }
                     {
                         this.state.pantryAdd &&
                         <div>
@@ -168,7 +175,7 @@ export default class AddRecipeForm extends Component {
                                         addPantryItem={this.props.addPantryItem} 
                                         pantryItems={this.props.pantryItems} 
                                         quantityTypes={this.props.quantityTypes} />
-                            <button>Finished adding items?</button>
+                            <button onClick={this.hidePantryAddForm}>Finished adding items?</button>
                         </div>
                     }
                 </div>
