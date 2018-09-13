@@ -118,7 +118,10 @@ export default class AddRecipeForm extends Component {
                 })
                 .then(() => this.props.updateRecipeState())
                 .then(() => this.props.updateRecipeItemState())
-                .then(() => this.resetState())
+                .then(() => {
+                    this.resetState();
+                    this.props.hideAddForm();
+                });
             }
         }
     }

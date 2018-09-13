@@ -17,7 +17,6 @@ export default class PantryList extends Component {
     }
 
     render(){
-        console.log("render", this.props)
         return (
             <div className="pantry-list-container">
                 <h2>Pantry Items</h2>

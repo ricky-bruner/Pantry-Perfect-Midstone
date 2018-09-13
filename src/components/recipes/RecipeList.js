@@ -12,6 +12,10 @@ export default class RecipeList extends Component {
             addForm: true
         })
     }
+
+    hideAddForm = () => {
+        this.setState({addForm: false})
+    }
     
     render(){
         return (
@@ -25,6 +29,7 @@ export default class RecipeList extends Component {
                     <AddRecipeForm user={this.props.user} 
                         updateRecipeState={this.props.updateRecipeState}    
                         updateRecipeItemState={this.props.updateRecipeItemState}
+                        hideAddForm={this.hideAddForm}
                         editPantryItem={this.props.editPantryItem} 
                         addPantryItem={this.props.addPantryItem}    
                         recipes={this.props.recipes}
