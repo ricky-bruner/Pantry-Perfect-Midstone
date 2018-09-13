@@ -6,7 +6,8 @@ export default class PantryItemEditCard extends Component {
         itemAmount: "",
         itemQuantityType: "",
         renderEdit: false,
-        nameTaken: false
+        nameTaken: false,
+        nameSimilar: false
     }
 
     componentDidMount(){
@@ -43,7 +44,9 @@ export default class PantryItemEditCard extends Component {
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
             }
             if(this.props.pantryItems.find(item => item.name === editedItem.name)){
-                this.setState({nameTaken: true})
+                this.setState({nameTaken: true, nameSimilar: false})
+            } else if(this.props.pantryItems.find(item => item.name.toLowerCase().includes(editedItem.name.toLowerCase())) || this.props.pantryItems.find(item => editedItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+                this.setState({nameSimilar: true, nameTaken: false})
             } else {
                 this.props.editPantryItem(this.props.pantryItem.id, editedItem)
                 .then(() => this.setState({renderEdit: false, nameTaken: false}))
@@ -78,7 +81,15 @@ export default class PantryItemEditCard extends Component {
                         </div>
                     }
                     {
+                        this.state.nameSimilar &&
+                        <div>
+                            <span className="error-p">Another item in your panty currently or in the past has a similar name to this! Consider using those instead!</span>
+                            <input type="text" id="itemName" className="error" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                        </div>
+                    }
+                    {
                         !this.state.nameTaken &&
+                        !this.state.nameSimilar &&
                         <input type="text" id="itemName"  defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
                     }
                     <input type="text" id="itemAmount" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
