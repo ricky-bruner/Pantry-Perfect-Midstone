@@ -17,7 +17,18 @@ export default class RecipeCard extends Component {
     render(){
         return (
             <div className="recipe-card">
-                <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                {
+                    this.props.edit &&
+                    <div>
+                        <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                        <button>Edit?</button>
+                        <button>Remove?</button>
+                    </div>
+                }
+                {
+                    !this.props.edit &&
+                    <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                }
                 {
                     this.state.showDetails &&
                     <div>

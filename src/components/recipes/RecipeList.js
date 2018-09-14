@@ -4,13 +4,22 @@ import AddRecipeForm from "./AddRecipeForm";
 
 export default class RecipeList extends Component {
     state = {
-        addForm: false
+        addForm: false,
+        edit: false
     }
 
     renderAddForm = () => {
         this.setState({
             addForm: true
         })
+    }
+
+    renderEditCards = () => {
+        this.setState({edit: true})
+    }
+
+    hideEditCards = () => {
+        this.setState({edit: false})
     }
 
     hideAddForm = () => {
@@ -22,7 +31,18 @@ export default class RecipeList extends Component {
             <div className="recipe-list-container">
                 {
                     !this.state.addForm &&
-                    <button onClick={this.renderAddForm}>Add a new Recipe!</button>
+                    !this.state.edit &&
+                    <div>
+                        <button onClick={this.renderAddForm}>Add a new Recipe!</button>
+                        <button onClick={this.renderEditCards}>Edit Your Recipes?</button>
+                    </div>
+                }
+                {
+                    this.state.edit &&
+                    <div>
+                        <button onClick={this.renderAddForm}>Add a new Recipe!</button>
+                        <button onClick={this.hideEditCards}>Finish Edits</button>
+                    </div>
                 }
                 {
                     this.state.addForm &&
@@ -39,8 +59,10 @@ export default class RecipeList extends Component {
                 }
                 {
                     this.props.recipes.map(recipe => <RecipeCard key={recipe.id} 
+                        edit={this.state.edit}
+                        hideEditCards={this.hideEditCards}
                         recipe={recipe} 
-                        recipeItems={this.props.recipeItems} å
+                        recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 
                         quantityTypes={this.props.quantityTypes} />)
                 }
