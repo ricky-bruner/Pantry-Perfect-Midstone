@@ -43,5 +43,12 @@ export default Object.create(null, {
             })
             .then(res => res.json())
         }
+    },
+    delete: {
+        value: (resource, id) => {
+            return fetch(`${remoteURL}/${resource}/${id}`, {
+                method: "DELETE"
+            }).then(res => res.json())
+        }
     }
 })

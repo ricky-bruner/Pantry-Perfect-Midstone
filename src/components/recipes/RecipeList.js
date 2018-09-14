@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RecipeCard from "./RecipeCard";
 import AddRecipeForm from "./AddRecipeForm";
+import RecipeEditCard from "./RecipeEditCard";
 
 export default class RecipeList extends Component {
     state = {
@@ -29,21 +30,25 @@ export default class RecipeList extends Component {
     render(){
         return (
             <div className="recipe-list-container">
-                {
-                    !this.state.addForm &&
-                    !this.state.edit &&
-                    <div>
+                <div>
+                    {
+                        !this.state.addForm &&
                         <button onClick={this.renderAddForm}>Add a new Recipe!</button>
+                    }
+                    {
+                        this.state.addForm &&
+                        <button onClick={this.hideAddForm}>Nevermind</button>
+                    }
+                    {
+                        !this.state.addForm &&
+                        !this.state.edit &&
                         <button onClick={this.renderEditCards}>Edit Your Recipes?</button>
-                    </div>
-                }
-                {
-                    this.state.edit &&
-                    <div>
-                        <button onClick={this.renderAddForm}>Add a new Recipe!</button>
+                    }
+                    {
+                        this.state.edit &&
                         <button onClick={this.hideEditCards}>Finish Edits</button>
-                    </div>
-                }
+                    }
+                </div>
                 {
                     this.state.addForm &&
                     <AddRecipeForm user={this.props.user} 
@@ -58,9 +63,16 @@ export default class RecipeList extends Component {
                         quantityTypes={this.props.quantityTypes}/>
                 }
                 {
+                    !this.state.edit &&
                     this.props.recipes.map(recipe => <RecipeCard key={recipe.id} 
-                        edit={this.state.edit}
-                        hideEditCards={this.hideEditCards}
+                        recipe={recipe} 
+                        recipeItems={this.props.recipeItems}
+                        pantryItems={this.props.pantryItems} 
+                        quantityTypes={this.props.quantityTypes} />)
+                }
+                {
+                    this.state.edit &&
+                    this.props.recipes.map(recipe => <RecipeEditCard key={recipe.id} 
                         recipe={recipe} 
                         recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 

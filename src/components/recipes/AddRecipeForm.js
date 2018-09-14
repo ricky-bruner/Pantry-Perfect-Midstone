@@ -20,7 +20,6 @@ export default class AddRecipeForm extends Component {
     }
 
     componentDidMount(){
-        console.log("props add form", this.props)
         let currentItems = this.props.pantryItems.filter(item => item.visible);
         let retiredItems = this.props.pantryItems.filter(item => !item.visible);
         this.setState({pantryItems: currentItems, retiredItems: retiredItems})
