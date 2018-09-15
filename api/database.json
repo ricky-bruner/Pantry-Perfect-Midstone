@@ -323,6 +323,14 @@
       "image": "",
       "instructions": "remove pineapple from skillet before adding beef.",
       "id": 3
+    },
+    {
+      "userId": 1,
+      "name": "test",
+      "description": "sdfvbsrvv sefvsv gberv sdfve . efvef",
+      "image": "",
+      "instructions": "sverwv regjrtbev ertert",
+      "id": 4
     }
   ],
   "recipePantryItems": [
@@ -626,6 +634,20 @@
       "quantity": 4,
       "quantityTypeId": 6,
       "id": 43
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 1,
+      "quantity": 2,
+      "quantityTypeId": 1,
+      "id": 44
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 4,
+      "quantity": 4,
+      "quantityTypeId": 4,
+      "id": 45
     }
   ],
   "quantityTypes": [

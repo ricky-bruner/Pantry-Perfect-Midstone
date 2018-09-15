@@ -176,7 +176,7 @@ export default class RecipeEditCard extends Component {
                                         }
                                         {
                                             this.state.editIngredients &&
-                                            <IngredientEditCard key={recipeItem.id} ingredient={ingredient} recipeItem={recipeItem} />
+                                            <IngredientEditCard key={recipeItem.id} ingredient={ingredient} quantityTypes={this.props.quantityTypes} recipeItem={recipeItem} updateRecipeItemState={this.props.updateRecipeItemState} />
                                         }
                                     </div>
                                 )
