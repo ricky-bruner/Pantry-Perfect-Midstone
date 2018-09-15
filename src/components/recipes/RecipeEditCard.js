@@ -1,11 +1,85 @@
 import React, { Component } from "react";
+import "./recipeEditCard.css";
+import DataManager from "../../modules/DataManager";
+import IngredientCard from "./IngredientCard";
+import IngredientEditCard from "./IngredientEditCard";
 
 export default class RecipeEditCard extends Component {
     state = {
+        recipeName: "",
+        recipeDescription: "",
+        recipeInstructions: "",
+        similarRecipe: {},
         showDetails: false,
         editMode: false,
         editDetails: false,
-        editIngredients: false
+        editIngredients: false,
+        noDetailChange: false,
+        nameTaken: false, 
+        similarName: false
+    }
+
+    componentDidMount(){
+        this.setState({
+            recipeName: this.props.recipe.name,
+            recipeDescription: this.props.recipe.description,
+            recipeInstructions: this.props.recipe.instructions
+        })
+    }
+
+    handleFieldChange = (evt) => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
+    updateDetails = () => {
+        if(this.state.recipeName === this.props.recipe.name && this.state.recipeDescription === this.props.recipe.description && this.state.recipeInstructions === this.props.recipe.instructions){
+            this.setState({noDetailChange: true})
+        } else {
+            let newDetails = {
+                name: this.state.recipeName,
+                description: this.state.recipeDescription,
+                instructions: this.state.recipeInstructions
+            }
+            let otherRecipes = this.props.allRecipes.filter(r => r.id !== this.props.recipe.id)
+            console.log(otherRecipes)
+            if(this.props.allRecipes.find(r => r.name.toLowerCase() === newDetails.name.toLowerCase())){
+                this.setState({nameTaken: true, noDetailChange: false})
+            } else if(otherRecipes.find(r => r.name.toLowerCase().includes(newDetails.name.toLowerCase())) || otherRecipes.find(r => newDetails.name.toLowerCase().includes(r.name.toLowerCase()))){
+                let similarRecipe = {}
+                if(otherRecipes.find(r => r.name.toLowerCase().includes(newDetails.name.toLowerCase()))){
+                    similarRecipe = otherRecipes.find(r => r.name.toLowerCase().includes(newDetails.name.toLowerCase()))
+                } else {
+                    similarRecipe = otherRecipes.find(r => newDetails.name.toLowerCase().includes(r.name.toLowerCase()))
+                }
+                this.setState({
+                    similarName: true, 
+                    nameTaken: false, 
+                    similarRecipe: similarRecipe })
+            } else {
+                DataManager.edit("recipes", this.props.recipe.id, newDetails)
+                .then(() => this.props.updateRecipeState())
+                .then(() => this.setState({
+                    editDetails: false, 
+                    noDetailChange: false, 
+                    similarRecipe: {}, 
+                    nameTaken: false, 
+                    similarName: false}))
+            }
+        }
+    }
+
+    saveSimilar = () => {
+        let newDetails = {
+            name: this.state.recipeName,
+            description: this.state.recipeDescription,
+            instructions: this.state.recipeInstructions
+        }
+        DataManager.edit("recipes", this.props.recipe.id, newDetails)
+        .then(() => this.props.updateRecipeState())
+        .then(() => this.setState({editDetails: false, noDetailChange: false, similarName: false}))
+
     }
 
     showDetails = () => {
@@ -44,14 +118,48 @@ export default class RecipeEditCard extends Component {
                         <h5 onClick={this.hideDetails}>Hide</h5>
                         {
                             this.state.editMode &&
-                            <button onClick={this.editDetails}>Edit Details</button>
+                            !this.state.editDetails &&
+                            <div>
+                                <button onClick={this.editDetails}>Edit Details</button>
+                                <p>{this.props.recipe.description}</p>
+                                <p>{this.props.recipe.instructions}</p>
+                            </div>
                         }
-                        <p>{this.props.recipe.description}</p>
-                        <p>{this.props.recipe.instructions}</p>
+                        {
+                            this.state.editDetails &&
+                            <div>
+                                <button>Nevermind</button>
+                                <div className="edit-recipe-details">
+                                    {
+                                        this.state.noDetailChange &&
+                                        <span className="error-p">You didn't make any changes!</span>
+                                    }
+                                    {
+                                        this.state.nameTaken &&
+                                        <span className="error-p">This recipe name is already taken!</span>
+                                    }
+                                    {
+                                        this.state.similarName &&
+                                        <div>
+                                            <span className="error-p">You have a similarly titled recipe.</span>
+                                            <p>{this.state.similarRecipe.name}</p>
+                                            <button onClick={this.saveSimilar}>I dont care, run it</button>
+                                        </div>
+                                    }
+                                    <span>Name:</span>
+                                    <input type="text" id="recipeName" defaultValue={this.state.recipeName} onChange={this.handleFieldChange}/>
+                                    <span>Description:</span>
+                                    <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} onChange={this.handleFieldChange}></textarea>
+                                    <span>Instructions:</span>
+                                    <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} onChange={this.handleFieldChange}></textarea>
+                                    <button onClick={this.updateDetails}>Submit Changes</button>
+                                </div>
+                            </div>
+                        }
                         <h4>Ingredients from Pantry</h4>
                         {
                             this.state.editMode &&
-                            <button>Edit Ingredients</button>
+                            <button onClick={this.editIngredients}>Edit Ingredients</button>
                         }
                         {
                             this.props.recipeItems.filter(recipeItem => recipeItem.recipeId === this.props.recipe.id).map(recipeItem => {
@@ -61,14 +169,15 @@ export default class RecipeEditCard extends Component {
                                     type: this.props.quantityTypes.find(type => type.id === recipeItem.quantityTypeId).name
                                 }
                                 return (
-                                    <div key={recipeItem.id} className="ingredient-card">
-                                        <div>
-                                            <p>{ingredient.name}</p>
-                                        </div>
-                                        <div>
-                                            <p>{ingredient.quantity} {ingredient.type.toLowerCase()}</p>
-                                            
-                                        </div>
+                                    <div key={`ingredient-${recipeItem.id}`}>
+                                        {
+                                            !this.state.editIngredients &&
+                                            <IngredientCard key={recipeItem.id} ingredient={ingredient} recipeItem={recipeItem} />
+                                        }
+                                        {
+                                            this.state.editIngredients &&
+                                            <IngredientEditCard key={recipeItem.id} ingredient={ingredient} recipeItem={recipeItem} />
+                                        }
                                     </div>
                                 )
                             })

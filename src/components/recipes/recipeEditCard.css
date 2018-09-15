@@ -1,0 +1,4 @@
+.edit-recipe-details {
+    display: flex;
+    flex-direction: column;
+}

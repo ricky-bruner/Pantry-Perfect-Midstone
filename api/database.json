@@ -7,6 +7,14 @@
       "email": "ricky@me.com",
       "fullName": "Ricky Bruner",
       "birthday": "12/10/1988"
+    },
+    {
+      "username": "qrv",
+      "password": "qerv",
+      "email": "qrv",
+      "image": "Edit your profile to add an image!",
+      "birthday": "Edit your profile to add your birthday",
+      "id": 2
     }
   ],
   "pantryItems": [
@@ -285,7 +293,7 @@
     {
       "userId": 1,
       "name": "Cilantro",
-      "quantity": 1,
+      "quantity": "1",
       "quantityTypeId": 12,
       "visible": true,
       "id": 35
