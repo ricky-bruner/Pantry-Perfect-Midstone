@@ -5,6 +5,7 @@ import "./applicationViews.css";
 import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
+import GroceryList from "./grocerylist/GroceryList";
 
 export default class UserPage extends Component {
     state = {
@@ -68,7 +69,15 @@ export default class UserPage extends Component {
                                     pantryItems={this.state.pantryItems} 
                                     recipeItems={this.state.recipeItems} 
                                     quantityTypes={this.state.quantityTypes} />
-                    
+                        <GroceryList user={this.state.user} 
+                                    updateRecipeState={this.updateRecipeState}
+                                    updateRecipeItemState={this.updateRecipeItemState}
+                                    editPantryItem={this.editPantryItem}
+                                    addPantryItem={this.addPantryItem}
+                                    recipes={this.state.recipes}
+                                    pantryItems={this.state.pantryItems} 
+                                    recipeItems={this.state.recipeItems} 
+                                    quantityTypes={this.state.quantityTypes} />
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 

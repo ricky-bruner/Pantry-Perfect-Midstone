@@ -29,7 +29,14 @@ export default class PantryList extends Component {
         return (
             <div className="pantry-list-container">
                 <h2>Pantry Items</h2>
-                <button onClick={this.renderEditCards}>Edit Pantry?</button>
+                {
+                    !this.state.edit &&
+                    <button onClick={this.renderEditCards}>Edit Pantry?</button>
+                }
+                {
+                    this.state.edit &&
+                    <button onClick={this.renderCards}>Finished Editing</button>
+                }
                 {
                     !this.state.addPantry &&
                     <button onClick={this.renderAddFrom}>Add a New Item?</button>
@@ -58,7 +65,6 @@ export default class PantryList extends Component {
                 {
                     this.state.edit &&
                     <React.Fragment>
-                        <button onClick={this.renderCards}>Finished Editing</button>
                         {
                             this.props.pantryItems.map(item => {
                                 if(item.visible){

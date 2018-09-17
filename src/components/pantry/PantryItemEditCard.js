@@ -1,20 +1,24 @@
 import React, { Component } from "react";
+import QtyConverter from "../../modules/QtyConverter";
 
 export default class PantryItemEditCard extends Component {
     state = {
         itemName: "",
         itemAmount: "",
         itemQuantityType: "",
+        convertQuantityType: "",
         renderEdit: false,
         nameTaken: false,
-        nameSimilar: false
+        nameSimilar: false,
+        convertQuantity: false
     }
 
     componentDidMount(){
         let pantryItem = {
             itemName: this.props.pantryItem.name,
-            itemAmount: this.props.pantryItem.quantity,
-            itemQuantityType: this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name
+            itemAmount: QtyConverter.convertFromTSP(parseInt(this.props.pantryItem.quantity, 0), this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name),
+            itemQuantityType: this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name,
+            convertQuantityType: this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name
         }
         this.setState(pantryItem)
     }
@@ -32,7 +36,7 @@ export default class PantryItemEditCard extends Component {
     handleEdit = () => {
         if(this.state.itemName === this.props.pantryItem.name){
             let editedItem = {
-                quantity: parseInt(this.state.itemAmount, 0),
+                quantity: QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType),
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
             }
             this.props.editPantryItem(this.props.pantryItem.id, editedItem)
@@ -40,7 +44,7 @@ export default class PantryItemEditCard extends Component {
         } else {
             let editedItem = {
                 name: this.state.itemName,
-                quantity: parseInt(this.state.itemAmount, 0),
+                quantity: QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType),
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
             }
             if(this.props.pantryItems.find(item => item.name === editedItem.name)){
@@ -54,8 +58,21 @@ export default class PantryItemEditCard extends Component {
         }
     }
 
+    convertQuantity = () => {
+        console.log(this.state.convertQuantityType)
+        let pantryItem = this.props.pantryItem
+        pantryItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.convertQuantityType).id
+        console.log(pantryItem)
+        this.props.editPantryItem(pantryItem.id, pantryItem)
+        .then(() => this.setState({convertQuantity: false}))
+    }
+
     handleDelete = () => {
         this.props.editPantryItem(this.props.pantryItem.id, {visible: false})
+    }
+
+    renderQuantityConvert = () => {
+        this.setState({convertQuantity: true})
     }
     
     render(){
@@ -63,11 +80,33 @@ export default class PantryItemEditCard extends Component {
             <div className="pantry-item-card">
             {
                 !this.state.renderEdit &&
+                !this.state.convertQuantity &&
                 <div>
                     <p>{this.props.pantryItem.name}</p>
-                    <p>{this.props.pantryItem.quantity} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
+                    <p>{QtyConverter.convertFromTSP(parseInt(this.props.pantryItem.quantity, 0), this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name)} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
                     <button onClick={this.renderEdit}>Edit</button>
                     <button onClick={this.handleDelete}>Delete</button>
+                    <button onClick={this.renderQuantityConvert}>Convert to Another Quantity Type</button>
+                </div>
+            }
+            {
+                this.state.convertQuantity &&
+                <div>
+                    <p>{this.props.pantryItem.name}</p>
+                    <p>Current: {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
+                    <p>New:</p>
+                    <select id="convertQuantityType" defaultValue={this.state.convertQuantityType} onChange={this.handleFieldChange}>
+                        {
+                            this.props.quantityTypes.map(type => {
+                                if(type.name !== this.state.itemQuantityType){
+                                    return <option key={type.id} defaultValue={type.name}>{type.name}</option>  
+                                } else {
+                                    return <option key={type.id} defaultValue={type.name}>{type.name}</option>
+                                }
+                            })
+                        }   
+                    </select>
+                    <button onClick={this.convertQuantity}>Convert!</button>
                 </div>
             }
             {
