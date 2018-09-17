@@ -50,6 +50,7 @@ export default class QueuedIngredientCard extends Component {
                 {
                     this.state.updateQuantity &&
                     <div>
+                        <p>{this.props.ingredient.name}</p>
                         <input type="number" id="newQuantity" placeholder="literally a number goes here" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
                         <select id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange}>
                             <option>Quantity Type</option>

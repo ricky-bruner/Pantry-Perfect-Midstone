@@ -692,6 +692,13 @@
       "quantity": 6,
       "quantityTypeId": 1,
       "id": 49
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 10,
+      "quantity": 8,
+      "quantityTypeId": 6,
+      "id": 50
     }
   ],
   "quantityTypes": [

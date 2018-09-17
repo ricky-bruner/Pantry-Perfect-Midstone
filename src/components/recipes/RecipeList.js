@@ -30,6 +30,7 @@ export default class RecipeList extends Component {
     render(){
         return (
             <div className="recipe-list-container">
+                <h2>Recipes</h2>
                 <div>
                     {
                         !this.state.addForm &&
