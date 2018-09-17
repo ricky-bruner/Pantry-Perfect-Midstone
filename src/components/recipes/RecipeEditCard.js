@@ -3,6 +3,7 @@ import "./recipeEditCard.css";
 import DataManager from "../../modules/DataManager";
 import IngredientCard from "./IngredientCard";
 import IngredientEditCard from "./IngredientEditCard";
+import AddIngredient from "./AddIngredient";
 
 export default class RecipeEditCard extends Component {
     state = {
@@ -16,7 +17,8 @@ export default class RecipeEditCard extends Component {
         editIngredients: false,
         noDetailChange: false,
         nameTaken: false, 
-        similarName: false
+        similarName: false,
+        addIngredients: false
     }
 
     componentDidMount(){
@@ -43,8 +45,7 @@ export default class RecipeEditCard extends Component {
                 instructions: this.state.recipeInstructions
             }
             let otherRecipes = this.props.allRecipes.filter(r => r.id !== this.props.recipe.id)
-            console.log(otherRecipes)
-            if(this.props.allRecipes.find(r => r.name.toLowerCase() === newDetails.name.toLowerCase())){
+            if(otherRecipes.find(r => r.name.toLowerCase() === newDetails.name.toLowerCase())){
                 this.setState({nameTaken: true, noDetailChange: false})
             } else if(otherRecipes.find(r => r.name.toLowerCase().includes(newDetails.name.toLowerCase())) || otherRecipes.find(r => newDetails.name.toLowerCase().includes(r.name.toLowerCase()))){
                 let similarRecipe = {}
@@ -56,6 +57,7 @@ export default class RecipeEditCard extends Component {
                 this.setState({
                     similarName: true, 
                     nameTaken: false, 
+                    noDetailChange: false,
                     similarRecipe: similarRecipe })
             } else {
                 DataManager.edit("recipes", this.props.recipe.id, newDetails)
@@ -102,8 +104,20 @@ export default class RecipeEditCard extends Component {
         this.setState({editDetails: true})
     }
 
+    hideEditDetails = () => {
+        this.setState({editDetails: false})
+    }
+
     editIngredients = () => {
         this.setState({editIngredients: true})
+    }
+
+    renderAddForm = () => {
+        this.setState({addIngredients: true})
+    }
+
+    hideAddForm = () => {
+        this.setState({addIngredients: false})
     }
 
     render(){
@@ -128,7 +142,7 @@ export default class RecipeEditCard extends Component {
                         {
                             this.state.editDetails &&
                             <div>
-                                <button>Nevermind</button>
+                                <button onClick={this.hideEditDetails}>Nevermind</button>
                                 <div className="edit-recipe-details">
                                     {
                                         this.state.noDetailChange &&
@@ -155,6 +169,23 @@ export default class RecipeEditCard extends Component {
                                     <button onClick={this.updateDetails}>Submit Changes</button>
                                 </div>
                             </div>
+                        }
+                        <h4>Add New Ingredients!</h4>
+                        {
+                            !this.state.addIngredients &&
+                            <button onClick={this.renderAddForm}>Add Ingredients!</button>
+                        }
+                        {
+                            this.state.addIngredients &&
+                            <AddIngredient user={this.props.user}  
+                                            recipe={this.props.recipe}
+                                            editPantryItem={this.props.editPantryItem} 
+                                            addPantryItem={this.props.addPantryItem} 
+                                            recipeItems={this.props.recipeItems}
+                                            updateRecipeItemState={this.props.updateRecipeItemState}
+                                            pantryItems={this.props.pantryItems} 
+                                            quantityTypes={this.props.quantityTypes}
+                                            hideAddForm={this.hideAddForm} />
                         }
                         <h4>Ingredients from Pantry</h4>
                         {

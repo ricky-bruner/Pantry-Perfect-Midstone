@@ -74,12 +74,15 @@ export default class RecipeList extends Component {
                     this.state.edit &&
                     this.props.recipes.map(recipe => <RecipeEditCard key={recipe.id} 
                         recipe={recipe} 
+                        user={this.props.user}
                         updateRecipeState={this.props.updateRecipeState}    
                         updateRecipeItemState={this.props.updateRecipeItemState}
                         allRecipes={this.props.recipes}
                         recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 
-                        quantityTypes={this.props.quantityTypes} />)
+                        quantityTypes={this.props.quantityTypes}
+                        editPantryItem={this.props.editPantryItem} 
+                        addPantryItem={this.props.addPantryItem} />)
                 }
             </div>
         )

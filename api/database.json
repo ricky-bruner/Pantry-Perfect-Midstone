@@ -86,8 +86,8 @@
       "id": 9,
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 1,
-      "quantityTypeId": 3,
+      "quantity": "1",
+      "quantityTypeId": 4,
       "visible": true
     },
     {
@@ -297,6 +297,14 @@
       "quantityTypeId": 12,
       "visible": true,
       "id": 35
+    },
+    {
+      "userId": 1,
+      "name": "shredded cheese",
+      "quantity": "1",
+      "quantityTypeId": 7,
+      "visible": true,
+      "id": 36
     }
   ],
   "recipes": [
@@ -327,9 +335,9 @@
     {
       "userId": 1,
       "name": "test",
-      "description": "sdfvbsrvv sefvsv gberv sdfve . efvef",
+      "description": "test description",
       "image": "",
-      "instructions": "sverwv regjrtbev ertert",
+      "instructions": "test instructions",
       "id": 4
     }
   ],
@@ -648,6 +656,20 @@
       "quantity": 4,
       "quantityTypeId": 4,
       "id": 45
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 3,
+      "quantity": 3,
+      "quantityTypeId": 1,
+      "id": 46
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 11,
+      "quantity": 2,
+      "quantityTypeId": 12,
+      "id": 47
     }
   ],
   "quantityTypes": [
