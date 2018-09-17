@@ -110,7 +110,7 @@ export default class PantryItemAdd extends Component {
         let similarItem = {
             userId: this.props.user.id,
             name: this.state.itemName,
-            quantity: this.state.itemAmount,
+            quantity: parseInt(this.state.itemAmount, 0),
             quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
             visible: true
         }

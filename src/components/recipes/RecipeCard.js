@@ -3,7 +3,7 @@ import "./recipeCard.css";
 
 export default class RecipeCard extends Component {
     state = {
-        showDetails: false
+        showDetails: false,
     }
 
     showDetails = () => {
@@ -34,8 +34,13 @@ export default class RecipeCard extends Component {
                                 }
                                 return (
                                     <div key={recipeItem.id} className="ingredient-card">
-                                        <p>{ingredient.name}</p>
-                                        <p>{ingredient.quantity} {ingredient.type.toLowerCase()}</p>
+                                        <div>
+                                            <p>{ingredient.name}</p>
+                                        </div>
+                                        <div>
+                                            <p>{ingredient.quantity} {ingredient.type.toLowerCase()}</p>
+                                            
+                                        </div>
                                     </div>
                                 )
                             })

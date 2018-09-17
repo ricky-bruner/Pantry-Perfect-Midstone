@@ -38,8 +38,8 @@
       "id": 3,
       "userId": 1,
       "name": "Salsa",
-      "quantity": "16",
-      "quantityTypeId": 6,
+      "quantity": "2",
+      "quantityTypeId": 1,
       "visible": true
     },
     {
@@ -86,8 +86,8 @@
       "id": 9,
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 1,
-      "quantityTypeId": 3,
+      "quantity": "1",
+      "quantityTypeId": 4,
       "visible": true
     },
     {
@@ -239,20 +239,20 @@
       "name": "olives",
       "quantity": "1",
       "quantityTypeId": 8,
-      "visible": false,
+      "visible": true,
       "id": 28
     },
     {
       "userId": 1,
       "name": "chicken thighs",
-      "quantity": "1",
+      "quantity": "5",
       "quantityTypeId": 4,
-      "visible": false,
+      "visible": true,
       "id": 29
     },
     {
       "userId": 1,
-      "name": "Spinache",
+      "name": "Spinach",
       "quantity": "1",
       "quantityTypeId": 7,
       "visible": false,
@@ -260,19 +260,59 @@
     },
     {
       "userId": 1,
-      "name": "olive",
-      "quantity": "5",
-      "quantityTypeId": 4,
+      "name": "Beef",
+      "quantity": "1",
+      "quantityTypeId": 3,
       "visible": true,
       "id": 31
     },
     {
       "userId": 1,
-      "name": "Snickers",
+      "name": "Pineapple",
+      "quantity": "12",
+      "quantityTypeId": 6,
+      "visible": true,
+      "id": 32
+    },
+    {
+      "userId": 1,
+      "name": "Onion",
+      "quantity": "1",
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 33
+    },
+    {
+      "userId": 1,
+      "name": "Roma Tomato",
+      "quantity": "2",
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 34
+    },
+    {
+      "userId": 1,
+      "name": "Cilantro",
+      "quantity": "1",
+      "quantityTypeId": 12,
+      "visible": true,
+      "id": 35
+    },
+    {
+      "userId": 1,
+      "name": "shredded cheese",
       "quantity": "1",
       "quantityTypeId": 7,
-      "visible": false,
-      "id": 32
+      "visible": true,
+      "id": 36
+    },
+    {
+      "userId": 1,
+      "name": "yogurt",
+      "quantity": "1",
+      "quantityTypeId": 8,
+      "visible": true,
+      "id": 37
     }
   ],
   "recipes": [
@@ -291,6 +331,22 @@
       "description": "Chicken, sweet peppers, and broccoli served over Jasmine Rice with and Honey Soy Glaze!",
       "image": "",
       "instructions": "Spritz lime juice into rice water as cooking begins, balance temperatures during glaze making to not burn it!"
+    },
+    {
+      "userId": 1,
+      "name": "Pineapple Beef Tacos",
+      "description": "Pineapple juice marinated taco beef, sauteed green peppers and pineapple chunks, served on a flour tortilla with homemade pico de gallo",
+      "image": "",
+      "instructions": "remove pineapple from skillet before adding beef.",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "name": "test 3",
+      "description": "test description",
+      "image": "",
+      "instructions": "test instructions",
+      "id": 4
     }
   ],
   "recipePantryItems": [
@@ -475,6 +531,174 @@
       "pantryItemId": 4,
       "quantity": 1,
       "quantityTypeId": 4
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 1,
+      "quantity": 2,
+      "quantityTypeId": 1,
+      "id": 27
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 2,
+      "quantity": 3,
+      "quantityTypeId": 1,
+      "id": 28
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 4,
+      "quantity": 3,
+      "quantityTypeId": 4,
+      "id": 29
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 6,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 30
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 14,
+      "quantity": 1,
+      "quantityTypeId": 7,
+      "id": 31
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 8,
+      "quantity": 4,
+      "quantityTypeId": 4,
+      "id": 32
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 10,
+      "quantity": 8,
+      "quantityTypeId": 6,
+      "id": 33
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 12,
+      "quantity": 2,
+      "quantityTypeId": 4,
+      "id": 34
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 13,
+      "quantity": 2,
+      "quantityTypeId": 1,
+      "id": 35
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 31,
+      "quantity": 1,
+      "quantityTypeId": 3,
+      "id": 36
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 32,
+      "quantity": 12,
+      "quantityTypeId": 6,
+      "id": 37
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 33,
+      "quantity": 0,
+      "quantityTypeId": 4,
+      "id": 38
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 34,
+      "quantity": 2,
+      "quantityTypeId": 4,
+      "id": 39
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 35,
+      "quantity": 1,
+      "quantityTypeId": 12,
+      "id": 40
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 9,
+      "quantity": 5,
+      "quantityTypeId": 1,
+      "id": 41
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 11,
+      "quantity": 1,
+      "quantityTypeId": 12,
+      "id": 42
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 3,
+      "quantity": 4,
+      "quantityTypeId": 6,
+      "id": 43
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 1,
+      "quantity": 2,
+      "quantityTypeId": 1,
+      "id": 44
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 4,
+      "quantity": 4,
+      "quantityTypeId": 4,
+      "id": 45
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 3,
+      "quantity": 3,
+      "quantityTypeId": 1,
+      "id": 46
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 11,
+      "quantity": 2,
+      "quantityTypeId": 12,
+      "id": 47
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 20,
+      "quantity": 5,
+      "quantityTypeId": 1,
+      "id": 48
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 37,
+      "quantity": 6,
+      "quantityTypeId": 1,
+      "id": 49
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 10,
+      "quantity": 8,
+      "quantityTypeId": 6,
+      "id": 50
     }
   ],
   "quantityTypes": [

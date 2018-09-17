@@ -5,7 +5,8 @@ import PantryItemEditCard from "./PantryItemEditCard";
 
 export default class PantryList extends Component {
     state = {
-        edit: false
+        edit: false,
+        addPantry: false
     }
 
     renderEditCards = () => {
@@ -16,17 +17,34 @@ export default class PantryList extends Component {
         this.setState({edit: false})
     }
 
+    renderAddFrom = () => {
+        this.setState({addPantry: true})
+    }
+
+    hideAddForm = () => {
+        this.setState({addPantry: false})
+    }
+
     render(){
-        console.log("render", this.props)
         return (
             <div className="pantry-list-container">
                 <h2>Pantry Items</h2>
                 <button onClick={this.renderEditCards}>Edit Pantry?</button>
-                <PantryItemAdd user={this.props.user}  
-                                editPantryItem={this.props.editPantryItem} 
-                                addPantryItem={this.props.addPantryItem} 
-                                pantryItems={this.props.pantryItems} 
-                                quantityTypes={this.props.quantityTypes} />
+                {
+                    !this.state.addPantry &&
+                    <button onClick={this.renderAddFrom}>Add a New Item?</button>
+                }
+                {
+                    this.state.addPantry &&
+                    <div>
+                        <PantryItemAdd user={this.props.user}  
+                                        editPantryItem={this.props.editPantryItem} 
+                                        addPantryItem={this.props.addPantryItem} 
+                                        pantryItems={this.props.pantryItems} 
+                                        quantityTypes={this.props.quantityTypes} />
+                        <button onClick={this.hideAddForm}>Finish Adding Items!</button>
+                    </div>
+                }
                 {
                     !this.state.edit &&
                     this.props.pantryItems.map(item => {
