@@ -239,7 +239,7 @@
       "name": "olives",
       "quantity": "1",
       "quantityTypeId": 8,
-      "visible": false,
+      "visible": true,
       "id": 28
     },
     {
@@ -305,6 +305,14 @@
       "quantityTypeId": 7,
       "visible": true,
       "id": 36
+    },
+    {
+      "userId": 1,
+      "name": "yogurt",
+      "quantity": "1",
+      "quantityTypeId": 8,
+      "visible": true,
+      "id": 37
     }
   ],
   "recipes": [
@@ -334,7 +342,7 @@
     },
     {
       "userId": 1,
-      "name": "test",
+      "name": "test 3",
       "description": "test description",
       "image": "",
       "instructions": "test instructions",
@@ -670,6 +678,20 @@
       "quantity": 2,
       "quantityTypeId": 12,
       "id": 47
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 20,
+      "quantity": 5,
+      "quantityTypeId": 1,
+      "id": 48
+    },
+    {
+      "recipeId": 4,
+      "pantryItemId": 37,
+      "quantity": 6,
+      "quantityTypeId": 1,
+      "id": 49
     }
   ],
   "quantityTypes": [
