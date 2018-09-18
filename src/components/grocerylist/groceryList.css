@@ -1,0 +1,19 @@
+.grocery-item-card {
+    display: flex;
+    justify-content: space-between;
+    width: 90%
+}
+
+.grocery-item-name {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.grocery-item-name span {
+    display: block;
+}
+
+.small-span {
+    color: lightgray;
+    font-size: .8em;
+}

@@ -21,7 +21,12 @@ export default class RecipeCard extends Component {
             <div className="recipe-card">
                 <div className="recipe-card-title">
                     <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
-                    <BuildGroceryList user={this.props.user} recipe={this.props.recipe} recipeItems={this.props.recipeItems} pantryItems={this.props.pantryItems} quantityTypes={this.props.quantityTypes} />
+                    <BuildGroceryList user={this.props.user} recipe={this.props.recipe} 
+                                                            recipeItems={this.props.recipeItems} 
+                                                            pantryItems={this.props.pantryItems} 
+                                                            quantityTypes={this.props.quantityTypes} 
+                                                            updateGroceryItemState={this.props.updateGroceryItemState} 
+                                                            updatePantryItemState={this.props.updatePantryItemState} />
                 </div>
                 {
                     this.state.showDetails &&

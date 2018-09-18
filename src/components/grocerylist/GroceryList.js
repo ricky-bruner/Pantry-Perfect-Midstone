@@ -1,23 +1,46 @@
 import React, { Component } from "react";
-import QtyConverter from "../../modules/QtyConverter";
+// import QtyConverter from "../../modules/QtyConverter";
+import { Checkbox } from "semantic-ui-react";
+import "./groceryList.css";
+import GroceryPurchasedForm from "./GroceryPurchaseForm";
 
 export default class GroceryList extends Component {
-    
-    doMath = (item) => {
-        let quantityType = this.props.quantityTypes.find(type => type.id === item.quantityTypeId).name
-        console.log(quantityType);
-        console.log(QtyConverter.convertToTSP(item.quantity, quantityType))
-        console.log(QtyConverter.convertFromTSP(item.quantity, quantityType))
+    state = {
+        boughtGroceries: []
     }
     
+    buyGrocery = (gItem) => {
+        let boughtGroceries = this.state.boughtGroceries
+        if(boughtGroceries.find(g => g.id === gItem.id)){
+            this.setState({boughtGroceries: boughtGroceries.filter(g => g.id !== gItem.id)})
+        } else {
+            boughtGroceries.push(gItem)
+            this.setState({boughtGroceries: boughtGroceries})
+        }
+    }
+
     render(){
         return (
             <div className="grocery-list">
                 <h2>Grocery List</h2>
-                {/* <button>Click to calculate</button>
                 {
-                    this.props.pantryItems.map(item => <div key={item.id}><p>{item.name}</p><button onClick={() => {this.doMath(item)}}>Click To Calculate</button></div>)
-                } */}
+                    this.props.groceryItems.length === 0 &&
+                    <p className="small-span">You don't have any items in your grocery list!</p>
+                }
+                {
+                    this.props.groceryItems.length > 0 &&
+                    this.props.groceryItems.map(gItem => {
+                        let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
+                        let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
+                        return (
+                            <div key={gItem.id} className="grocery-item-card">
+                                <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
+                                <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>
+                            </div>
+                        )
+                    })
+                }
+                <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} pantryItems={this.props.pantryItems} />
             </div>
         )
     }

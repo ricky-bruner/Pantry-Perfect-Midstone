@@ -46,6 +46,11 @@ export default class UserPage extends Component {
         .then(pantryItems => this.setState({pantryItems: pantryItems}))
     }
 
+    updatePantryItemState = () => {
+        DataManager.getUserData("pantryItems", this.state.user.id)
+        .then(pantryItems => this.setState({pantryItems: pantryItems}))
+    }
+
     updateRecipeState = () => {
         return DataManager.getUserData("recipes", this.state.user.id)
         .then(recipes => this.setState({recipes: recipes}))
@@ -75,16 +80,16 @@ export default class UserPage extends Component {
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
                                     recipeItems={this.state.recipeItems} 
-                                    quantityTypes={this.state.quantityTypes} />
+                                    quantityTypes={this.state.quantityTypes}
+                                    updatePantryItemState={this.updatePantryItemState}
+                                    updateGroceryItemState={this.updateGroceryItemState} />
                         <GroceryList user={this.state.user} 
-                                    updateRecipeState={this.updateRecipeState}
-                                    updateRecipeItemState={this.updateRecipeItemState}
                                     editPantryItem={this.editPantryItem}
                                     addPantryItem={this.addPantryItem}
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
-                                    recipeItems={this.state.recipeItems} 
-                                    quantityTypes={this.state.quantityTypes} />
+                                    quantityTypes={this.state.quantityTypes}
+                                    groceryItems={this.state.groceryItems} />
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 

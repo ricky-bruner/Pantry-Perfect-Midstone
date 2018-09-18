@@ -3,6 +3,7 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 import "./buildGroceryList.css";
 import QtyConverter from "../../modules/QtyConverter";
 import GroceryItemCard from "./GroceryItemCard";
+import DataManager from "../../modules/DataManager";
 
 export default class BuildGroceryList extends Component {
     state = { 
@@ -19,6 +20,30 @@ export default class BuildGroceryList extends Component {
             loadedItems.push(groceryItem);
             this.setState({loadedItems: loadedItems})
         }
+    }
+
+    buildGroceryList = () => {
+        Promise.all(this.state.loadedItems.map(item => DataManager.add("groceryItems", item)))
+        .then(() => this.props.updateGroceryItemState())
+        .then(() => this.close())
+    }
+
+    subtractTotals = () => {
+        let rItems = this.props.recipeItems.filter(rItem => rItem.recipeId === this.props.recipe.id);
+        Promise.all(rItems.map(rItem => {
+            let quantityType = this.props.quantityTypes.find(type => type.id === rItem.quantityTypeId).name
+            let quantityInTSP = QtyConverter.convertToTSP(rItem.quantity, quantityType)
+            let pItem = this.props.pantryItems.find(pItem => pItem.id === rItem.pantryItemId)
+            pItem.quantity = (pItem.quantity - quantityInTSP)
+            if(pItem.quantity < 0){
+                pItem.quantity = 0
+                return DataManager.edit("pantryItems", pItem.id, {quantity: pItem.quantity})
+            } else {
+                return DataManager.edit("pantryItems", pItem.id, {quantity: pItem.quantity})
+            }
+        }))
+        .then(() => this.props.updatePantryItemState())
+        .then(() => this.close())
     }
 
     show = dimmer => () => this.setState({ dimmer, open: true })
@@ -72,6 +97,7 @@ export default class BuildGroceryList extends Component {
                     <Modal.Actions>
                         <Button color='red' onClick={this.close}>Cancel</Button>
                         <Button positive icon='checkmark' labelPosition='right' content="Add to You Grocery List!" onClick={this.buildGroceryList} />
+                        <Button color="olive" content="Subtract Amounts" onClick={this.subtractTotals} />
                     </Modal.Actions>
                 </Modal>
             </div>

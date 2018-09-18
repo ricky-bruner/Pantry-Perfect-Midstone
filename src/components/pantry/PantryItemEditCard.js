@@ -59,10 +59,8 @@ export default class PantryItemEditCard extends Component {
     }
 
     convertQuantity = () => {
-        console.log(this.state.convertQuantityType)
         let pantryItem = this.props.pantryItem
         pantryItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.convertQuantityType).id
-        console.log(pantryItem)
         this.props.editPantryItem(pantryItem.id, pantryItem)
         .then(() => this.setState({convertQuantity: false}))
     }
