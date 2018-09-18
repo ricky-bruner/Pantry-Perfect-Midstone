@@ -13,10 +13,11 @@ export default class GroceryList extends Component {
     render(){
         return (
             <div className="grocery-list">
-                <button>Click to calculate</button>
+                <h2>Grocery List</h2>
+                {/* <button>Click to calculate</button>
                 {
                     this.props.pantryItems.map(item => <div key={item.id}><p>{item.name}</p><button onClick={() => {this.doMath(item)}}>Click To Calculate</button></div>)
-                }
+                } */}
             </div>
         )
     }

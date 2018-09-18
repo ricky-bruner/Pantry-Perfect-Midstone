@@ -18,6 +18,7 @@ export default class RecipeCard extends Component {
         return (
             <div className="recipe-card">
                 <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                <button>Cook?</button>
                 {
                     this.state.showDetails &&
                     <div>
