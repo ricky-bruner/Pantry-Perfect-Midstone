@@ -10,12 +10,6 @@ export default class BuildGroceryList extends Component {
         loadedItems: []
     }
 
-    // componentDidMount(){
-    //     let pantryItems = [];
-    //     let recipeItems = [];
-    //     this.props.recipeItems.filter(item => item.recipeId === this.props.recipe.id).map(item => recipeItems.push
-    // }
-
     loadGroceryItems = groceryItem => {
         let loadedItems = this.state.loadedItems;
         if(loadedItems.find(item => item.pantryItemId === groceryItem.pantryItemId)){
@@ -28,7 +22,7 @@ export default class BuildGroceryList extends Component {
     }
 
     show = dimmer => () => this.setState({ dimmer, open: true })
-    close = () => this.setState({ open: false })
+    close = () => this.setState({ open: false, loadedItems: [] })
     
     render(){
         const { open, dimmer } = this.state
@@ -67,7 +61,7 @@ export default class BuildGroceryList extends Component {
                                             let quantity = QtyConverter.convertFromTSP(pItem.quantity, quantityType)
                                             let rItemQuantity = QtyConverter.convertToTSP(rItem.quantity, quantityType)
                                             return (
-                                                <GroceryItemCard key={rItem.id} user={this.props.user} pItem={pItem} quantityType={quantityType} quantity={quantity} rItemQuantity={rItemQuantity} loadGroceryItems={this.loadGroceryItems}/>
+                                                <GroceryItemCard key={rItem.id} user={this.props.user} recipe={this.props.recipe} pItem={pItem} quantityType={quantityType} quantity={quantity} rItemQuantity={rItemQuantity} loadGroceryItems={this.loadGroceryItems}/>
                                             )
                                         })
                                     }
@@ -76,8 +70,8 @@ export default class BuildGroceryList extends Component {
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color='black' onClick={this.close}>Nope</Button>
-                        <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
+                        <Button color='red' onClick={this.close}>Cancel</Button>
+                        <Button positive icon='checkmark' labelPosition='right' content="Add to You Grocery List!" onClick={this.buildGroceryList} />
                     </Modal.Actions>
                 </Modal>
             </div>

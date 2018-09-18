@@ -6,7 +6,8 @@ export default class GroceryItemCard extends Component {
     queGroceryItem = () => {
         let groceryItem = {
             userId: this.props.user.id,
-            pantryItemId: this.props.pItem.id
+            pantryItemId: this.props.pItem.id,
+            recipeId: this.props.recipe.id
         }
         this.props.loadGroceryItems(groceryItem)
     }

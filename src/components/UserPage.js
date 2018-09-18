@@ -13,8 +13,8 @@ export default class UserPage extends Component {
         pantryItems: [],
         recipes: [],
         recipeItems: [],
+        groceryItems: [],
         quantityTypes: []
-
     }
 
     componentDidMount(){
@@ -27,6 +27,8 @@ export default class UserPage extends Component {
         .then(recipes => newState.recipes = recipes)
         .then(() => DataManager.getUserData("recipePantryItems"))
         .then(recipeItems => newState.recipeItems = recipeItems)
+        .then(() => DataManager.getUserData("groceryItems", newState.user.id))
+        .then(groceryItems => newState.groceryItems = groceryItems)
         .then(() => DataManager.get("quantityTypes"))
         .then(quantityTypes => newState.quantityTypes = quantityTypes)
         .then(() => this.setState(newState))
@@ -52,6 +54,11 @@ export default class UserPage extends Component {
     updateRecipeItemState = () => {
         return DataManager.getUserData("recipePantryItems", this.state.user.id)
         .then(recipesItems => this.setState({recipeItems: recipesItems}))
+    }
+
+    updateGroceryItemState = () => {
+        return DataManager.getUserData("groceryItems", this.state.user.id)
+        .then(groceryItems => this.setState({groceryItems: groceryItems}))
     }
 
     render(){
