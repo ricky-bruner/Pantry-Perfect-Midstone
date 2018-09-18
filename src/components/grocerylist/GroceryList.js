@@ -40,7 +40,7 @@ export default class GroceryList extends Component {
                         )
                     })
                 }
-                <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} pantryItems={this.props.pantryItems} />
+                <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} quantityTypes={this.props.quantityTypes} pantryItems={this.props.pantryItems} />
             </div>
         )
     }
