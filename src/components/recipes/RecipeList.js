@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RecipeCard from "./RecipeCard";
 import AddRecipeForm from "./AddRecipeForm";
 import RecipeEditCard from "./RecipeEditCard";
+import 'semantic-ui-css/semantic.min.css';
 
 export default class RecipeList extends Component {
     state = {
@@ -66,6 +67,7 @@ export default class RecipeList extends Component {
                 {
                     !this.state.edit &&
                     this.props.recipes.map(recipe => <RecipeCard key={recipe.id} 
+                        user={this.props.user}
                         recipe={recipe} 
                         recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 

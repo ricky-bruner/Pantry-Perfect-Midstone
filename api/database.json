@@ -29,7 +29,7 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 90,
+      "quantity": 48,
       "quantityTypeId": 3,
       "visible": true,
       "id": 2
@@ -45,10 +45,34 @@
     {
       "userId": 1,
       "name": "Lime",
-      "quantity": 12,
+      "quantity": 24,
       "quantityTypeId": 3,
       "visible": true,
       "id": 4
+    },
+    {
+      "userId": 1,
+      "name": "Mrs. Dash Fiesta Lime Seasoning",
+      "quantity": 72,
+      "quantityTypeId": 3,
+      "visible": true,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "name": "Sirloin",
+      "quantity": 80,
+      "quantityTypeId": 1,
+      "visible": true,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "name": "Romain Lettuce",
+      "quantity": 48,
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 7
     }
   ],
   "recipes": [
@@ -59,6 +83,14 @@
       "image": "",
       "instructions": "salsa is used in the marinade",
       "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "test",
+      "description": "test",
+      "image": "",
+      "instructions": "test",
+      "id": 2
     }
   ],
   "recipePantryItems": [
@@ -75,6 +107,34 @@
       "quantity": 3,
       "quantityTypeId": 2,
       "id": 2
+    },
+    {
+      "recipeId": 1,
+      "pantryItemId": 5,
+      "quantity": 2,
+      "quantityTypeId": 3,
+      "id": 3
+    },
+    {
+      "recipeId": 2,
+      "pantryItemId": 4,
+      "quantity": 3,
+      "quantityTypeId": 3,
+      "id": 4
+    },
+    {
+      "recipeId": 1,
+      "pantryItemId": 6,
+      "quantity": 3,
+      "quantityTypeId": 14,
+      "id": 5
+    },
+    {
+      "recipeId": 1,
+      "pantryItemId": 7,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 6
     }
   ],
   "quantityTypes": [

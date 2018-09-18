@@ -1,0 +1,36 @@
+.ui.modal {
+    width: 550px !important;
+}
+.grocery-build-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.grocery-build-left {
+    width: 60%;
+}
+
+.grocery-build-right {
+    width: 20%;
+}
+
+.recipe-ingredient-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.onHand-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sold-out {
+    color: red;
+}
+
+.in-stock {
+    color: green;
+}
+.low-stock {
+    color: blue;
+}
