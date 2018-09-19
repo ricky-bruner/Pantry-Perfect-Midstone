@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Message } from "semantic-ui-react";
 
 export default class PurchasedItemCard extends Component {
     state = {
         quantity: "",
         quantityType: "Select Quantity Type",
-        saved: false
+        saved: false,
+        enterQuantity: false
     }
 
     handleFieldChange = (evt) => {
@@ -24,8 +26,12 @@ export default class PurchasedItemCard extends Component {
             quantityType: this.state.quantityType,
             groceryItemId: this.props.grocery.id
         }
-        this.props.addItemAmounts(item)
-        this.setState({saved: true})
+        if(item.quantity <= 0 || this.state.quantityType === "Select Quantity Type"){
+            this.setState({enterQuantity: true})
+        } else {
+            this.props.addItemAmounts(item)
+            this.setState({saved: true})
+        }
     }
     
     render(){
@@ -42,7 +48,11 @@ export default class PurchasedItemCard extends Component {
                 {
                     !this.state.saved &&
                     <div>
-                        <input type="text" id="quantity" placeholder="How much did you buy?" defaultValue={this.state.quantity} onChange={this.handleFieldChange} />
+                        {
+                            this.state.enterQuantity &&
+                            <Message floating size="tiny" color='red' className="align-center">Please enter an amount greater than 0 and a type :D</Message>
+                        }
+                        <input type="number" id="quantity" placeholder="How much did you buy?" defaultValue={this.state.quantity} onChange={this.handleFieldChange} />
                             <select id="quantityType" onChange={this.handleFieldChange} defaultValue={this.state.quantityType}>
                                 <option>Select Quantity Type</option>
                                 {

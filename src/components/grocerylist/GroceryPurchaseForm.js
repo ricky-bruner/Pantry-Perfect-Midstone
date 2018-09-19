@@ -49,7 +49,14 @@ export default class GroceryPurchaseForm extends Component {
 
         return (
             <div>
-                <Button positive icon='checkmark' labelPosition='right' content="Update Grocery List!" onClick={this.show('blurring')} />
+                {
+                    this.props.boughtGroceries.length === 0 &&
+                    <Button positive icon='checkmark' labelPosition='right' content="Update Grocery List!" disabled onClick={this.show('blurring')} />
+                }
+                {
+                    this.props.boughtGroceries.length > 0 &&
+                    <Button positive icon='checkmark' labelPosition='right' content="Update Grocery List!" onClick={this.show('blurring')} />
+                }
                 <Modal dimmer={dimmer} open={open} onClose={this.close}>
                 <Modal.Header>Lets set the Pantry</Modal.Header>
                 <Modal.Content>
@@ -70,8 +77,13 @@ export default class GroceryPurchaseForm extends Component {
                         this.state.noChanges &&
                         <Message floating size="tiny" color='red' className="align-center">You didn't select anything to update!</Message>
                     }
-                    <Button color='red' onClick={this.close}>Cancel</Button>
-                    <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.updatePantry} />
+                    <Button.Group>
+                        <Button color='red' onClick={this.close}>Cancel</Button>
+                        <Button.Or />
+                        <Button color="green" icon='checkmark' labelPosition='right' content="Save" onClick={this.updatePantry} />
+                    </Button.Group>
+                    {/* <Button color='red' onClick={this.close}>Cancel</Button>
+                    <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.updatePantry} /> */}
                 </Modal.Actions>
                 </Modal>
             </div>

@@ -1,7 +1,8 @@
 .grocery-item-card {
     display: flex;
     justify-content: space-between;
-    width: 90%
+    width: 90%;
+    margin: .5em auto;
 }
 
 .grocery-item-name {
@@ -16,4 +17,15 @@
 .small-span {
     color: lightgray;
     font-size: .8em;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    padding: .5em;
+}
+
+.flex-title {
+    width: 70%;
+    text-align: center;
 }

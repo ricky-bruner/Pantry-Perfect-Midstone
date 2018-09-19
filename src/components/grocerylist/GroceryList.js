@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 // import QtyConverter from "../../modules/QtyConverter";
-import { Checkbox } from "semantic-ui-react";
+import { Checkbox, Button, Icon } from "semantic-ui-react";
 import "./groceryList.css";
 import GroceryPurchasedForm from "./GroceryPurchaseForm";
+import DataManager from "../../modules/DataManager";
 
 export default class GroceryList extends Component {
     state = {
+        edit: false,
         boughtGroceries: []
     }
     
@@ -19,6 +21,12 @@ export default class GroceryList extends Component {
         }
     }
 
+    removeItem = (item) => {
+        DataManager.delete("groceryItems", item.id)
+        .then(() => {this.props.updateGroceryItemState()})
+        .then(() => this.setState({boughtGroceries: this.state.boughtGroceries.filter(g => g.id !== item.id)}))
+    }
+
     clearGrocery = (item) => {
         let boughtGroceries = this.state.boughtGroceries;
         let remainingGroceries = boughtGroceries.filter(grocery => item.groceryItemId !== grocery.id)
@@ -29,23 +37,54 @@ export default class GroceryList extends Component {
     render(){
         return (
             <div className="grocery-list">
-                <h2>Grocery List</h2>
+                <div className="header-flex">
+                    <h2 className="flex-title">Grocery List</h2>
+                    <div>
+                        {
+                            this.state.edit &&
+                            <Button basic fluid color="blue" size="mini" content="Finish" onClick={() => {this.setState({edit: false})}} />
+                        }
+                        {
+                            !this.state.edit &&
+                            <Button basic fluid color="green" size="mini" content="Edit" onClick={() => {this.setState({edit: true})}} />
+                        }
+                    </div>
+                </div>
                 {
                     this.props.groceryItems.length === 0 &&
                     <p className="small-span">You don't have any items in your grocery list!</p>
                 }
                 {
                     this.props.groceryItems.length > 0 &&
+                    !this.state.edit &&
                     this.props.groceryItems.map(gItem => {
                         let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
                         let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
                         return (
                             <div key={gItem.id} className="grocery-item-card">
                                 <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
-                                <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>
+                                <div>
+                                    <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>
+                                </div>
                             </div>
                         )
                     })
+                }
+                {
+                    this.state.edit &&
+                    this.props.groceryItems.map(gItem => {
+                        let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
+                        let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
+                        return (
+                            <div key={gItem.id} className="grocery-item-card">
+                                <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
+                                <div>
+                                    <Button basic compact size="mini" color="red" onClick={() => {this.removeItem(gItem)}}><Icon name="delete"/></Button>
+                                </div>
+                            </div>
+                        )
+                    })
+
                 }
                 <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} 
                                         quantityTypes={this.props.quantityTypes} 

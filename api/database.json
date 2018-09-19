@@ -29,7 +29,7 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 160,
+      "quantity": 400,
       "quantityTypeId": 3,
       "visible": true,
       "id": 2
@@ -45,7 +45,7 @@
     {
       "userId": 1,
       "name": "Lime",
-      "quantity": 36,
+      "quantity": 54,
       "quantityTypeId": 2,
       "visible": true,
       "id": 4
@@ -140,33 +140,15 @@
   "groceryItems": [
     {
       "userId": 1,
-      "pantryItemId": 6,
+      "pantryItemId": 7,
       "recipeId": 1,
       "id": 1
     },
     {
       "userId": 1,
-      "pantryItemId": 7,
+      "pantryItemId": 6,
       "recipeId": 1,
       "id": 2
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 5,
-      "recipeId": 1,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 4,
-      "recipeId": 1,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 2,
-      "recipeId": 1,
-      "id": 5
     }
   ],
   "quantityTypes": [
