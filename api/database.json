@@ -45,7 +45,7 @@
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 54,
+      "quantity": 45,
       "quantityTypeId": 2,
       "visible": true,
       "id": 4
@@ -53,7 +53,7 @@
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 150,
+      "quantity": 138,
       "quantityTypeId": 3,
       "visible": true,
       "id": 5
@@ -69,10 +69,42 @@
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 12,
+      "quantity": 204,
       "quantityTypeId": 3,
       "visible": true,
       "id": 7
+    },
+    {
+      "userId": 1,
+      "name": "Apple",
+      "quantity": 96,
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "name": "Flour",
+      "quantity": 256,
+      "quantityTypeId": 14,
+      "visible": true,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "name": "Sugar",
+      "quantity": 304,
+      "quantityTypeId": 14,
+      "visible": true,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "name": "Cinnamon",
+      "quantity": 78,
+      "quantityTypeId": 3,
+      "visible": true,
+      "id": 11
     }
   ],
   "recipes": [
@@ -91,6 +123,14 @@
       "image": "",
       "instructions": "test",
       "id": 2
+    },
+    {
+      "userId": 1,
+      "name": "Meg's Apple Pie",
+      "description": "its apple pie",
+      "image": "",
+      "instructions": "a,jhfg",
+      "id": 3
     }
   ],
   "recipePantryItems": [
@@ -135,9 +175,68 @@
       "quantity": 1,
       "quantityTypeId": 4,
       "id": 6
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 8,
+      "quantity": 3,
+      "quantityTypeId": 4,
+      "id": 7
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 9,
+      "quantity": 3,
+      "quantityTypeId": 4,
+      "id": 8
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 11,
+      "quantity": 4,
+      "quantityTypeId": 2,
+      "id": 9
+    },
+    {
+      "recipeId": 3,
+      "pantryItemId": 10,
+      "quantity": 2,
+      "quantityTypeId": 4,
+      "id": 10
     }
   ],
-  "groceryItems": [],
+  "groceryItems": [
+    {
+      "userId": 1,
+      "pantryItemId": 6,
+      "recipeId": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 5,
+      "recipeId": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 4,
+      "recipeId": 1,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 2,
+      "recipeId": 1,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 7,
+      "recipeId": 1,
+      "id": 5
+    }
+  ],
   "quantityTypes": [
     {
       "id": 1,

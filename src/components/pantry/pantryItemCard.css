@@ -1,8 +1,58 @@
-.pantry-item-card {
+.pantry-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin: 1em auto !important;
+    width: 80% !important;
+    padding: .5em !important;
+}
+
+.pantry-item-header-left {
+    width: 70%;
+    text-align: left;
+}
+.pantry-item-header-right {
+    width: 30%;
+    text-align: right; 
+}
+
+.pantry-edit-flex {
     display: flex;
-    justify-content: space-between;
-    background: lightgray;
-    margin: 1em auto;
-    width: 80%;
-    padding: .5em;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.edit-item-left {
+    width: 40%;
+    text-align: right;
+}
+.edit-item-right {
+    width: 40%;
+    text-align: left;
+}
+
+.edit-pantry-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin: 1em auto !important;
+    width: 90% !important;
+    padding: .5em !important;
+}
+
+.edit-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: .5em;
+}
+
+.input-margin {
+    width: 100%;
+    margin: .5em 0;
+}
+
+.warning-popup {
+    background: lightcoral !important;
+    color: darkred !important;
+    border: solid 1px darkred !important;
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./addRecipeForm.css";
 import DataManager from "../../modules/DataManager";
 import PantryItemAdd from "../pantry/PantryItemAdd";
+import { TextArea, Form, Select } from "semantic-ui-react";
 
 export default class AddRecipeForm extends Component {
     state = {
@@ -139,8 +140,12 @@ export default class AddRecipeForm extends Component {
                     <span className="error-p">Oops! It seems that you already have a recipe called this! Consider changing the name or double check that you are adding a recipe that you already have!</span>
                 }
                 <input type="text" id="recipeName" defaultValue={this.state.recipeName} placeholder="What is the meal called?" onChange={this.handleFieldChange} />
-                <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange}></textarea>
-                <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange}></textarea>
+                {/* <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange}></textarea> */}
+                <Form>
+                <TextArea autoHeight id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange} />
+                {/* <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange}></textarea> */}
+                <TextArea autoHeight id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange} />
+                </Form>
                 <h4>Now, add the ingredients based on what you have in your pantry!</h4>
                 {
                     this.state.duplicateIngredient &&

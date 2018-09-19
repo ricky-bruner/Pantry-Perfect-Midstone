@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import QtyConverter from "../../modules/QtyConverter";
-import { Checkbox, Button, Icon } from "semantic-ui-react";
+import { Checkbox, Button, Divider, Container } from "semantic-ui-react";
 import "./groceryList.css";
 import GroceryPurchasedForm from "./GroceryPurchaseForm";
 import DataManager from "../../modules/DataManager";
@@ -30,13 +30,13 @@ export default class GroceryList extends Component {
     clearGrocery = (item) => {
         let boughtGroceries = this.state.boughtGroceries;
         let remainingGroceries = boughtGroceries.filter(grocery => item.groceryItemId !== grocery.id)
-        console.log(remainingGroceries)
         this.setState({boughtGroceries: remainingGroceries})
     }
 
     render(){
         return (
             <div className="grocery-list">
+            <Container>
                 <div className="header-flex">
                     <h2 className="flex-title">Grocery List</h2>
                     <div>
@@ -61,11 +61,14 @@ export default class GroceryList extends Component {
                         let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
                         let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
                         return (
-                            <div key={gItem.id} className="grocery-item-card">
-                                <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
-                                <div>
-                                    <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>
+                            <div>
+                                <div key={gItem.id} className="grocery-item-card">
+                                    <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
+                                    <div>
+                                        <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>
+                                    </div>
                                 </div>
+                                <Divider fitted />
                             </div>
                         )
                     })
@@ -76,11 +79,14 @@ export default class GroceryList extends Component {
                         let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
                         let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
                         return (
-                            <div key={gItem.id} className="grocery-item-card">
-                                <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
-                                <div>
-                                    <Button basic compact size="mini" color="red" onClick={() => {this.removeItem(gItem)}}><Icon name="delete"/></Button>
+                            <div>
+                                <div key={gItem.id} className="grocery-item-card">
+                                    <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
+                                    <div>
+                                        <Button basic compact size="mini" color="red" onClick={() => {this.removeItem(gItem)}}>Delete</Button>
+                                    </div>
                                 </div>
+                                <Divider fitted />
                             </div>
                         )
                     })
@@ -92,6 +98,7 @@ export default class GroceryList extends Component {
                                         updatePantryItemState={this.props.updatePantryItemState}
                                         updateGroceryItemState={this.props.updateGroceryItemState}
                                         clearGrocery={this.clearGrocery} />
+            </Container>
             </div>
         )
     }

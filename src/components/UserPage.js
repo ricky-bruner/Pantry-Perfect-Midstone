@@ -6,6 +6,7 @@ import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
 import GroceryList from "./grocerylist/GroceryList";
+import { Pagination } from "semantic-ui-react";
 
 export default class UserPage extends Component {
     state = {
