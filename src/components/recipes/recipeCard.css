@@ -6,3 +6,16 @@
     width: 80%;
     padding: .5em;
 }
+
+.recipe-card-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    padding: .5em;
+}
+
+.recipe-card-title h3 {
+    font-size: 1.5em;
+    text-align: center;
+    width: 70%;
+}

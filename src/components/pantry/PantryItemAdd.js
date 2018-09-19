@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import QtyConverter from "../../modules/QtyConverter";
 
 export default class PantryItemAdd extends Component {
     state = {
@@ -43,7 +44,7 @@ export default class PantryItemAdd extends Component {
             let newItem = {
                 userId: this.props.user.id,
                 name: this.state.itemName,
-                quantity: this.state.itemAmount,
+                quantity: QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType),
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
                 visible: true
             }
@@ -100,7 +101,7 @@ export default class PantryItemAdd extends Component {
     reviveItem = () => {
         let revivedItem = this.props.pantryItems.find(item => item.name.toLowerCase() === this.state.revivedItemName.toLowerCase())
         revivedItem.visible = true;
-        revivedItem.quantity = this.state.itemAmount;
+        revivedItem.quantity = QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType);
         revivedItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id;
         this.props.editPantryItem(revivedItem.id, revivedItem)
         .then(() => this.resetState())
@@ -110,7 +111,7 @@ export default class PantryItemAdd extends Component {
         let similarItem = {
             userId: this.props.user.id,
             name: this.state.itemName,
-            quantity: parseInt(this.state.itemAmount, 0),
+            quantity: QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType),
             quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id,
             visible: true
         }
@@ -124,7 +125,7 @@ export default class PantryItemAdd extends Component {
 
     handleDuplicateAdd = () => {
         let duplicateItem = this.props.pantryItems.find(item => item.name.toLowerCase() === this.state.itemName.toLowerCase())
-        duplicateItem.quantity = this.state.itemAmount;
+        duplicateItem.quantity = QtyConverter.convertToTSP(parseInt(this.state.itemAmount, 0), this.state.itemQuantityType);
         duplicateItem.quantityTypeId = this.props.quantityTypes.find(type => type.name === this.state.itemQuantityType).id
         this.props.editPantryItem(duplicateItem.id, duplicateItem)
         .then(() => this.resetState())

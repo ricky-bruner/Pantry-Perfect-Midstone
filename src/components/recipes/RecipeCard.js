@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./recipeCard.css";
+// import { Button } from "semantic-ui-react";
+import BuildGroceryList from "../grocerylist/BuildGroceryList";
 
 export default class RecipeCard extends Component {
     state = {
@@ -17,7 +19,15 @@ export default class RecipeCard extends Component {
     render(){
         return (
             <div className="recipe-card">
-                <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                <div className="recipe-card-title">
+                    <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                    <BuildGroceryList user={this.props.user} recipe={this.props.recipe} 
+                                                            recipeItems={this.props.recipeItems} 
+                                                            pantryItems={this.props.pantryItems} 
+                                                            quantityTypes={this.props.quantityTypes} 
+                                                            updateGroceryItemState={this.props.updateGroceryItemState} 
+                                                            updatePantryItemState={this.props.updatePantryItemState} />
+                </div>
                 {
                     this.state.showDetails &&
                     <div>

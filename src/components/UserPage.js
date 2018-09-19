@@ -5,6 +5,7 @@ import "./applicationViews.css";
 import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
+import GroceryList from "./grocerylist/GroceryList";
 
 export default class UserPage extends Component {
     state = {
@@ -12,8 +13,8 @@ export default class UserPage extends Component {
         pantryItems: [],
         recipes: [],
         recipeItems: [],
+        groceryItems: [],
         quantityTypes: []
-
     }
 
     componentDidMount(){
@@ -26,6 +27,8 @@ export default class UserPage extends Component {
         .then(recipes => newState.recipes = recipes)
         .then(() => DataManager.getUserData("recipePantryItems"))
         .then(recipeItems => newState.recipeItems = recipeItems)
+        .then(() => DataManager.getUserData("groceryItems", newState.user.id))
+        .then(groceryItems => newState.groceryItems = groceryItems)
         .then(() => DataManager.get("quantityTypes"))
         .then(quantityTypes => newState.quantityTypes = quantityTypes)
         .then(() => this.setState(newState))
@@ -43,6 +46,11 @@ export default class UserPage extends Component {
         .then(pantryItems => this.setState({pantryItems: pantryItems}))
     }
 
+    updatePantryItemState = () => {
+        DataManager.getUserData("pantryItems", this.state.user.id)
+        .then(pantryItems => this.setState({pantryItems: pantryItems}))
+    }
+
     updateRecipeState = () => {
         return DataManager.getUserData("recipes", this.state.user.id)
         .then(recipes => this.setState({recipes: recipes}))
@@ -51,6 +59,11 @@ export default class UserPage extends Component {
     updateRecipeItemState = () => {
         return DataManager.getUserData("recipePantryItems", this.state.user.id)
         .then(recipesItems => this.setState({recipeItems: recipesItems}))
+    }
+
+    updateGroceryItemState = () => {
+        return DataManager.getUserData("groceryItems", this.state.user.id)
+        .then(groceryItems => this.setState({groceryItems: groceryItems}))
     }
 
     render(){
@@ -67,8 +80,18 @@ export default class UserPage extends Component {
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
                                     recipeItems={this.state.recipeItems} 
-                                    quantityTypes={this.state.quantityTypes} />
-                    
+                                    quantityTypes={this.state.quantityTypes}
+                                    updatePantryItemState={this.updatePantryItemState}
+                                    updateGroceryItemState={this.updateGroceryItemState} />
+                        <GroceryList user={this.state.user} 
+                                    editPantryItem={this.editPantryItem}
+                                    addPantryItem={this.addPantryItem}
+                                    recipes={this.state.recipes}
+                                    pantryItems={this.state.pantryItems} 
+                                    quantityTypes={this.state.quantityTypes}
+                                    groceryItems={this.state.groceryItems}
+                                    updatePantryItemState={this.updatePantryItemState}
+                                    updateGroceryItemState={this.updateGroceryItemState} />
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 

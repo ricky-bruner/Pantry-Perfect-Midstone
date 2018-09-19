@@ -46,7 +46,7 @@ export default class AddIngredient extends Component {
                 name: this.state.recipeIngredient,
                 userId: this.props.user.id,
                 pantryItemId: this.props.pantryItems.find(item => item.name === this.state.recipeIngredient).id,
-                quantity: this.state.itemQuantity,
+                quantity: parseInt(this.state.itemQuantity, 0),
                 quantityType: this.state.quantityType,
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.quantityType).id
             }
@@ -114,7 +114,7 @@ export default class AddIngredient extends Component {
 
     updateQueuedQuantity = (ingredient) => {
         let allIngredients = this.state.allIngredients;
-        allIngredients.find(i => i.name === ingredient.name).quantity = ingredient.quantity;
+        allIngredients.find(i => i.name === ingredient.name).quantity = parseInt(ingredient.quantity, 0);
         allIngredients.find(i => i.name === ingredient.name).quantityType = ingredient.quantityType;
         allIngredients.find(i => i.name === ingredient.name).quantityTypeId = ingredient.quantityTypeId;
         this.setState({allIngredients: allIngredients})

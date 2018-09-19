@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./navBar.css";
 import PantryLogo from "../../PerfectPantry.png";
+import { Button } from "semantic-ui-react";
 
 export default class NavBar extends Component {
     
@@ -17,7 +18,7 @@ export default class NavBar extends Component {
                     <h3>Welcome Back, {this.props.user.username}</h3>
                 </div>
                 <div className="nav-right">
-                    <button className="logout-btn" onClick={this.handleLogout}>Log out</button>
+                    <Button basic color='violet' content='Log Out' size="mini" onClick={this.handleLogout} />
                 </div>
             </div>
         )
