@@ -44,7 +44,7 @@
     },
     {
       "userId": 1,
-      "name": "Lime",
+      "name": "Lime Juice",
       "quantity": 54,
       "quantityTypeId": 2,
       "visible": true,
@@ -137,20 +137,7 @@
       "id": 6
     }
   ],
-  "groceryItems": [
-    {
-      "userId": 1,
-      "pantryItemId": 7,
-      "recipeId": 1,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 6,
-      "recipeId": 1,
-      "id": 2
-    }
-  ],
+  "groceryItems": [],
   "quantityTypes": [
     {
       "id": 1,

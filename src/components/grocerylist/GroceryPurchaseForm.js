@@ -58,33 +58,31 @@ export default class GroceryPurchaseForm extends Component {
                     <Button positive icon='checkmark' labelPosition='right' content="Update Grocery List!" onClick={this.show('blurring')} />
                 }
                 <Modal dimmer={dimmer} open={open} onClose={this.close}>
-                <Modal.Header>Lets set the Pantry</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                    <Header>Purchased Items:</Header>
-                    {
-                        this.props.boughtGroceries.map(grocery => {
-                            let pItem = this.props.pantryItems.find(p => p.id === grocery.pantryItemId)
-                            return (
-                                <PurchasedItemCard key={`${grocery.id}-${pItem.id}`} pItem={pItem} grocery={grocery} quantityTypes={this.props.quantityTypes} pantryItems={this.props.pantryItems} addItemAmounts={this.addItemAmounts}/>
-                            )
-                        })
-                    }
-                    </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                    {
-                        this.state.noChanges &&
-                        <Message floating size="tiny" color='red' className="align-center">You didn't select anything to update!</Message>
-                    }
-                    <Button.Group>
-                        <Button color='red' onClick={this.close}>Cancel</Button>
-                        <Button.Or />
-                        <Button color="green" icon='checkmark' labelPosition='right' content="Save" onClick={this.updatePantry} />
-                    </Button.Group>
-                    {/* <Button color='red' onClick={this.close}>Cancel</Button>
-                    <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.updatePantry} /> */}
-                </Modal.Actions>
+                    <Modal.Header>Lets set the Pantry</Modal.Header>
+                    <Modal.Content>
+                        <Modal.Description>
+                        <Header>Purchased Items:</Header>
+                        {
+                            this.props.boughtGroceries.map(grocery => {
+                                let pItem = this.props.pantryItems.find(p => p.id === grocery.pantryItemId)
+                                return (
+                                    <PurchasedItemCard key={`${grocery.id}-${pItem.id}`} pItem={pItem} grocery={grocery} quantityTypes={this.props.quantityTypes} pantryItems={this.props.pantryItems} addItemAmounts={this.addItemAmounts}/>
+                                )
+                            })
+                        }
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        {
+                            this.state.noChanges &&
+                            <Message floating size="tiny" color='red' className="align-center">You didn't select anything to update!</Message>
+                        }
+                        <Button.Group>
+                            <Button color='red' onClick={this.close}>Cancel</Button>
+                            <Button.Or />
+                            <Button color="green" icon='checkmark' labelPosition='right' content="Save" onClick={this.updatePantry} />
+                        </Button.Group>
+                    </Modal.Actions>
                 </Modal>
             </div>
         )
