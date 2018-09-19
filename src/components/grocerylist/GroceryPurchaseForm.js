@@ -1,10 +1,14 @@
-import React, { Component } from 'react'
-import { Button, Header, Modal } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Button, Header, Modal, Message } from 'semantic-ui-react';
 import PurchasedItemCard from './PurchaseItemCard';
+import QtyConverter from "../../modules/QtyConverter";
+import DataManager from "../../modules/DataManager";
+import "./groceryPurchaseForm.css";
 
 export default class GroceryPurchaseForm extends Component {
     state = { 
         open: false,
+        noChanges: false,
         newAmounts: []
     }
 
@@ -20,8 +24,25 @@ export default class GroceryPurchaseForm extends Component {
         }
     }
 
+    updatePantry = () => {
+        if(this.state.newAmounts.length === 0){
+            this.setState({noChanges: true})
+        } else {
+            Promise.all(this.state.newAmounts.map(item => {
+                let pItem = this.props.pantryItems.find(pItem => pItem.id === item.pantryItemId);
+                let quantity = QtyConverter.convertToTSP(item.quantity, item.quantityType) + pItem.quantity;
+                return DataManager.edit("pantryItems", item.pantryItemId, {quantity: quantity})
+                .then(() => DataManager.delete("groceryItems", item.groceryItemId))
+                .then(() => this.props.clearGrocery(item))
+            }))
+            .then(() => this.props.updatePantryItemState())
+            .then(() => this.props.updateGroceryItemState())
+            .then(() => this.setState({ open: false, noChanges: false, newAmounts: []}))
+        }
+    }
+
     show = dimmer => () => this.setState({ dimmer, open: true })
-    close = () => this.setState({ open: false })
+    close = () => this.setState({ open: false, noChanges: false, newAmounts: [] })
 
     render() {
         const { open, dimmer } = this.state
@@ -45,8 +66,12 @@ export default class GroceryPurchaseForm extends Component {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button color='black' onClick={this.close}>Nope</Button>
-                    <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
+                    {
+                        this.state.noChanges &&
+                        <Message floating size="tiny" color='red' className="align-center">You didn't select anything to update!</Message>
+                    }
+                    <Button color='red' onClick={this.close}>Cancel</Button>
+                    <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.updatePantry} />
                 </Modal.Actions>
                 </Modal>
             </div>

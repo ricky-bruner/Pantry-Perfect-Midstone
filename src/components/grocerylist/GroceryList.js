@@ -19,6 +19,13 @@ export default class GroceryList extends Component {
         }
     }
 
+    clearGrocery = (item) => {
+        let boughtGroceries = this.state.boughtGroceries;
+        let remainingGroceries = boughtGroceries.filter(grocery => item.groceryItemId !== grocery.id)
+        console.log(remainingGroceries)
+        this.setState({boughtGroceries: remainingGroceries})
+    }
+
     render(){
         return (
             <div className="grocery-list">
@@ -40,7 +47,12 @@ export default class GroceryList extends Component {
                         )
                     })
                 }
-                <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} quantityTypes={this.props.quantityTypes} pantryItems={this.props.pantryItems} />
+                <GroceryPurchasedForm boughtGroceries={this.state.boughtGroceries} 
+                                        quantityTypes={this.props.quantityTypes} 
+                                        pantryItems={this.props.pantryItems} 
+                                        updatePantryItemState={this.props.updatePantryItemState}
+                                        updateGroceryItemState={this.props.updateGroceryItemState}
+                                        clearGrocery={this.clearGrocery} />
             </div>
         )
     }

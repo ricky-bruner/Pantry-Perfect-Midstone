@@ -29,7 +29,7 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 0,
+      "quantity": 160,
       "quantityTypeId": 3,
       "visible": true,
       "id": 2
@@ -45,7 +45,7 @@
     {
       "userId": 1,
       "name": "Lime",
-      "quantity": 18,
+      "quantity": 36,
       "quantityTypeId": 2,
       "visible": true,
       "id": 4
@@ -53,7 +53,7 @@
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 0,
+      "quantity": 150,
       "quantityTypeId": 3,
       "visible": true,
       "id": 5
@@ -61,7 +61,7 @@
     {
       "userId": 1,
       "name": "Sirloin",
-      "quantity": 0,
+      "quantity": 172,
       "quantityTypeId": 14,
       "visible": true,
       "id": 6
@@ -69,7 +69,7 @@
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 0,
+      "quantity": 12,
       "quantityTypeId": 3,
       "visible": true,
       "id": 7
@@ -140,27 +140,33 @@
   "groceryItems": [
     {
       "userId": 1,
-      "pantryItemId": 2,
+      "pantryItemId": 6,
       "recipeId": 1,
       "id": 1
     },
     {
       "userId": 1,
-      "pantryItemId": 5,
+      "pantryItemId": 7,
       "recipeId": 1,
       "id": 2
     },
     {
       "userId": 1,
-      "pantryItemId": 6,
+      "pantryItemId": 5,
       "recipeId": 1,
       "id": 3
     },
     {
       "userId": 1,
-      "pantryItemId": 7,
+      "pantryItemId": 4,
       "recipeId": 1,
       "id": 4
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 2,
+      "recipeId": 1,
+      "id": 5
     }
   ],
   "quantityTypes": [

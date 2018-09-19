@@ -89,7 +89,9 @@ export default class UserPage extends Component {
                                     recipes={this.state.recipes}
                                     pantryItems={this.state.pantryItems} 
                                     quantityTypes={this.state.quantityTypes}
-                                    groceryItems={this.state.groceryItems} />
+                                    groceryItems={this.state.groceryItems}
+                                    updatePantryItemState={this.updatePantryItemState}
+                                    updateGroceryItemState={this.updateGroceryItemState} />
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 
