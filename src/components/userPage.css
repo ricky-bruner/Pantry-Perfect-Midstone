@@ -1,6 +1,9 @@
 .user-view {
     display: flex;
     justify-content: space-around;
+    padding-top: 8em;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d17184680af7feac868978177c75c5ba&auto=format&fit=crop&w=1650&q=80") no-repeat fixed;
+    background-size: cover;
 }
 
 .left-container {
@@ -10,3 +13,20 @@
 .right-container {
     width: 40%
 }
+
+.tab-container {
+    background: white;
+    margin: 2em 0;
+    padding: .5em;
+}
+
+.main-tabs {
+    background: teal !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.ui.menu {
+    justify-content: center;
+}
+

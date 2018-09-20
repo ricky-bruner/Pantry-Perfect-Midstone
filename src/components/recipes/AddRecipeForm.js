@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./addRecipeForm.css";
 import DataManager from "../../modules/DataManager";
 import PantryItemAdd from "../pantry/PantryItemAdd";
-import { TextArea, Form, Select } from "semantic-ui-react";
+import { TextArea, Form } from "semantic-ui-react";
 
 export default class AddRecipeForm extends Component {
     state = {

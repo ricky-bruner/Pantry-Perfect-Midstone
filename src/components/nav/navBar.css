@@ -3,6 +3,10 @@
     justify-content: space-between;
     padding: .5em;
     background: whitesmoke;
+    box-shadow: 0 8px 6px -6px black;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
 }
 
 .nav-left {

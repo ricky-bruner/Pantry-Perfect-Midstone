@@ -6,7 +6,13 @@ import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
 import GroceryList from "./grocerylist/GroceryList";
-import { Pagination } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
+
+
+
+  
+ 
+    
 
 export default class UserPage extends Component {
     state = {
@@ -68,12 +74,38 @@ export default class UserPage extends Component {
     }
 
     render(){
+        const panes = [
+            { menuItem: 'Recipes', render: () => <Tab.Pane><RecipeList user={this.state.user} 
+                    updateRecipeState={this.updateRecipeState}
+                    updateRecipeItemState={this.updateRecipeItemState}
+                    editPantryItem={this.editPantryItem}
+                    addPantryItem={this.addPantryItem}
+                    recipes={this.state.recipes}
+                    pantryItems={this.state.pantryItems} 
+                    recipeItems={this.state.recipeItems} 
+                    quantityTypes={this.state.quantityTypes}
+                    updatePantryItemState={this.updatePantryItemState}
+                    updateGroceryItemState={this.updateGroceryItemState} /></Tab.Pane> },
+            { menuItem: 'Grocery List', render: () => <Tab.Pane><GroceryList user={this.state.user} 
+                    editPantryItem={this.editPantryItem}
+                    addPantryItem={this.addPantryItem}
+                    recipes={this.state.recipes}
+                    pantryItems={this.state.pantryItems} 
+                    quantityTypes={this.state.quantityTypes}
+                    groceryItems={this.state.groceryItems}
+                    updatePantryItemState={this.updatePantryItemState}
+                    updateGroceryItemState={this.updateGroceryItemState} /></Tab.Pane> }
+        ]
+
         return (
             <div>
                 <NavBar props={this.props} user={this.state.user} />
                 <div className="user-view">
                     <div className="left-container">
-                        <RecipeList user={this.state.user} 
+                        <div className="tab-container">
+                            <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+                        </div>
+                        {/* <RecipeList user={this.state.user} 
                                     updateRecipeState={this.updateRecipeState}
                                     updateRecipeItemState={this.updateRecipeItemState}
                                     editPantryItem={this.editPantryItem}
@@ -92,7 +124,7 @@ export default class UserPage extends Component {
                                     quantityTypes={this.state.quantityTypes}
                                     groceryItems={this.state.groceryItems}
                                     updatePantryItemState={this.updatePantryItemState}
-                                    updateGroceryItemState={this.updateGroceryItemState} />
+                                    updateGroceryItemState={this.updateGroceryItemState} /> */}
                     </div>
                     <div className="right-container">
                         <PantryList user={this.state.user} 

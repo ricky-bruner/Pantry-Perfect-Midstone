@@ -61,8 +61,8 @@ export default class GroceryList extends Component {
                         let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
                         let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
                         return (
-                            <div>
-                                <div key={gItem.id} className="grocery-item-card">
+                            <div key={gItem.id}>
+                                <div className="grocery-item-card">
                                     <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
                                     <div>
                                         <Checkbox slider onClick={() => {this.buyGrocery(gItem)}}/>

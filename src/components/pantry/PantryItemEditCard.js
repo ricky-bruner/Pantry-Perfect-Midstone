@@ -147,11 +147,11 @@ export default class PantryItemEditCard extends Component {
                     {
                         !this.state.nameTaken &&
                         !this.state.nameSimilar &&
-                    <Popup position="top center" size="wide" className="warning-popup" trigger={<Input label={{ color: 'green', labelPosition: 'left', content: 'Name'}} type="text" id="itemName" className="input-margin" size="mini" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />} content="WARNING! Changing the name here will change it in every Recipe it is used in! Please only edit a name to fix spelling :D" />
+                        <Popup position="top center" wide className="warning-popup" trigger={<Input label={{ color: 'teal', labelPosition: 'left', content: 'Name'}} type="text" id="itemName" className="input-margin" size="mini" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />} content="WARNING! Changing the name here will change it in every Recipe it is used in! Please only edit a name to fix spelling :D" />
                     }
-                    <Input size="mini" label={{ color: 'green', labelPosition: 'right', content: 'Quantity'}} type="number" id="itemAmount" className="input-margin" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
+                    <Input size="mini" label={{ color: 'teal', labelPosition: 'right', content: 'Quantity'}} type="number" id="itemAmount" className="input-margin" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
                     <div>
-                        <Input list='languages' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'green', labelPosition: 'left', content: 'Quantity Type'}} placeholder={this.state.itemQuantityType} onChange={this.handleFieldChange} />
+                        <Input list='languages' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'teal', labelPosition: 'left', content: 'Quantity Type'}} placeholder={this.state.itemQuantityType} onChange={this.handleFieldChange} />
                         <datalist id='languages'>
                             {
                                 this.props.quantityTypes.map(type => {

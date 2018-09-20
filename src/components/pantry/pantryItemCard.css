@@ -1,10 +1,18 @@
+.pantry-list-container {
+    background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164));
+    padding: .5em;
+    margin: 2em 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1); 
+}
+
 .pantry-item {
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
     margin: 1em auto !important;
-    width: 80% !important;
+    width: 90% !important;
     padding: .5em !important;
+    height: 40px !important;
 }
 
 .pantry-item-header-left {
@@ -51,8 +59,25 @@
     margin: .5em 0;
 }
 
+.warning-popup, .warning-popup::before {
+    background: #ffe8e6 !important;
+    color: #db2828 !important;
+}
+
 .warning-popup {
-    background: lightcoral !important;
-    color: darkred !important;
-    border: solid 1px darkred !important;
+    box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent !important;
+}
+
+.warning-popup::before {
+    border-right: solid 1px #db2828 !important;
+    border-bottom: solid 1px #db2828 !important;
+}
+
+.pantry-add-form {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #c6dbeb, #eef2f3);
+    padding: .5em;
+    margin: 1em auto;
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.6);
 }

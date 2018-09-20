@@ -21,15 +21,15 @@
     {
       "userId": 1,
       "name": "Avacado",
-      "quantity": 8,
-      "quantityTypeId": 4,
+      "quantity": 36,
+      "quantityTypeId": 2,
       "visible": false,
       "id": 1
     },
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 400,
+      "quantity": 96,
       "quantityTypeId": 3,
       "visible": true,
       "id": 2
@@ -45,7 +45,7 @@
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 45,
+      "quantity": 54,
       "quantityTypeId": 2,
       "visible": true,
       "id": 4
@@ -53,7 +53,7 @@
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 138,
+      "quantity": 54,
       "quantityTypeId": 3,
       "visible": true,
       "id": 5
@@ -61,7 +61,7 @@
     {
       "userId": 1,
       "name": "Sirloin",
-      "quantity": 172,
+      "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
       "id": 6
@@ -69,7 +69,7 @@
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 204,
+      "quantity": 0,
       "quantityTypeId": 3,
       "visible": true,
       "id": 7
@@ -77,7 +77,7 @@
     {
       "userId": 1,
       "name": "Apple",
-      "quantity": 96,
+      "quantity": 288,
       "quantityTypeId": 4,
       "visible": true,
       "id": 8
@@ -105,6 +105,14 @@
       "quantityTypeId": 3,
       "visible": true,
       "id": 11
+    },
+    {
+      "userId": 1,
+      "name": "Green Bell Pepper",
+      "quantity": 96,
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 12
     }
   ],
   "recipes": [
@@ -210,31 +218,13 @@
       "userId": 1,
       "pantryItemId": 6,
       "recipeId": 1,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 5,
-      "recipeId": 1,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 4,
-      "recipeId": 1,
       "id": 3
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 2,
-      "recipeId": 1,
-      "id": 4
     },
     {
       "userId": 1,
       "pantryItemId": 7,
       "recipeId": 1,
-      "id": 5
+      "id": 4
     }
   ],
   "quantityTypes": [
