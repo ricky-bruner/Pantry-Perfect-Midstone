@@ -7,6 +7,7 @@ import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
 import GroceryList from "./grocerylist/GroceryList";
 import { Tab } from "semantic-ui-react";
+import CookChart from "./CookChart";
 
 
 
@@ -127,6 +128,7 @@ export default class UserPage extends Component {
                                     updateGroceryItemState={this.updateGroceryItemState} /> */}
                     </div>
                     <div className="right-container">
+                        <CookChart recipes={this.state.recipes} location="Massachusetts" legendPosition="bottom" />
                         <PantryList user={this.state.user} 
                                     editPantryItem={this.editPantryItem}
                                     addPantryItem={this.addPantryItem}

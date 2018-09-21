@@ -129,7 +129,7 @@ export default class PantryItemEditCard extends Component {
             }
             {
                 this.state.renderEdit &&
-                <Card fluid color='teal' className="edit-pantry-item">
+                <Card fluid color='orange' className="edit-pantry-item">
                     {
                         this.state.nameTaken &&
                         <div>

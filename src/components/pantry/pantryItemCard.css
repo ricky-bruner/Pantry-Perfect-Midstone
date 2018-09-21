@@ -2,7 +2,8 @@
     background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164));
     padding: .5em;
     margin: 2em 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .pantry-item {
@@ -76,8 +77,28 @@
 .pantry-add-form {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom, #c6dbeb, #eef2f3);
+    background: linear-gradient(to bottom, #ece9e6, #ffffff);
     padding: .5em;
     margin: 1em auto;
     box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    border: 1px solid lightgrey;
 }
+
+.ui.blue.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #2185d0, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+.ui.red.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #db2828, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+.ui.orange.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #f2711c, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+
+
+
+
+

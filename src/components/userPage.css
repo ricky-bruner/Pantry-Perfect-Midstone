@@ -26,6 +26,12 @@
     justify-content: center !important;
 }
 
+.cook-chart {
+    /* background: whitesmoke; */
+    border-radius: 5px;
+    padding-bottom: 1em;
+}
+
 .ui.menu {
     justify-content: center;
 }

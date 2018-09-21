@@ -42,6 +42,8 @@ export default class BuildGroceryList extends Component {
                 return DataManager.edit("pantryItems", pItem.id, {quantity: pItem.quantity})
             }
         }))
+        .then(() => DataManager.edit("recipes", this.props.recipe.id, {timesCooked: (this.props.recipe.timesCooked + 1)}))
+        .then(() => this.props.updateRecipeState())
         .then(() => this.props.updatePantryItemState())
         .then(() => this.close())
     }

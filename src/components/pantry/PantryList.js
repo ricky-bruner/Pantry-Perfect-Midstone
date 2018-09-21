@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PantryItemCard from "./PantryItemCard";
 import PantryItemAdd from "./PantryItemAdd";
 import PantryItemEditCard from "./PantryItemEditCard";
+import { Button } from "semantic-ui-react";
 
 export default class PantryList extends Component {
     state = {
@@ -31,15 +32,19 @@ export default class PantryList extends Component {
                 <h2>Pantry Items</h2>
                 {
                     !this.state.edit &&
-                    <button onClick={this.renderEditCards}>Edit Pantry?</button>
+                    <Button compact size="mini" basic color="teal" onClick={this.renderEditCards}>Edit Pantry?</Button>
                 }
                 {
                     this.state.edit &&
-                    <button onClick={this.renderCards}>Finished Editing</button>
+                    <Button compact size="mini" basic color="blue" onClick={this.renderCards}>Finished Editing</Button>
                 }
                 {
                     !this.state.addPantry &&
-                    <button onClick={this.renderAddFrom}>Add a New Item?</button>
+                    <Button compact size="mini" basic color="orange" onClick={this.renderAddFrom}>Add a New Item?</Button>
+                }
+                {
+                    this.state.addPantry &&
+                    <Button compact size="mini" basic color="blue" onClick={this.hideAddForm}>Finish Adding Items!</Button>
                 }
                 {
                     this.state.addPantry &&
@@ -49,7 +54,6 @@ export default class PantryList extends Component {
                                         addPantryItem={this.props.addPantryItem} 
                                         pantryItems={this.props.pantryItems} 
                                         quantityTypes={this.props.quantityTypes} />
-                        <button onClick={this.hideAddForm}>Finish Adding Items!</button>
                     </div>
                 }
                 {

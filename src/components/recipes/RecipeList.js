@@ -72,6 +72,7 @@ export default class RecipeList extends Component {
                         recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 
                         quantityTypes={this.props.quantityTypes}
+                        updateRecipeState={this.props.updateRecipeState}
                         updateGroceryItemState={this.props.updateGroceryItemState}
                         updatePantryItemState={this.props.updatePantryItemState} />)
                 }

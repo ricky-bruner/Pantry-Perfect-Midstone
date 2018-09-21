@@ -164,20 +164,20 @@ export default class PantryItemAdd extends Component {
                     <Message icon="arrow up" size="tiny" color="orange" header="Oops! It seems that something isn't filled out just yet." content="No worries, We'll be ready when you are :D" />
                 }
                 <div>
-                    <Button compact basic color="blue" onClick={this.handleItemAdd}>Add Item!</Button>
+                    <Button compact basic size="mini" color="blue" onClick={this.handleItemAdd}>Add Item!</Button>
                 </div>
                 {
                     this.state.similarItem &&
                     <div>
                         <Message size="tiny" color="teal" header={this.state.similarItemName} content="is already in your pantry. Add this similar item anyways?" />
-                        <Button compact basic color="green" onClick={this.handleSimilarAdd}>Add Similar Item</Button>
+                        <Button compact basic size="mini" color="green" onClick={this.handleSimilarAdd}>Add Similar Item</Button>
                     </div>
                 }
                 {
                     this.state.duplicateItem && 
                     <div>
                         <Message size="tiny" color="red" content="You already have this item in your Pantry. Consider changing what you call it to add a similar item, or update your quantity instead" />
-                        <Button compact basic color="green" onClick={this.handleDuplicateAdd}>Update Quantity</Button>
+                        <Button compact basic size="mini" color="green" onClick={this.handleDuplicateAdd}>Update Quantity</Button>
                     </div>
                 }
                 {
@@ -185,15 +185,15 @@ export default class PantryItemAdd extends Component {
                     <div>
                         <Message size="tiny" color="teal" header={`Similar Item: ${this.state.revivedItemName}`} content="This item is very similar to an item that used to live in your pantry! Would you like to add that item back, or go forth with this new item?" />
                         
-                        <Button basic compact color="teal" onClick={this.reviveItem}>Revive the item!</Button>
-                        <Button basic compact color="green">Save Anyways</Button>
+                        <Button basic compact size="mini" color="teal" onClick={this.reviveItem}>Revive the item!</Button>
+                        <Button basic compact size="mini" color="green" onClick={this.handleSimilarAdd}>Save Anyways</Button>
                     </div>
                 }
                 {
                     this.state.reviveItem &&
                     <div>
                         <Message size="tiny" color="teal" header={`Revive Item: ${this.state.revivedItemName}`} content="This item used to live in your pantry. Bring that item back from the grave?" />
-                        <Button basic compact color="teal" onClick={this.reviveItem}>Be a hero!</Button>
+                        <Button basic compact size="mini" color="teal" onClick={this.reviveItem}>Be a hero!</Button>
                     </div>
                 }
                 
