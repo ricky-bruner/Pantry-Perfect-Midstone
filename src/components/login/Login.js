@@ -4,6 +4,7 @@ import "./login.css";
 import loginAnimation from "../../modules/LoginAnimation";
 import DataManager from "../../modules/DataManager";
 import PantryLogo from "../../PerfectPantry.png";
+import { Message, Input } from "semantic-ui-react";
 
 export default class Login extends Component {
     state = {
@@ -18,7 +19,8 @@ export default class Login extends Component {
         passwordEmpty: false,
         rUsernameEmpty: false, 
         rEmailEmpty: false, 
-        rPasswordEmpty: false
+        rPasswordEmpty: false,
+        registerSuccess: false
     }
 
     handleFieldChange = (evt) => {
@@ -33,18 +35,31 @@ export default class Login extends Component {
             document.querySelector("#registerEmail").value = "";
             document.querySelector("#registerUsername").value = "";
             document.querySelector("#registerPassword").value = "";
-            this.setState({registerEmail: "", registerUsername: "", registerPassword: "", isRegistered: false})
+            this.setState({
+                registerEmail: "", 
+                registerUsername: "", 
+                registerPassword: "", 
+                isRegistered: false,
+                username: "",
+                password: "",
+                noUser: false,
+                usernameEmpty: false,
+                passwordEmpty: false,
+                rUsernameEmpty: false, 
+                rEmailEmpty: false, 
+                rPasswordEmpty: false
+            })
         } else if(!this.state.username){
-            this.setState({usernameEmpty: true})
+            this.setState({usernameEmpty: true, passwordEmpty: false})
         } else if(!this.state.password){
-            this.setState({passwordEmpty: true})
+            this.setState({passwordEmpty: true, usernameEmpty: false})
         } else if(this.state.username && this.state.password){
             DataManager.getUserLogin(this.state.username, this.state.password).then((user)=>{
                 if(user.length !== 0){
                     sessionStorage.setItem("user", JSON.stringify(user))
                     this.props.history.push("/userpage")
                 } else {
-                    this.setState({noUser: true})
+                    this.setState({noUser: true, usernameEmpty: false, passwordEmpty: false})
                 }
             })
         }
@@ -55,7 +70,20 @@ export default class Login extends Component {
             loginAnimation(e)
             document.querySelector("#password").value = "";
             document.querySelector("#username").value = "";
-            this.setState({password: "", username: "", missedField: false})
+            this.setState({
+                registerEmail: "", 
+                registerUsername: "", 
+                registerPassword: "", 
+                isRegistered: false,
+                username: "",
+                password: "",
+                noUser: false,
+                usernameEmpty: false,
+                passwordEmpty: false,
+                rUsernameEmpty: false, 
+                rEmailEmpty: false, 
+                rPasswordEmpty: false
+            })
         } else if (!this.state.registerUsername){
             this.setState({rUsernameEmpty: true, rEmailEmpty: false, rPasswordEmpty: false})
         } else if (!this.state.registerEmail){
@@ -66,12 +94,12 @@ export default class Login extends Component {
             DataManager.getUserName(this.state.registerUsername)
             .then(user => {
                 if(user.length !== 0){
-                    this.setState({isRegistered: true})
+                    this.setState({isRegistered: true, rPasswordEmpty: false, rUsernameEmpty: false, rEmailEmpty: false})
                 } else {
                     DataManager.getUserEmail(this.state.registerEmail)
                     .then(user => {
                         if(user.length !== 0){
-                            this.setState({isRegistered: true})
+                            this.setState({isRegistered: true, rPasswordEmpty: false, rUsernameEmpty: false, rEmailEmpty: false})
                         } else {
                             let newUser = {
                                 username: this.state.registerUsername,
@@ -107,59 +135,62 @@ export default class Login extends Component {
                 <div className="form-collection">
                     <div className="login-card elevation-3 limit-width log-in-card below turned">
                         <div className="card-body">
-                            <h3>Register For Pantry Perfect</h3>
+                            <div className="login-header">
+                                <img src={PantryLogo} alt="Logo" className="logo" />
+                                <h4>Register For Pantry Perfect</h4>
+                            </div>
                             {
                                 this.state.isRegistered &&
-                                <p className="error-p">This Username or Email address is already registered, please try logging in instead.</p>
+                                <Message error size="mini">This Username or Email address is already registered, please try logging in instead.</Message>
                             }
                             {
                                 this.state.rUsernameEmpty &&
                                 <div>
-                                    <p className="error-p">Please enter a Username.</p>
-                                    <div className="input-group error-input username">
-                                        <input type="text" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
+                                    <Message error size="mini">Please enter a Username.</Message>
+                                    <div className="username">
+                                        <Input fluid error label={{icon: "user circle"}} labelPosition="left" type="text" className="input-margin" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
                                     </div>
                                 </div>
                             }
                             {
                                 !this.state.rUsernameEmpty &&
-                                <div className="input-group username">
-                                    <input type="text" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
+                                <div className="username">
+                                    <Input fluid label={{icon: "user circle"}} labelPosition="left" type="text" className="input-margin" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
                                 </div>
                             }
                             {
                                 this.state.rEmailEmpty &&
                                 <div>
-                                    <p className="error-p">Please enter an Email Address.</p>
-                                    <div className="input-group error-input email">
-                                        <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
+                                    <Message error size="mini">Please enter an Email Address.</Message>
+                                    <div className="email">
+                                        <Input fluid error label={{icon: "at"}} labelPosition="left" type="text" className="input-margin" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
                                     </div>
                                 </div>
                             }
                             {
                                 !this.state.rEmailEmpty &&
-                                <div className="input-group email">
-                                    <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
+                                <div className="email">
+                                    <Input fluid type="text" label={{icon: "at"}} labelPosition="left" className="input-margin" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
                                 </div>
                             }
                             {
                                 this.state.rPasswordEmpty &&
                                 <div>
-                                    <p className="error-p">Please create a Password!</p>
-                                    <div className="input-group error-input password">
-                                        <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
+                                    <Message error size="mini">Please create a Password!</Message>
+                                    <div className="password">
+                                        <Input error fluid label={{icon: "hide"}} labelPosition="left" type="password" className="input-margin" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
                                     </div>
                                 </div>
                             }
                             {
                                 !this.state.rPasswordEmpty &&
-                                <div className="input-group password">
-                                    <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
+                                <div className="password">
+                                    <Input fluid label={{icon: "hide"}} labelPosition="left" type="password" className="input-margin" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
                                 </div>
                             }
                             {
                                 this.state.registerSuccess &&
-                                <p>You've successfully registered for Pantry Perfect! Please login!</p>
+                                <Message success size="mini">You've successfully registered for Pantry Perfect! Please login!</Message>
                             }
                         </div>
                         <div className="card-footer signup-button">
@@ -175,37 +206,37 @@ export default class Login extends Component {
                             {
                                 this.state.usernameEmpty &&
                                 <div>
-                                    <p className="error-p">Please enter your Username</p>
-                                    <div className="input-group error-input username">
-                                        <input type="text" placeholder="Username" id="username" onChange={this.handleFieldChange} />
+                                    <Message error size="mini">Please enter your Username</Message>
+                                    <div className="username">
+                                        <Input fluid error label={{icon: "user circle"}} labelPosition="left" type="text" className="input-margin" placeholder="Username" id="username" defaultValue={this.state.username} onChange={this.handleFieldChange} />
                                     </div>
                                 </div>
                             }
                             {
                                 !this.state.usernameEmpty &&
-                                <div className="input-group username">
-                                    <input type="text" placeholder="Username" id="username" onChange={this.handleFieldChange} />
+                                <div className="username">
+                                    <Input fluid label={{icon: "user circle"}} labelPosition="left" type="text" className="input-margin" placeholder="Username" id="username" defaultValue={this.state.username} onChange={this.handleFieldChange} />
                                 </div>
                             }
                             {
                                 this.state.passwordEmpty &&
                                 <div>
-                                    <p className="error-p">Please enter your Password</p>
-                                    <div className="input-group error-input password">
-                                        <input type="password" placeholder="Password" id="password" onChange={this.handleFieldChange} />
+                                    <Message error>Please enter your Password</Message>
+                                    <div className="password">
+                                        <Input fluid error label={{icon: "hide"}} labelPosition="left" type="password" className="input-margin" placeholder="Password" id="password" defaultValue={this.state.password}onChange={this.handleFieldChange} />
                                     </div>
                                 </div>
                             }
                             {
                                 !this.state.passwordEmpty &&
-                                <div className="input-group password">
-                                    <input type="password" placeholder="Password" id="password" onChange={this.handleFieldChange} />
+                                <div className="password">
+                                    <Input fluid label={{icon: "hide"}} labelPosition="left" type="password" className="input-margin" placeholder="Password" id="password" defaultValue={this.state.password} onChange={this.handleFieldChange} />
                                 </div>
 
                             }
                             {
                                 this.state.noUser &&
-                                <p className="error-p">No Account was found. Please double check that you have entered in the right information.</p>
+                                <Message error>No Account was found. Please double check that you have entered in the right information.</Message>
                             } 
                         </div>
                         <div className="card-footer">

@@ -15,6 +15,14 @@
       "email": "kayla@me.com",
       "fullName": "Kayla Reid",
       "birthday": "12/01/1993"
+    },
+    {
+      "username": "test4",
+      "password": "123",
+      "email": "test4",
+      "image": "Edit your profile to add an image!",
+      "birthday": "Edit your profile to add your birthday",
+      "id": 2
     }
   ],
   "pantryItems": [
