@@ -8,6 +8,7 @@ import "./userPage.css";
 import GroceryList from "./grocerylist/GroceryList";
 import { Tab } from "semantic-ui-react";
 import CookChart from "./CookChart";
+import Tilt from 'react-tilt'
 
 
 
@@ -33,7 +34,7 @@ export default class UserPage extends Component {
         .then(pantryItems => newState.pantryItems = pantryItems)
         .then(() => DataManager.getUserData("recipes", newState.user.id))
         .then(recipes => newState.recipes = recipes)
-        .then(() => DataManager.getUserData("recipePantryItems"))
+        .then(() => DataManager.getUserData("recipePantryItems", newState.user.id))
         .then(recipeItems => newState.recipeItems = recipeItems)
         .then(() => DataManager.getUserData("groceryItems", newState.user.id))
         .then(groceryItems => newState.groceryItems = groceryItems)
@@ -75,7 +76,7 @@ export default class UserPage extends Component {
     }
 
     render(){
-        const panes = [
+        const leftPanes = [
             { menuItem: 'Recipes', render: () => <Tab.Pane><RecipeList user={this.state.user} 
                     updateRecipeState={this.updateRecipeState}
                     updateRecipeItemState={this.updateRecipeItemState}
@@ -98,13 +99,24 @@ export default class UserPage extends Component {
                     updateGroceryItemState={this.updateGroceryItemState} /></Tab.Pane> }
         ]
 
+        const rightPanes = [
+            { menuItem: "Pantry", render: () => <Tab.Pane><PantryList user={this.state.user} 
+                    editPantryItem={this.editPantryItem}
+                    addPantryItem={this.addPantryItem}
+                    pantryItems={this.state.pantryItems} 
+                    quantityTypes={this.state.quantityTypes} /></Tab.Pane>},
+            { menuItem: "Profile", render: () => <Tab.Pane><Tilt className="Tilt" options={{ max : 25 }} style={{ height: 300, width: 425}} >
+                    <CookChart className="Tilt-inner" recipes={this.state.recipes} />
+                    </Tilt></Tab.Pane>}
+        ]
+
         return (
             <div>
                 <NavBar props={this.props} user={this.state.user} />
                 <div className="user-view">
                     <div className="left-container">
                         <div className="tab-container">
-                            <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+                            <Tab menu={{ secondary: true, pointing: true }} panes={leftPanes} />
                         </div>
                         {/* <RecipeList user={this.state.user} 
                                     updateRecipeState={this.updateRecipeState}
@@ -128,12 +140,19 @@ export default class UserPage extends Component {
                                     updateGroceryItemState={this.updateGroceryItemState} /> */}
                     </div>
                     <div className="right-container">
-                        <CookChart recipes={this.state.recipes} location="Massachusetts" legendPosition="bottom" />
+                        <div className="tab-container">
+                            <Tab menu={{ secondary: true, pointing: true }} panes={rightPanes} />
+                        </div>
+                        {/* <div className="white">
+                            <Tilt className="Tilt" options={{ max : 25 }} style={{ height: 300, width: 450}} >
+                                <CookChart className="Tilt-inner" recipes={this.state.recipes} />
+                            </Tilt>
+                        </div>
                         <PantryList user={this.state.user} 
                                     editPantryItem={this.editPantryItem}
                                     addPantryItem={this.addPantryItem}
                                     pantryItems={this.state.pantryItems} 
-                                    quantityTypes={this.state.quantityTypes} />
+                                    quantityTypes={this.state.quantityTypes} /> */}
                     </div>
                 </div>
             </div>

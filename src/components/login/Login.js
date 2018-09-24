@@ -13,9 +13,12 @@ export default class Login extends Component {
         registerPassword: "",
         registerEmail: "",
         isRegistered: false,
-        missedField: false,
+        noUser: false,
         usernameEmpty: false,
-        passwordEmpty: false
+        passwordEmpty: false,
+        rUsernameEmpty: false, 
+        rEmailEmpty: false, 
+        rPasswordEmpty: false
     }
 
     handleFieldChange = (evt) => {
@@ -36,12 +39,12 @@ export default class Login extends Component {
         } else if(!this.state.password){
             this.setState({passwordEmpty: true})
         } else if(this.state.username && this.state.password){
-            DataManager.getUser(this.state.username).then((user)=>{
+            DataManager.getUserLogin(this.state.username, this.state.password).then((user)=>{
                 if(user.length !== 0){
                     sessionStorage.setItem("user", JSON.stringify(user))
                     this.props.history.push("/userpage")
                 } else {
-                    this.setState({missedField: true})
+                    this.setState({noUser: true})
                 }
             })
         }
@@ -53,21 +56,45 @@ export default class Login extends Component {
             document.querySelector("#password").value = "";
             document.querySelector("#username").value = "";
             this.setState({password: "", username: "", missedField: false})
-        } else if(this.state.registerUsername && this.state.registerEmail){
-            DataManager.getUser(this.state.registerUsername)
-            .then((user)=>{
+        } else if (!this.state.registerUsername){
+            this.setState({rUsernameEmpty: true, rEmailEmpty: false, rPasswordEmpty: false})
+        } else if (!this.state.registerEmail){
+            this.setState({rEmailEmpty: true, rPasswordEmpty: false, rUsernameEmpty: false})
+        } else if (!this.state.registerPassword){
+            this.setState({rPasswordEmpty: true, rUsernameEmpty: false, rEmailEmpty: false})
+        } else if(this.state.registerUsername && this.state.registerEmail && this.state.registerPassword){
+            DataManager.getUserName(this.state.registerUsername)
+            .then(user => {
                 if(user.length !== 0){
                     this.setState({isRegistered: true})
                 } else {
-                    let newUser = {
-                        username: this.state.registerUsername,
-                        password: this.state.registerPassword,
-                        email: this.state.registerEmail,
-                        image: "Edit your profile to add an image!",
-                        birthday: "Edit your profile to add your birthday"
-                    }
-                    DataManager.add("users", newUser)
-                    .then(()=> alert("You've successfully contributed to the decline of western civilization. Congrats to you."))
+                    DataManager.getUserEmail(this.state.registerEmail)
+                    .then(user => {
+                        if(user.length !== 0){
+                            this.setState({isRegistered: true})
+                        } else {
+                            let newUser = {
+                                username: this.state.registerUsername,
+                                password: this.state.registerPassword,
+                                email: this.state.registerEmail,
+                                image: "Edit your profile to add an image!",
+                                birthday: "Edit your profile to add your birthday"
+                            }
+                            DataManager.add("users", newUser)
+                            .then(() => { 
+                                this.setState({
+                                    registerSuccess: true, 
+                                    rPasswordEmpty: false, 
+                                    rUsernameEmpty: false, 
+                                    rEmailEmpty: false, 
+                                    registerEmail: "", 
+                                    registerUsername: "", 
+                                    registerPassword: "", 
+                                    isRegistered: false
+                                })
+                            })
+                        }
+                    })
                 }
             })
         }
@@ -81,16 +108,59 @@ export default class Login extends Component {
                     <div className="login-card elevation-3 limit-width log-in-card below turned">
                         <div className="card-body">
                             <h3>Register For Pantry Perfect</h3>
-                            <div className="input-group username">
-                                <input type="text" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
-                            </div>
-                            <div className="input-group email">
-                                <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
-                            </div>
-                            <div className="input-group password">
-                                <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
-                            </div>
-                            
+                            {
+                                this.state.isRegistered &&
+                                <p className="error-p">This Username or Email address is already registered, please try logging in instead.</p>
+                            }
+                            {
+                                this.state.rUsernameEmpty &&
+                                <div>
+                                    <p className="error-p">Please enter a Username.</p>
+                                    <div className="input-group error-input username">
+                                        <input type="text" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
+                                    </div>
+                                </div>
+                            }
+                            {
+                                !this.state.rUsernameEmpty &&
+                                <div className="input-group username">
+                                    <input type="text" placeholder="Create a Username" id="registerUsername" defaultValue={this.state.registerUsername} onChange={this.handleFieldChange} />
+                                </div>
+                            }
+                            {
+                                this.state.rEmailEmpty &&
+                                <div>
+                                    <p className="error-p">Please enter an Email Address.</p>
+                                    <div className="input-group error-input email">
+                                        <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
+                                    </div>
+                                </div>
+                            }
+                            {
+                                !this.state.rEmailEmpty &&
+                                <div className="input-group email">
+                                    <input type="text" placeholder="Register Your Email" id="registerEmail" defaultValue={this.state.registerEmail} onChange={this.handleFieldChange} />
+                                </div>
+                            }
+                            {
+                                this.state.rPasswordEmpty &&
+                                <div>
+                                    <p className="error-p">Please create a Password!</p>
+                                    <div className="input-group error-input password">
+                                        <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
+                                    </div>
+                                </div>
+                            }
+                            {
+                                !this.state.rPasswordEmpty &&
+                                <div className="input-group password">
+                                    <input type="password" placeholder="Create a secure Password" id="registerPassword" defaultValue={this.state.registerPassword} onChange={this.handleFieldChange} />
+                                </div>
+                            }
+                            {
+                                this.state.registerSuccess &&
+                                <p>You've successfully registered for Pantry Perfect! Please login!</p>
+                            }
                         </div>
                         <div className="card-footer signup-button">
                             <button type="submit" className="signup-btn" onClick={this.handleRegister}>Sign Up</button>
@@ -134,7 +204,7 @@ export default class Login extends Component {
 
                             }
                             {
-                                this.state.missedField &&
+                                this.state.noUser &&
                                 <p className="error-p">No Account was found. Please double check that you have entered in the right information.</p>
                             } 
                         </div>

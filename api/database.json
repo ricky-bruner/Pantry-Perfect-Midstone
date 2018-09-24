@@ -24,38 +24,43 @@
       "quantity": 36,
       "quantityTypeId": 2,
       "visible": false,
+      "timesTrashed": 13,
       "id": 1
     },
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 0,
+      "quantity": 120,
       "quantityTypeId": 14,
       "visible": true,
+      "timesTrashed": 13,
       "id": 2
     },
     {
       "userId": 1,
       "name": "Soy Sauce",
-      "quantity": 72,
+      "quantity": 36,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 13,
       "id": 3
     },
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 9,
+      "quantity": 39,
       "quantityTypeId": 2,
       "visible": true,
+      "timesTrashed": 17,
       "id": 4
     },
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 39,
+      "quantity": 30,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 17,
       "id": 5
     },
     {
@@ -64,86 +69,97 @@
       "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
+      "timesTrashed": 17,
       "id": 6
     },
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 24,
+      "quantity": 72,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 17,
       "id": 7
     },
     {
       "userId": 1,
       "name": "Apple",
-      "quantity": 288,
+      "quantity": 0,
       "quantityTypeId": 4,
       "visible": true,
+      "timesTrashed": 17,
       "id": 8
     },
     {
       "userId": 1,
       "name": "Flour",
-      "quantity": 256,
+      "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
+      "timesTrashed": 17,
       "id": 9
     },
     {
       "userId": 1,
       "name": "Sugar",
-      "quantity": 304,
+      "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
+      "timesTrashed": 17,
       "id": 10
     },
     {
       "userId": 1,
       "name": "Cinnamon",
-      "quantity": 78,
+      "quantity": 0,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 21,
       "id": 11
     },
     {
       "userId": 1,
       "name": "Green Bell Pepper",
-      "quantity": 144,
+      "quantity": 1,
       "quantityTypeId": 4,
       "visible": true,
+      "timesTrashed": 22,
       "id": 12
     },
     {
       "userId": 1,
       "name": "Red Bell Pepper",
-      "quantity": 144,
+      "quantity": 6,
       "quantityTypeId": 4,
       "visible": true,
+      "timesTrashed": 23,
       "id": 13
     },
     {
       "userId": 1,
       "name": "Black Beans",
-      "quantity": 72,
+      "quantity": 24,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 24,
       "id": 14
     },
     {
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 62,
+      "quantity": 8,
       "quantityTypeId": 14,
       "visible": true,
+      "timesTrashed": 25,
       "id": 15
     },
     {
       "userId": 1,
       "name": "Salsa",
-      "quantity": 57,
+      "quantity": 12,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 26,
       "id": 16
     },
     {
@@ -152,23 +168,8 @@
       "quantity": 30,
       "quantityTypeId": 3,
       "visible": false,
+      "timesTrashed": 27,
       "id": 17
-    },
-    {
-      "userId": 1,
-      "name": "chicken breasts",
-      "quantity": 80,
-      "quantityTypeId": 14,
-      "visible": false,
-      "id": 18
-    },
-    {
-      "userId": 1,
-      "name": "chicken breastes",
-      "quantity": 72,
-      "quantityTypeId": 3,
-      "visible": false,
-      "id": 19
     },
     {
       "userId": 1,
@@ -176,6 +177,7 @@
       "quantity": 72,
       "quantityTypeId": 3,
       "visible": false,
+      "timesTrashed": 28,
       "id": 20
     },
     {
@@ -184,6 +186,7 @@
       "quantity": 6,
       "quantityTypeId": 3,
       "visible": true,
+      "timesTrashed": 29,
       "id": 21
     }
   ],
@@ -194,35 +197,9 @@
       "description": "Its low sodium, believe it or not!",
       "image": "",
       "instructions": "salsa is used in the marinade",
-      "timesCooked": 13,
+      "timesCooked": 16,
+      "retired": false,
       "id": 1
-    },
-    {
-      "userId": 1,
-      "name": "test",
-      "description": "test",
-      "image": "",
-      "instructions": "test",
-      "timesCooked": 3,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "name": "Meg's Apple Pie",
-      "description": "its apple pie",
-      "image": "",
-      "instructions": "a,jhfg",
-      "timesCooked": 5,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "name": "sgrht",
-      "description": "shfgh",
-      "image": "",
-      "instructions": "sgfhsfg",
-      "timesCooked": 1,
-      "id": 4
     },
     {
       "userId": 1,
@@ -231,6 +208,7 @@
       "image": "",
       "instructions": "Let Kayla cook the glaze",
       "timesCooked": 9,
+      "retired": false,
       "id": 5
     },
     {
@@ -240,6 +218,7 @@
       "image": "",
       "instructions": "be liberal with the Dukkah Seasoning",
       "timesCooked": 4,
+      "retired": false,
       "id": 6
     }
   ],
@@ -316,13 +295,6 @@
     },
     {
       "recipeId": 1,
-      "pantryItemId": 13,
-      "quantity": 1,
-      "quantityTypeId": 4,
-      "id": 12
-    },
-    {
-      "recipeId": 1,
       "pantryItemId": 14,
       "quantity": 8,
       "quantityTypeId": 3,
@@ -385,32 +357,7 @@
       "id": 21
     }
   ],
-  "groceryItems": [
-    {
-      "userId": 1,
-      "pantryItemId": 7,
-      "recipeId": 1,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 4,
-      "recipeId": 1,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 4,
-      "recipeId": 4,
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 2,
-      "recipeId": 4,
-      "id": 6
-    }
-  ],
+  "groceryItems": [],
   "quantityTypes": [
     {
       "id": 1,
