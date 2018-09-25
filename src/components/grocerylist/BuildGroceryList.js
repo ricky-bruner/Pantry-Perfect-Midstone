@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Header, Modal } from 'semantic-ui-react';
+import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 import "./buildGroceryList.css";
 import QtyConverter from "../../modules/QtyConverter";
 import GroceryItemCard from "./GroceryItemCard";
@@ -55,7 +55,10 @@ export default class BuildGroceryList extends Component {
         const { open, dimmer } = this.state
         return (
             <div>
-                <Button basic color='teal' size="mini" content='Cook?' onClick={this.show('blurring')} />
+                <Button basic color='teal' size="mini" animated onClick={this.show('blurring')}>
+                    <Button.Content visible><Icon name="food" /></Button.Content>
+                    <Button.Content hidden>Cook</Button.Content>
+                </Button>
                 <Modal dimmer={dimmer} open={open} onClose={this.close}>
                     <Modal.Header>Build Your Grocery List!</Modal.Header>
                     <Modal.Content>

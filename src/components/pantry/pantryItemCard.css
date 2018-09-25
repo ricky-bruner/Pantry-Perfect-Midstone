@@ -1,7 +1,7 @@
 .pantry-list-container {
     background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164));
     padding: .5em;
-    margin: 2em 0;
+    margin: 1em 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
