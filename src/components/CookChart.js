@@ -13,7 +13,7 @@ export default class CookChart extends Component {
 
     render(){
         let recipes = [] 
-        this.props.recipes.map(r => recipes.push({name: r.name, timesCooked: r.timesCooked}))
+        this.props.recipes.filter(r => !r.retired).map(r => recipes.push({name: r.name, timesCooked: r.timesCooked}))
         recipes.sort((a, b) => b.timesCooked - a.timesCooked)
         let filteredRecipes = recipes.slice(0, 8)
         let recipeNames = []

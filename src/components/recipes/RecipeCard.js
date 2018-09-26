@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./recipeCard.css";
-import { Button } from "semantic-ui-react";
+import { Button, Divider, Message } from "semantic-ui-react";
 import BuildGroceryList from "../grocerylist/BuildGroceryList";
 
 export default class RecipeCard extends Component {
@@ -33,10 +33,19 @@ export default class RecipeCard extends Component {
                 {
                     this.state.showDetails &&
                     <div className="recipe-details">
-                        <Button basic compact color="black" onClick={this.hideDetails}>Hide</Button>
-                        <p>{this.props.recipe.description}</p>
-                        <p>{this.props.recipe.instructions}</p>
-                        <h4>Ingredients from Pantry</h4>
+                        <Divider horizontal>{this.props.recipe.name} Details</Divider>
+                        <div>
+                            <Button basic color="black" size="mini" onClick={this.hideDetails}>Hide</Button>
+                        </div>
+                        <p className="centered">{this.props.recipe.description}</p>
+                        {
+                            this.props.recipe.instructions &&
+                            <div>
+                                <Divider horizontal>Special Instructions</Divider>
+                                <p>{this.props.recipe.instructions}</p>
+                            </div>
+                        }
+                        <Divider horizontal>Ingredients from Pantry</Divider>
                         {
                             this.props.recipeItems.filter(recipeItem => recipeItem.recipeId === this.props.recipe.id).map(recipeItem => {
                                 let ingredient = {
@@ -45,7 +54,7 @@ export default class RecipeCard extends Component {
                                     type: this.props.quantityTypes.find(type => type.id === recipeItem.quantityTypeId).name
                                 }
                                 return (
-                                    <div key={recipeItem.id} className="ingredient-card">
+                                    <Message floating key={recipeItem.id} className="ingredient-card">
                                         <div>
                                             <p>{ingredient.name}</p>
                                         </div>
@@ -53,11 +62,12 @@ export default class RecipeCard extends Component {
                                             <p>{ingredient.quantity} {ingredient.type.toLowerCase()}</p>
                                             
                                         </div>
-                                    </div>
+                                    </Message>
                                 )
                             })
                         }
-                        <h5 onClick={this.hideDetails}>Hide</h5>
+                        <Button basic color="black" size="mini" onClick={this.hideDetails}>Hide</Button>
+                        <Divider />
                     </div>  
                 }
             </div>

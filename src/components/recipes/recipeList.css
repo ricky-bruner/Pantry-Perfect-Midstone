@@ -1,0 +1,4 @@
+.recipe-list-header {
+    display: flex;
+    justify-content: flex-end;
+}

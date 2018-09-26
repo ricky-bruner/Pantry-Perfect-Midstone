@@ -196,6 +196,30 @@
       "visible": true,
       "timesTrashed": 29,
       "id": 21
+    },
+    {
+      "userId": 1,
+      "name": "Shredded Mozarella Cheese",
+      "quantity": 0,
+      "quantityTypeId": 14,
+      "visible": true,
+      "id": 22
+    },
+    {
+      "userId": 1,
+      "name": "Banana Peppers",
+      "quantity": 0,
+      "quantityTypeId": 4,
+      "visible": true,
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "name": "Pepparoni",
+      "quantity": 0,
+      "quantityTypeId": 3,
+      "visible": true,
+      "id": 24
     }
   ],
   "recipes": [
@@ -226,8 +250,17 @@
       "image": "",
       "instructions": "be liberal with the Dukkah Seasoning",
       "timesCooked": 4,
-      "retired": false,
+      "retired": true,
       "id": 6
+    },
+    {
+      "userId": 1,
+      "name": "Stromboli",
+      "description": "Home mande Stromboli with Mozarella, Pepparonis, and Banana Peppers!",
+      "image": "",
+      "instructions": "Egg wash the dough for best results!",
+      "timesCooked": 1,
+      "id": 7
     }
   ],
   "recipePantryItems": [
@@ -363,6 +396,34 @@
       "quantity": 6,
       "quantityTypeId": 2,
       "id": 21
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 22,
+      "quantity": 1,
+      "quantityTypeId": 14,
+      "id": 22
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 23,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 23
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 24,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 24
+    },
+    {
+      "recipeId": 7,
+      "pantryItemId": 9,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 25
     }
   ],
   "groceryItems": [],

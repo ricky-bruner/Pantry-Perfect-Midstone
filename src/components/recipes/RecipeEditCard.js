@@ -84,6 +84,11 @@ export default class RecipeEditCard extends Component {
 
     }
 
+    retireRecipe = () => {
+        DataManager.edit("recipes", this.props.recipe.id, {retired: true})
+        .then(() => this.props.updateRecipeState())
+    }
+
     showDetails = () => {
         this.setState({showDetails: true})
     }
@@ -125,7 +130,7 @@ export default class RecipeEditCard extends Component {
             <div className="recipe-card">
                 <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
                 <button onClick={this.renderEditMode}>Edit?</button>
-                <button>Remove?</button>
+                <button onClick={this.retireRecipe}>Remove?</button>
                 {
                     this.state.showDetails &&
                     <div>
