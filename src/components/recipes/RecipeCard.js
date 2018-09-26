@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./recipeCard.css";
-import { Button, Divider, Message } from "semantic-ui-react";
+import { Button, Divider, Message, Icon } from "semantic-ui-react";
 import BuildGroceryList from "../grocerylist/BuildGroceryList";
 
 export default class RecipeCard extends Component {
@@ -21,6 +21,16 @@ export default class RecipeCard extends Component {
             <div className="recipe-card">
                 <div className="recipe-card-title">
                     <h3 className="recipe-title" onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                    {
+                        this.state.showDetails &&
+                        <div>
+                            <Button animated basic color="orange" size="mini" onClick={this.hideDetails}>
+                                <Button.Content visible>Hide</Button.Content>
+                                <Button.Content hidden><Icon name="hide"/></Button.Content>
+                            </Button>
+                        </div>
+                    }
+                    
                     <BuildGroceryList user={this.props.user} 
                             recipe={this.props.recipe} 
                             recipeItems={this.props.recipeItems} 
@@ -34,9 +44,6 @@ export default class RecipeCard extends Component {
                     this.state.showDetails &&
                     <div className="recipe-details">
                         <Divider horizontal>{this.props.recipe.name} Details</Divider>
-                        <div>
-                            <Button basic color="black" size="mini" onClick={this.hideDetails}>Hide</Button>
-                        </div>
                         <p className="centered">{this.props.recipe.description}</p>
                         {
                             this.props.recipe.instructions &&
@@ -66,7 +73,9 @@ export default class RecipeCard extends Component {
                                 )
                             })
                         }
-                        <Button basic color="black" size="mini" onClick={this.hideDetails}>Hide</Button>
+                        <div className="button-center">
+                            <Button basic color="orange" size="mini" onClick={this.hideDetails}>Hide {this.props.recipe.name}</Button>
+                        </div>
                         <Divider />
                     </div>  
                 }

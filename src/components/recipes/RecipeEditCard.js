@@ -4,6 +4,7 @@ import DataManager from "../../modules/DataManager";
 import IngredientCard from "./IngredientCard";
 import IngredientEditCard from "./IngredientEditCard";
 import AddIngredient from "./AddIngredient";
+import { Button, Icon, Divider, Message } from "semantic-ui-react";
 
 export default class RecipeEditCard extends Component {
     state = {
@@ -129,17 +130,33 @@ export default class RecipeEditCard extends Component {
         return (
             <div className="recipe-card">
                 <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
-                <button onClick={this.renderEditMode}>Edit?</button>
-                <button onClick={this.retireRecipe}>Remove?</button>
                 {
-                    this.state.showDetails &&
+                    !this.state.editMode &&
+                    <Button basic animated size="mini" color="orange" onClick={this.renderEditMode}>
+                        <Button.Content visible>Edit</Button.Content>
+                        <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                    </Button>
+                }
+                {
+                    this.state.editMode &&
+                    <Button basic animated size="mini" color="orange" onClick={this.hideEditMode}>
+                        <Button.Content visible>Cancel</Button.Content>
+                        <Button.Content hidden><Icon name="cancel" /></Button.Content>
+                    </Button>
+                }
+                <Button basic animated size="mini" color="red" onClick={this.retireRecipe}>
+                    <Button.Content visible>Remove</Button.Content>
+                    <Button.Content hidden><Icon name="remove circle" /></Button.Content>
+                </Button>
+                {
+                    this.state.editMode &&
                     <div>
-                        <h5 onClick={this.hideDetails}>Hide</h5>
+                        <Button basic size="mini" onClick={this.hideDetails}>Hide</Button>
                         {
-                            this.state.editMode &&
                             !this.state.editDetails &&
                             <div>
-                                <button onClick={this.editDetails}>Edit Details</button>
+                                <Divider horizontal>Edit Details</Divider>
+                                <Button basic size="mini" color="orange" onClick={this.editDetails}>Edit Details</Button>
                                 <p>{this.props.recipe.description}</p>
                                 <p>{this.props.recipe.instructions}</p>
                             </div>
@@ -147,22 +164,22 @@ export default class RecipeEditCard extends Component {
                         {
                             this.state.editDetails &&
                             <div>
-                                <button onClick={this.hideEditDetails}>Nevermind</button>
+                                <Button size="mini" basic color="red" onClick={this.hideEditDetails}>Cancel</Button>
                                 <div className="edit-recipe-details">
                                     {
                                         this.state.noDetailChange &&
-                                        <span className="error-p">You didn't make any changes!</span>
+                                        <Message error size="mini">You didn't make any changes!</Message>
                                     }
                                     {
                                         this.state.nameTaken &&
-                                        <span className="error-p">This recipe name is already taken!</span>
+                                        <Message error size="mini">This recipe name is already taken!</Message>
                                     }
                                     {
                                         this.state.similarName &&
                                         <div>
-                                            <span className="error-p">You have a similarly titled recipe.</span>
+                                            <Message error size="mini">You have a similarly titled recipe.</Message>
                                             <p>{this.state.similarRecipe.name}</p>
-                                            <button onClick={this.saveSimilar}>I dont care, run it</button>
+                                            <Button size="mini" onClick={this.saveSimilar}>I dont care, run it</Button>
                                         </div>
                                     }
                                     <span>Name:</span>
@@ -175,6 +192,7 @@ export default class RecipeEditCard extends Component {
                                 </div>
                             </div>
                         }
+                        <Divider horizontal>Add Ingredients</Divider>
                         <h4>Add New Ingredients!</h4>
                         {
                             !this.state.addIngredients &&
@@ -192,6 +210,7 @@ export default class RecipeEditCard extends Component {
                                             quantityTypes={this.props.quantityTypes}
                                             hideAddForm={this.hideAddForm} />
                         }
+                        <Divider horizontal>Edit Ingredients</Divider>
                         <h4>Ingredients from Pantry</h4>
                         {
                             this.state.editMode &&

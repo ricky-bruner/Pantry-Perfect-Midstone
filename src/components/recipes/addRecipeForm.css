@@ -23,6 +23,11 @@
     justify-content: center;
 }
 
+.button-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .add-recipe-form .ui.teal.label, 
 .add-recipe-form .ui.teal.labels .label {
     background-color: rgb(76, 196, 155)!important;
