@@ -4,7 +4,7 @@ import DataManager from "../../modules/DataManager";
 import IngredientCard from "./IngredientCard";
 import IngredientEditCard from "./IngredientEditCard";
 import AddIngredient from "./AddIngredient";
-import { Button, Icon, Divider, Message } from "semantic-ui-react";
+import { Button, Icon, Divider, Message, Input, TextArea, Form, Label } from "semantic-ui-react";
 
 export default class RecipeEditCard extends Component {
     state = {
@@ -12,7 +12,6 @@ export default class RecipeEditCard extends Component {
         recipeDescription: "",
         recipeInstructions: "",
         similarRecipe: {},
-        showDetails: false,
         editMode: false,
         editDetails: false,
         editIngredients: false,
@@ -90,14 +89,6 @@ export default class RecipeEditCard extends Component {
         .then(() => this.props.updateRecipeState())
     }
 
-    showDetails = () => {
-        this.setState({showDetails: true})
-    }
-
-    hideDetails = () => {
-        this.setState({showDetails: false})
-    }
-
     renderEditMode = () => {
         this.setState({editMode: true, showDetails: true})
     }
@@ -129,34 +120,39 @@ export default class RecipeEditCard extends Component {
     render(){
         return (
             <div className="recipe-card">
-                <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
-                {
-                    !this.state.editMode &&
-                    <Button basic animated size="mini" color="orange" onClick={this.renderEditMode}>
-                        <Button.Content visible>Edit</Button.Content>
-                        <Button.Content hidden><Icon name="exchange" /></Button.Content>
-                    </Button>
-                }
-                {
-                    this.state.editMode &&
-                    <Button basic animated size="mini" color="orange" onClick={this.hideEditMode}>
-                        <Button.Content visible>Cancel</Button.Content>
-                        <Button.Content hidden><Icon name="cancel" /></Button.Content>
-                    </Button>
-                }
-                <Button basic animated size="mini" color="red" onClick={this.retireRecipe}>
-                    <Button.Content visible>Remove</Button.Content>
-                    <Button.Content hidden><Icon name="remove circle" /></Button.Content>
-                </Button>
+                <div className="recipe-edit-header">
+                    <h3 onClick={this.showDetails}>{this.props.recipe.name}</h3>
+                    <div>
+                        {
+                            !this.state.editMode &&
+                            <Button basic animated size="mini" color="orange" onClick={this.renderEditMode}>
+                                <Button.Content visible>Edit</Button.Content>
+                                <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                            </Button>
+                        }
+                        {
+                            this.state.editMode &&
+                            <Button basic animated size="mini" color="orange" onClick={this.hideEditMode}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="ban" /></Button.Content>
+                            </Button>
+                        }
+                        <Button basic animated size="mini" color="red" onClick={this.retireRecipe}>
+                            <Button.Content visible>Remove</Button.Content>
+                            <Button.Content hidden><Icon name="remove circle" /></Button.Content>
+                        </Button>
+                    </div>
+                </div>
                 {
                     this.state.editMode &&
                     <div>
-                        <Button basic size="mini" onClick={this.hideDetails}>Hide</Button>
+                        <Divider horizontal>Edit Details</Divider>
                         {
                             !this.state.editDetails &&
                             <div>
-                                <Divider horizontal>Edit Details</Divider>
-                                <Button basic size="mini" color="orange" onClick={this.editDetails}>Edit Details</Button>
+                                <div className="button-center">
+                                    <Button size="mini" color="orange" onClick={this.editDetails}>Edit Details</Button>
+                                </div>
                                 <p>{this.props.recipe.description}</p>
                                 <p>{this.props.recipe.instructions}</p>
                             </div>
@@ -164,7 +160,12 @@ export default class RecipeEditCard extends Component {
                         {
                             this.state.editDetails &&
                             <div>
-                                <Button size="mini" basic color="red" onClick={this.hideEditDetails}>Cancel</Button>
+                                <div className="button-right">
+                                    <Button size="mini" basic animated color="red" onClick={this.hideEditDetails}>
+                                        <Button.Content visible>Cancel</Button.Content>
+                                        <Button.Content hidden><Icon name="ban" /></Button.Content>
+                                    </Button>
+                                </div>
                                 <div className="edit-recipe-details">
                                     {
                                         this.state.noDetailChange &&
@@ -182,21 +183,33 @@ export default class RecipeEditCard extends Component {
                                             <Button size="mini" onClick={this.saveSimilar}>I dont care, run it</Button>
                                         </div>
                                     }
-                                    <span>Name:</span>
-                                    <input type="text" id="recipeName" defaultValue={this.state.recipeName} onChange={this.handleFieldChange}/>
-                                    <span>Description:</span>
-                                    <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} onChange={this.handleFieldChange}></textarea>
-                                    <span>Instructions:</span>
-                                    <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} onChange={this.handleFieldChange}></textarea>
-                                    <button onClick={this.updateDetails}>Submit Changes</button>
+                                    <Form>
+                                        <Form.Field>
+                                            <Input label={{content: "Edit Name", color: "orange"}} labelPosition="left" fluid size="mini" type="text" id="recipeName" className="input-margin" defaultValue={this.state.recipeName} onChange={this.handleFieldChange}/>
+                                        </Form.Field>
+                                    </Form>
+                                    <Form className="input-margin">
+                                        <Form.Field>
+                                            <Label pointing='below' attached="top" color="orange" className="centered">Edit Description</Label>
+                                            <TextArea id="recipeDescription" defaultValue={this.state.recipeDescription} onChange={this.handleFieldChange}></TextArea>
+                                        </Form.Field>
+                                    </Form>
+                                    <Form className="input-margin">
+                                        <Form.Field>
+                                            <Label pointing="below" attached="top" color="orange" className="centered">Edit Instructions</Label>
+                                            <TextArea id="recipeInstructions" defaultValue={this.state.recipeInstructions} onChange={this.handleFieldChange}></TextArea>
+                                        </Form.Field>
+                                    </Form>
+                                    <Button size="mini" basic color="orange" onClick={this.updateDetails}>Submit Changes</Button>
                                 </div>
                             </div>
                         }
                         <Divider horizontal>Add Ingredients</Divider>
-                        <h4>Add New Ingredients!</h4>
                         {
                             !this.state.addIngredients &&
-                            <button onClick={this.renderAddForm}>Add Ingredients!</button>
+                            <div className="button-center">
+                                <Button size="mini" color="orange" onClick={this.renderAddForm}>Add Ingredients!</Button>
+                            </div>
                         }
                         {
                             this.state.addIngredients &&
@@ -211,11 +224,24 @@ export default class RecipeEditCard extends Component {
                                             hideAddForm={this.hideAddForm} />
                         }
                         <Divider horizontal>Edit Ingredients</Divider>
-                        <h4>Ingredients from Pantry</h4>
                         {
                             this.state.editMode &&
-                            <button onClick={this.editIngredients}>Edit Ingredients</button>
+                            !this.state.editIngredients &&
+                            <div className="button-center">
+                                <Button size="mini" color="orange" onClick={this.editIngredients}>Edit Ingredients</Button>
+                            </div>
                         }
+                        {
+                            this.state.editMode &&
+                            this.state.editIngredients &&
+                            <div className="button-right">
+                                <Button size="mini" basic animated color="red" onClick={() => this.setState({editIngredients: false})}>
+                                    <Button.Content visible>Cancel</Button.Content>
+                                    <Button.Content hidden><Icon name="ban" /></Button.Content>
+                                </Button>
+                            </div>
+                        }
+                        <h4 className="centered">Ingredients from Pantry</h4>
                         {
                             this.props.recipeItems.filter(recipeItem => recipeItem.recipeId === this.props.recipe.id).map(recipeItem => {
                                 let ingredient = {
@@ -237,9 +263,9 @@ export default class RecipeEditCard extends Component {
                                 )
                             })
                         }
-                        <h5 onClick={this.hideDetails}>Hide</h5>
                     </div>  
                 }
+                <Divider />
             </div>
         )
     }

@@ -2,3 +2,19 @@
     display: flex;
     flex-direction: column;
 }
+
+.recipe-edit-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.queued-edit {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.queued-edit input {
+    width: 40% !important;
+
+}

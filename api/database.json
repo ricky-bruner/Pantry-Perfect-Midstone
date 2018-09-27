@@ -267,8 +267,8 @@
     {
       "recipeId": 1,
       "pantryItemId": 2,
-      "quantity": 12,
-      "quantityTypeId": 3,
+      "quantity": 1,
+      "quantityTypeId": 14,
       "id": 1
     },
     {
@@ -426,7 +426,32 @@
       "id": 25
     }
   ],
-  "groceryItems": [],
+  "groceryItems": [
+    {
+      "userId": 1,
+      "pantryItemId": 12,
+      "recipeId": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 14,
+      "recipeId": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 15,
+      "recipeId": 1,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "pantryItemId": 16,
+      "recipeId": 1,
+      "id": 4
+    }
+  ],
   "quantityTypes": [
     {
       "id": 1,

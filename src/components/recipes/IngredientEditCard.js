@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DataManager from "../../modules/DataManager";
-
+import { Message, Button, Icon, Input, ButtonContent } from "semantic-ui-react"
 export default class IngredientEditCard extends Component {
     state = {
         editQuantity: false,
@@ -51,27 +51,32 @@ export default class IngredientEditCard extends Component {
 
     render(){
         return (
-            <div className="ingredient-card">
+            <Message size="tiny" floating className="ingredient-card">
                 <div>
                     <div>
                         <p>{this.props.ingredient.name}</p>
                     </div>
                     {
+                        this.state.noChanges &&
+                        this.state.editQuantity &&
+                        <Message error size="mini">You didn't change anything</Message>
+                    }
+                    {
                         this.state.editQuantity &&
                         <div>
-                            {
-                                this.state.noChanges &&
-                                <div>
-                                    <span className="error-p">You didn't change anything</span>
-                                </div>
-                            }
-                            <input type="number" id="quantity" defaultValue={this.props.ingredient.quantity} onChange={this.handleFieldChange} />
-                            <select id="quantityType" defaultValue={this.props.ingredient.type} onChange={this.handleFieldChange}>
-                                {
-                                    this.props.quantityTypes.map(type => <option key={`${this.props.recipeItem.id}-${type.id}`}>{type.name}</option>)
-                                }
-                            </select>
-                            <button onClick={this.updateQuantity}>Save Changes</button>
+                            <div>
+                                <Input type="number" size="mini" id="quantity" defaultValue={this.props.ingredient.quantity} onChange={this.handleFieldChange} />
+                                <Input list="types" size="mini" id="quantityType" defaultValue={this.props.ingredient.type} onChange={this.handleFieldChange} />
+                                    <datalist id="types">
+                                        {
+                                            this.props.quantityTypes.map(type => <option key={`${this.props.recipeItem.id}-${type.id}`} value={type.name} />)
+                                        }
+                                    </datalist>
+                            </div>
+                            <Button size="mini" color="orange" animated onClick={this.updateQuantity}>
+                                    <Button.Content visible>Save</Button.Content>
+                                    <Button.Content hidden><Icon name="checkmark"/></Button.Content>
+                            </Button>
                         </div>
                     }
                     {
@@ -81,18 +86,33 @@ export default class IngredientEditCard extends Component {
                         </div>
                     }
                 </div>
-                <div>
+                <div className="button-right">
                     {
                         !this.state.editQuantity &&
-                        <button onClick={this.editQuantity}>Edit Quantity</button>
+                        <div>
+                            <Button size="mini" basic animated color="orange" onClick={this.editQuantity}>
+                                <Button.Content visible>Edit</Button.Content>
+                                <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                            </Button>
+                        </div>
                     }
                     {
                         this.state.editQuantity &&
-                        <button onClick={this.cancelQuantityEdit}>Cancel</button>
+                        <div>
+                            <Button size="mini" animated basic color="orange" onClick={this.cancelQuantityEdit}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="ban" /></Button.Content>
+                            </Button>
+                        </div>
                     }
-                    <button onClick={this.removeIngredient}>Remove</button>
+                    <div>
+                        <Button size="mini" basic animated color="red" onClick={this.removeIngredient}>
+                            <Button.Content visible>Remove</Button.Content>
+                            <Button.Content hidden><Icon name="remove circle" /></Button.Content>
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </Message>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Input, Icon, Label, Message } from "semantic-ui-react";
 
 export default class QueuedIngredientCard extends Component {
     state = {
@@ -42,27 +43,33 @@ export default class QueuedIngredientCard extends Component {
             <div>
                 {
                     !this.state.updateQuantity &&
-                    <div>
+                    <Message size="mini" floating className="ingredient-card">
                         <p>{this.props.ingredient.name} {this.props.ingredient.quantity} {this.props.ingredient.quantityType}</p>
-                        <button onClick={this.updateQuantity}>Update Quantity</button>
-                    </div>
+                        <div className="button-right">
+                            <Button size="mini" basic color="orange" onClick={this.updateQuantity}>Update</Button>
+                            <Button color="red" basic size="mini" onClick={this.removeIngredient}>Remove</Button>
+                        </div>
+                    </Message>
                 }
                 {
                     this.state.updateQuantity &&
-                    <div>
+                    <Message size="mini" floating>
                         <p>{this.props.ingredient.name}</p>
-                        <input type="number" id="newQuantity" placeholder="literally a number goes here" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
-                        <select id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange}>
-                            <option>Quantity Type</option>
-                            {
-                                this.props.quantityTypes.map(type => <option key={`type-${type.id}`}>{type.name}</option>)
-                            }
-                        </select>
-                        <button onClick={this.updateIngredientQuantity}>Save Changes</button>
-                    </div>
+                        <div className="input-margin queued-edit">
+                            <Input type="number" label={{content: "Amount"}} labelPosition="left" id="newQuantity" placeholder="Number" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
+                            <Input list="types" label={{content: "Type"}} labelPosition="left" id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange} />
+                                <datalist id="types">
+                                {
+                                    this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name} />)
+                                }
+                                </datalist>
+                        </div>
+                        <div className="button-center">
+                            <Button size="mini" basic color="orange" onClick={this.updateIngredientQuantity}>Save</Button>
+                        </div>
+                    </Message>
 
                 }
-                <button onClick={this.removeIngredient}>Remove from Queue</button>
             </div>
         )
     }

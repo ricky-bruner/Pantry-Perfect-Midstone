@@ -33,32 +33,32 @@ export default class RecipeList extends Component {
     render(){
         return (
             <div className="recipe-list-container">
-                    <h2 className="centered">Recipes</h2>
-                    <div className="recipe-list-header">
-                            {
-                                !this.state.addForm &&
-                                <Button basic animated color="teal" size="mini" onClick={this.renderAddForm}>
-                                    <Button.Content visible>Add</Button.Content>
-                                    <Button.Content hidden><Icon name="add"/></Button.Content>
-                                </Button>
-                            }
-                            {
-                                this.state.addForm &&
-                                <Button basic color="teal" size="mini" onClick={this.hideAddForm}>Cancel</Button>
-                            }
-                            {
-                                !this.state.addForm &&
-                                !this.state.edit &&
-                                <Button basic animated color="teal" size="mini" onClick={this.renderEditCards}>
-                                    <Button.Content visible>Edit</Button.Content>
-                                    <Button.Content hidden><Icon name="exchange"/></Button.Content>
-                                </Button>
-                            }
-                            {
-                                this.state.edit &&
-                                <button onClick={this.hideEditCards}>Finish Edits</button>
-                            }
+                <div className="recipe-list-header">
+                    {
+                        !this.state.addForm &&
+                        <Button basic animated color="teal" size="mini" onClick={this.renderAddForm}>
+                            <Button.Content visible>Add</Button.Content>
+                            <Button.Content hidden><Icon name="add"/></Button.Content>
+                        </Button>
+                    }
+                    {
+                        this.state.addForm &&
+                        <Button basic color="teal" size="mini" onClick={this.hideAddForm}>Cancel</Button>
+                    }
+                    {
+                        !this.state.addForm &&
+                        !this.state.edit &&
+                        <Button basic animated color="teal" size="mini" onClick={this.renderEditCards}>
+                            <Button.Content visible>Edit</Button.Content>
+                            <Button.Content hidden><Icon name="exchange"/></Button.Content>
+                        </Button>
+                    }
+                    {
+                        this.state.edit &&
+                        <Button size="mini" basic color="orange" onClick={this.hideEditCards}>Finish</Button>
+                    }
                 </div>
+                <h2 className="centered">Recipes</h2>
                 <div>
                 {
                     this.state.addForm &&
