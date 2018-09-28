@@ -200,7 +200,7 @@ export default class RecipeEditCard extends Component {
                                             <TextArea id="recipeInstructions" defaultValue={this.state.recipeInstructions} onChange={this.handleFieldChange}></TextArea>
                                         </Form.Field>
                                     </Form>
-                                    <Button size="mini" basic color="orange" onClick={this.updateDetails}>Submit Changes</Button>
+                                    <Button size="mini" color="orange" onClick={this.updateDetails}>Submit Changes</Button>
                                 </div>
                             </div>
                         }
