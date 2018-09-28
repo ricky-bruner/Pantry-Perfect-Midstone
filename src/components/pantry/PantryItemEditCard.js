@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QtyConverter from "../../modules/QtyConverter";
+import { Card, Button, Message, Input, Popup } from "semantic-ui-react";
 
 export default class PantryItemEditCard extends Component {
     state = {
@@ -79,21 +80,33 @@ export default class PantryItemEditCard extends Component {
             {
                 !this.state.renderEdit &&
                 !this.state.convertQuantity &&
-                <div>
-                    <p>{this.props.pantryItem.name}</p>
-                    <p>{QtyConverter.convertFromTSP(parseInt(this.props.pantryItem.quantity, 0), this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name)} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
-                    <button onClick={this.renderEdit}>Edit</button>
-                    <button onClick={this.handleDelete}>Delete</button>
-                    <button onClick={this.renderQuantityConvert}>Convert to Another Quantity Type</button>
-                </div>
+                <Card fluid color="red" className="edit-pantry-item">
+                    <div className="pantry-item">
+                        <Card.Header className="pantry-item-header-left">{this.props.pantryItem.name}</Card.Header>
+                        <Card.Header className="pantry-item-header-right">{QtyConverter.convertFromTSP(parseInt(this.props.pantryItem.quantity, 0), this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name)} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</Card.Header>
+                    </div>
+                    <div className="edit-footer">
+                        <Button.Group>
+                            <Button basic compact color="orange" size="mini" onClick={this.renderEdit}>Edit</Button>
+                            <Button.Or />
+                            <Button basic compact color="red" size="mini" onClick={this.handleDelete}>Delete</Button>
+                            <Button.Or />
+                            <Button basic compact color="teal" size="mini" onClick={this.renderQuantityConvert}>Convert</Button>
+                        </Button.Group>
+                    </div>
+                </Card>
             }
             {
                 this.state.convertQuantity &&
-                <div>
-                    <p>{this.props.pantryItem.name}</p>
-                    <p>Current: {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name.toLowerCase()}</p>
-                    <p>New:</p>
-                    <select id="convertQuantityType" defaultValue={this.state.convertQuantityType} onChange={this.handleFieldChange}>
+                <Card fluid color='blue' className="edit-pantry-item">
+                    <Card.Header className="pantry-item-header-left">{this.props.pantryItem.name}</Card.Header>
+                    <div className="pantry-edit-flex">
+                        <Card.Header className="edit-item-left">Current: </Card.Header>
+                        <p className="edit-item-right">{QtyConverter.convertFromTSP(parseInt(this.props.pantryItem.quantity, 0), this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name)} {this.props.quantityTypes.find(type => type.id === this.props.pantryItem.quantityTypeId).name}</p>
+                    </div>
+                    <div className="pantry-edit-flex">
+                        <Card.Header className="edit-item-left">New:</Card.Header>
+                        <select id="convertQuantityType" className="edit-item-right" defaultValue={this.state.convertQuantityType} onChange={this.handleFieldChange}>
                         {
                             this.props.quantityTypes.map(type => {
                                 if(type.name !== this.state.itemQuantityType){
@@ -103,46 +116,62 @@ export default class PantryItemEditCard extends Component {
                                 }
                             })
                         }   
-                    </select>
-                    <button onClick={this.convertQuantity}>Convert!</button>
-                </div>
+                        </select>
+                    </div>
+                    <div className="edit-footer">
+                        <Button.Group>
+                            <Button compact basic color="red" size="mini" onClick={() => {this.setState({convertQuantity: false})}}>Cancel</Button>
+                            <Button.Or />
+                            <Button compact basic color="teal" size="mini" onClick={this.convertQuantity}>Convert</Button>
+                        </Button.Group>
+                    </div>
+                </Card>
             }
             {
                 this.state.renderEdit &&
-                <div>
+                <Card fluid color='orange' className="edit-pantry-item">
                     {
                         this.state.nameTaken &&
                         <div>
-                            <span className="error-p">Another item in your panty has this name</span>
-                            <input type="text" id="itemName" className="error" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />    
+                            <Message floating size="mini" color='red' className="align-center">Another item in your panty has this name</Message>
+                            <Input error label={{ color: 'red', labelPosition: 'left', content: 'Name'}} type="text" id="itemName" className="input-margin" size="mini" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />    
                         </div>
                     }
                     {
                         this.state.nameSimilar &&
                         <div>
-                            <span className="error-p">Another item in your panty currently or in the past has a similar name to this! Consider using those instead!</span>
-                            <input type="text" id="itemName" className="error" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                            <Message floating size="mini" color='red' className="align-center">Another item in your panty currently or in the past has a similar name to this! Consider using those instead!</Message>
+                            <Input error size="mini" label={{ color: 'red', labelPosition: 'left', content: 'Name'}} type="text" id="itemName" className="input-margin" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
                         </div>
                     }
                     {
                         !this.state.nameTaken &&
                         !this.state.nameSimilar &&
-                        <input type="text" id="itemName"  defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                        <Popup position="top center" wide className="warning-popup" trigger={<Input label={{ color: 'teal', labelposition: 'left', content: 'Name'}} type="text" id="itemName" className="input-margin" size="mini" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />} content="WARNING! Changing the name here will change it in every Recipe it is used in! Please only edit a name to fix spelling :D" />
                     }
-                    <input type="text" id="itemAmount" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
-                    <select id="itemQuantityType" defaultValue={this.state.itemQuantityType} onChange={this.handleFieldChange}>
-                        {
-                            this.props.quantityTypes.map(type => {
-                                if(type.name !== this.state.itemQuantityType){
-                                    return <option key={type.id} defaultValue={type.name}>{type.name}</option>  
-                                } else {
-                                    return <option key={type.id} defaultValue={type.name}>{type.name}</option>
-                                }
-                            })
-                        }   
-                    </select>
-                    <button onClick={this.handleEdit}>Save Changes</button>
-                </div>
+                    <Input size="mini" label={{ color: 'teal', content: 'Quantity'}} labelPosition='right' type="number" id="itemAmount" className="input-margin" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
+                    <div>
+                        <Input list='languages' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'teal', labelposition: 'left', content: 'Quantity Type'}} placeholder={this.state.itemQuantityType} onChange={this.handleFieldChange} />
+                        <datalist id='languages'>
+                            {
+                                this.props.quantityTypes.map(type => {
+                                    if(type.name !== this.state.itemQuantityType){
+                                        return <option key={type.id} value={type.name}/>  
+                                    } else {
+                                        return <option key={type.id} value={type.name}/>
+                                    }
+                                })
+                            }
+                        </datalist>
+                    </div>
+                    <div className="edit-footer">
+                        <Button.Group>
+                            <Button basic compact size="mini" color="red" onClick={() => {this.setState({renderEdit: false})}}>Cancel</Button>
+                            <Button.Or />
+                            <Button basic compact size="mini" color="teal" onClick={this.handleEdit}>Save Changes</Button>
+                        </Button.Group>
+                    </div>
+                </Card>
             }
             </div>
         )

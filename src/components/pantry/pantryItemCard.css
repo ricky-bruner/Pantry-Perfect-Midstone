@@ -1,8 +1,104 @@
-.pantry-item-card {
-    display: flex;
-    justify-content: space-between;
-    background: lightgray;
-    margin: 1em auto;
-    width: 80%;
+.pantry-list-container {
+    background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164));
     padding: .5em;
+    margin: 1em 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
+
+.pantry-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin: 1em auto !important;
+    width: 90% !important;
+    padding: .5em !important;
+    height: 40px !important;
+}
+
+.pantry-item-header-left {
+    width: 70%;
+    text-align: left;
+}
+.pantry-item-header-right {
+    width: 30%;
+    text-align: right; 
+}
+
+.pantry-edit-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.edit-item-left {
+    width: 40%;
+    text-align: right;
+}
+.edit-item-right {
+    width: 40%;
+    text-align: left;
+}
+
+.edit-pantry-item {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin: 1em auto !important;
+    width: 90% !important;
+    padding: .5em !important;
+}
+
+.edit-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: .5em;
+}
+
+.input-margin {
+    width: 100%;
+    margin: .5em 0;
+}
+
+.warning-popup, .warning-popup::before {
+    background: #ffe8e6 !important;
+    color: #db2828 !important;
+}
+
+.warning-popup {
+    box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent !important;
+}
+
+.warning-popup::before {
+    border-right: solid 1px #db2828 !important;
+    border-bottom: solid 1px #db2828 !important;
+}
+
+.pantry-add-form {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #ece9e6, #ffffff);
+    padding: .5em;
+    margin: 1em auto;
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+
+.ui.blue.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #2185d0, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+.ui.red.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #db2828, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+.ui.orange.card {
+    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #f2711c, 0 1px 3px 0 #d4d4d5 !important;
+}
+
+
+
+
+
+

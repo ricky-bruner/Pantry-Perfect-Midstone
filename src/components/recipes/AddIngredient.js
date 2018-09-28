@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PantryItemAdd from "../pantry/PantryItemAdd";
 import DataManager from "../../modules/DataManager";
 import QueuedIngredientCard from "./QueuedIngredientCard";
+import { Message, Input, Button, Icon, Label, Divider } from "semantic-ui-react";
 
 export default class AddIngredient extends Component {
     state = {
@@ -12,7 +13,6 @@ export default class AddIngredient extends Component {
         emptyForm: false,
         pantryAdd: false,
         duplicateIngredient: false,
-        duplicateRecipeItem: false
     }
 
     handleFieldChange = (evt) => {
@@ -34,14 +34,6 @@ export default class AddIngredient extends Component {
             this.setState({emptyForm: true, duplicateRecipeItem: false, duplicateIngredient: false})
         } else {
             let allIngredients = this.state.allIngredients;
-            let recipeItems = this.props.recipeItems.filter(r => r.recipeId === this.props.recipe.id)
-            let currentIngredients = [];
-            recipeItems.map(item => {
-                let currentIng = {
-                    name: this.props.pantryItems.find(p => p.id === item.pantryItemId).name
-                }
-                return currentIngredients.push(currentIng)
-            })
             let newRecipeItem = {
                 name: this.state.recipeIngredient,
                 userId: this.props.user.id,
@@ -51,14 +43,12 @@ export default class AddIngredient extends Component {
                 quantityTypeId: this.props.quantityTypes.find(type => type.name === this.state.quantityType).id
             }
             if(this.state.allIngredients.find(ingredient => ingredient.name === newRecipeItem.name)){
-                this.setState({duplicateIngredient: true, duplicateRecipeItem: false, emptyForm: false})
-            } else if(currentIngredients.find(c => c.name === newRecipeItem.name)){
-                this.setState({duplicateRecipeItem: true, duplicateIngredient: false, emptyForm: false})
+                this.setState({duplicateIngredient: true, emptyForm: false})
             } else {
                 allIngredients.push(newRecipeItem);
-                document.querySelector("#recipeIngredient").value = "Select a Pantry Item"
+                document.querySelector("#recipeIngredient").value = ""
                 document.querySelector("#itemQuantity").value = ""
-                document.querySelector("#quantityType").value = "Quantity Type"
+                document.querySelector("#quantityType").value = ""
                 this.setState({
                     allIngredients: allIngredients,
                     recipeIngredient: "",
@@ -66,16 +56,15 @@ export default class AddIngredient extends Component {
                     quantityType: "",
                     emptyForm: false,
                     duplicateIngredient: false,
-                    duplicateRecipeItem: false
                 })
             }
         }
     }
 
     resetIngredientAddState = () => {
-        document.querySelector("#recipeIngredient").value = "Select a Pantry Item"
+        document.querySelector("#recipeIngredient").value = ""
         document.querySelector("#itemQuantity").value = ""
-        document.querySelector("#quantityType").value = "Quantity Type"
+        document.querySelector("#quantityType").value = ""
         this.setState({
             recipeIngredient: "",
             itemQuantity: "",
@@ -84,7 +73,6 @@ export default class AddIngredient extends Component {
             emptyForm: false,
             pantryAdd: false,
             duplicateIngredient: false,
-            duplicateRecipeItem: false
         })
         
     }
@@ -128,55 +116,48 @@ export default class AddIngredient extends Component {
     render(){
         return (
             <div className="add-recipe-form">
+                <div className="button-right">
+                    <Button animated size="mini" basic color="red" onClick={this.cancelIngredients}>
+                        <Button.Content visible>Cancel</Button.Content>
+                        <Button.Content hidden><Icon name="ban" /></Button.Content>
+                    </Button>
+                </div>
+                <h4 className="centered">Add New Ingredients</h4>
                 {
                     this.state.emptyForm &&
-                    <span className="error-p">Please fill out all sections of the form :D</span>
+                    <Message error size="mini">Please fill out all sections of the form</Message>
                 }
                 {
                     this.state.duplicateIngredient &&
-                    <span className="error-p">This Ingredient is already queued!</span>
+                    <Message error size="mini">This Ingredient is already queued below</Message>
                 }
-                {
-                    this.state.duplicateRecipeItem &&
-                    <span className="error-p">This ingredient is already attached to this recipe! Please edit the quantity below.</span>
-                }
-                <select id="recipeIngredient" onChange={this.handleFieldChange} defaultValue={this.state.recipeIngredient}>
-                    <option>Select a Pantry Item</option>
+                <Input list="ingredients" id="recipeIngredient" className="input-margin" onChange={this.handleFieldChange} placeholder="Select a Pantry Item" defaultValue={this.state.recipeIngredient} />
+                    <datalist id="ingredients">
+                        {
+                            this.props.pantryItems.filter(item => item.visible).map(item => {
+                                let recipeItems = this.props.recipeItems.filter(r => r.recipeId === this.props.recipe.id)
+                                let rItem = recipeItems.find(r => r.pantryItemId === item.id)
+                                if(!rItem){
+                                    return <option key={`pantryItem-${item.id}`} value={item.name} />
+                                } else {
+                                    return null
+                                }
+                            })
+                        }
+                    </datalist>
+                <Input size="mini" label={{content: "Amount", color: "orange"}} labelPosition="left" type="number" className="input-margin" id="itemQuantity" placeholder="Number" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
+                <Input list="types" size="mini" label={{content: "Type", color: "orange"}} labelPosition="left" className="input-margin" id="quantityType" defaultValue={this.state.quantityType} onChange={this.handleFieldChange} />
+                    <datalist id="types">
                     {
-                        this.props.pantryItems.filter(item => item.visible).map(item => <option key={`pantryItem-${item.id}`}>{item.name}</option>)
+                        this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name} />)
                     }
-                </select>
-                <label htmlFor="itemQuantity">Add the amount!</label>
-                <input type="number" id="itemQuantity" placeholder="literally a number goes here" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
-                <select id="quantityType" defaultValue={this.state.quantityType} onChange={this.handleFieldChange}>
-                    <option>Quantity Type</option>
-                    {
-                        this.props.quantityTypes.map(type => <option key={`type-${type.id}`}>{type.name}</option>)
-                    }
-                </select>
-                <div>
-                    <button onClick={this.handleIngredientAdd}>Add ingredient to recipe!</button>
+                    </datalist>
+
+                <div className="button-center">
+                    <Button size="mini" color="orange" onClick={this.handleIngredientAdd}>Add ingredient to recipe!</Button>
                 </div>
                 <div>
-                    <h5>Is an ingredient you need for your recipe not in your pantry list yet?</h5>
-                    {
-                        !this.state.pantryAdd &&
-                        <button onClick={this.renderPantryAddForm}>Add the Ingredient to your Pantry!</button>
-                    }
-                    {
-                        this.state.pantryAdd &&
-                        <div>
-                            <PantryItemAdd user={this.props.user}  
-                                        editPantryItem={this.props.editPantryItem} 
-                                        addPantryItem={this.props.addPantryItem} 
-                                        pantryItems={this.props.pantryItems} 
-                                        quantityTypes={this.props.quantityTypes} />
-                            <button onClick={this.hidePantryAddForm}>Finished adding items?</button>
-                        </div>
-                    }
-                </div>
-                <div>
-                    <h5>Current Ingredients queued:</h5>
+                    <Divider horizontal>Current Queued Ingredients</Divider>
                     {
                         this.state.allIngredients.map(ingredient => {
                             return (
@@ -190,14 +171,39 @@ export default class AddIngredient extends Component {
                         })
                     }
                 </div>
-                {
-                    this.state.allIngredients.length > 0 &&
-                    <button onClick={this.addNewIngredients}>Submit New Ingredients</button>
-                }
+                <Divider horizontal>Pantry Add</Divider>
+                <div>
+                    <h5 className="centered">Is an ingredient you need for your recipe not in your pantry list yet?</h5>
+                    {
+                        !this.state.pantryAdd &&
+                        <div className="button-center">
+                            <Button size="mini" color="orange" onClick={this.renderPantryAddForm}>Add to your Pantry!</Button>
+                        </div>
+                    }
+                    {
+                        this.state.pantryAdd &&
+                        <div>
+                            <div className="button-right">
+                                <Button size="mini" basic color="blue" onClick={this.hidePantryAddForm}>Finish</Button>
+                            </div>    
+                            <PantryItemAdd user={this.props.user}  
+                                        editPantryItem={this.props.editPantryItem} 
+                                        addPantryItem={this.props.addPantryItem} 
+                                        pantryItems={this.props.pantryItems} 
+                                        quantityTypes={this.props.quantityTypes} />
+                        </div>
+                    }
+                    <Divider horizontal>Finish</Divider>
+                </div>
                 {
                     this.state.allIngredients.length === 0 &&
-                    <button onClick={this.cancelIngredients}>Cancel</button>
+                    <Button size="mini" color="orange" disabled onClick={this.addNewIngredients}>Submit New Ingredients</Button>
                 }
+                {
+                    this.state.allIngredients.length > 0 &&
+                    <Button size="mini" color="orange" onClick={this.addNewIngredients}>Submit New Ingredients</Button>
+                }
+                
             </div>
         )
     }

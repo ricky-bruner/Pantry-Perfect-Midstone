@@ -8,9 +8,21 @@ export default Object.create(null, {
             .then(res => res.json())
         }
     },
-    getUser: {
+    getUserName: {
         value: (username) => {
             return fetch(`${remoteURL}/users?username=${username}`)
+            .then(res => res.json())
+        }
+    },
+    getUserEmail: {
+        value: (email) => {
+            return fetch(`${remoteURL}/users?email=${email}`)
+            .then(res => res.json())
+        }
+    },
+    getUserLogin: {
+        value: (username, password) => {
+            return fetch(`${remoteURL}/users?username=${username}&password=${password}`)
             .then(res => res.json())
         }
     },

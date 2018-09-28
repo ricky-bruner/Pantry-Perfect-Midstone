@@ -2,3 +2,60 @@
     display: flex;
     flex-direction: column;
 }
+
+.recipe-edit-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.queued-edit {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.queued-edit input {
+    width: 40% !important;
+
+}
+
+.que-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.recipe-card .ui.orange.label, .recipe-card .ui.orange.labels .label {
+    background: linear-gradient(to bottom, #fdc830, #f79767) !important;
+}
+
+.pre-edit-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ingredient-edit-details {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.edit-ingredient-title {
+    width: 65%;
+    margin-top: .5em !important;
+    margin-bottom: 0 !important;
+}
+
+.edit-ingredient-quantity {
+    width: 30%;
+    margin-top: .5em !important;
+    margin-bottom: 0 !important;
+}
+
+.align-right {
+    text-align: right !important;
+}
+
+.post-edit-footer {
+    margin-top: 1em;
+}

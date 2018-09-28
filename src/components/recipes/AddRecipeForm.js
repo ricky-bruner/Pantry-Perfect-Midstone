@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./addRecipeForm.css";
 import DataManager from "../../modules/DataManager";
 import PantryItemAdd from "../pantry/PantryItemAdd";
+import { TextArea, Form, Message, Input, Icon, Button, Label, Divider } from "semantic-ui-react";
 
 export default class AddRecipeForm extends Component {
     state = {
@@ -53,9 +54,9 @@ export default class AddRecipeForm extends Component {
             this.setState({duplicateIngredient: true})
         } else {
             allIngredients.push(newRecipeItem);
-            document.querySelector("#recipeIngredient").value = "Select a Pantry Item"
+            document.querySelector("#recipeIngredient").value = ""
             document.querySelector("#itemQuantity").value = ""
-            document.querySelector("#quantityType").value = "Quantity Type"
+            document.querySelector("#quantityType").value = ""
             this.setState({
                 allIngredients: allIngredients,
                 recipeIngredient: "",
@@ -96,7 +97,10 @@ export default class AddRecipeForm extends Component {
                 name: this.state.recipeName,
                 description: this.state.recipeDescription,
                 image: "",
-                instructions: this.state.recipeInstructions
+                instructions: this.state.recipeInstructions,
+                timesCooked: 0,
+                favorite: false,
+                retired: false
             }
             if(this.props.recipes.find(recipe => recipe.name.toLowerCase() ===  newRecipe.name.toLowerCase())){
                 this.setState({emptyForm: false, duplicateRecipe: true})
@@ -128,47 +132,90 @@ export default class AddRecipeForm extends Component {
     render(){
         return (
             <div className="add-recipe-form">
-                <h3>Build a New Recipe!</h3>
-                {
-                    this.state.emptyForm &&
-                    <span className="error-p">Please Fill out all areas</span>
-
-                }
-                {
-                    this.state.duplicateRecipe &&
-                    <span className="error-p">Oops! It seems that you already have a recipe called this! Consider changing the name or double check that you are adding a recipe that you already have!</span>
-                }
-                <input type="text" id="recipeName" defaultValue={this.state.recipeName} placeholder="What is the meal called?" onChange={this.handleFieldChange} />
-                <textarea id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange}></textarea>
-                <textarea id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange}></textarea>
-                <h4>Now, add the ingredients based on what you have in your pantry!</h4>
+                <div className="add-recipe-form-top">
+                    <h3 className="centered">Build a New Recipe!</h3>
+                    <Divider horizontal>Recipe Details</Divider>
+                    {
+                        this.state.emptyForm &&
+                        <Message error size="mini">Please Fill out all areas</Message>
+                        
+                    }
+                    {
+                        this.state.duplicateRecipe &&
+                        <Message error size="mini">Oops! It seems that you already have a recipe called this! Consider changing the name or double check that you are adding a recipe that you already have!</Message>
+                    }
+                    <Input label={{content: "Name", icon: "food", color: "teal"}} labelPosition="left" size="mini" className="input-margin" type="text" id="recipeName" defaultValue={this.state.recipeName} placeholder="What is the meal called?" onChange={this.handleFieldChange} />
+                    <Form className="input-margin">
+                        <Form.Field>
+                            <Label pointing='below' attached="top" color="teal" className="centered">Please enter a Description</Label>
+                            <TextArea autoHeight  className="input-margin" id="recipeDescription" defaultValue={this.state.recipeDescription} placeholder="Describe the dish!" onChange={this.handleFieldChange} />
+                        </Form.Field>
+                    </Form>
+                    <Form className="input-margin">
+                        <Form.Field>
+                            <Label pointing='below' attached="top" color="teal" className="centered">Enter any instructions you wish</Label>
+                            <TextArea autoHeight id="recipeInstructions" defaultValue={this.state.recipeInstructions} placeholder='Add some tip and tidbits about your dish! Ex. "juice the limes or add extra salt"!' onChange={this.handleFieldChange} />
+                        </Form.Field>
+                    </Form>
+                </div>
+                <Divider horizontal>Ingredients</Divider>
+                <h4 className="centered">Now, Add the Ingredients</h4>
+                <Message floating  size="mini">Note: ingredients are based on what you have in your pantry!</Message>
                 {
                     this.state.duplicateIngredient &&
-                    <span className="error-p">You've already added this Ingredient!</span>
+                    <Message error size="mini">You've already added this Ingredient</Message>
                 }
-                <select id="recipeIngredient" onChange={this.handleFieldChange} defaultValue={this.state.recipeIngredient}>
-                    <option>Select a Pantry Item</option>
-                    {
-                        this.props.pantryItems.filter(item => item.visible).map(item => <option key={`pantryItem-${item.id}`}>{item.name}</option>)
-                    }
-                </select>
-                <label htmlFor="itemQuantity">Add the amount!</label>
-                <input type="number" id="itemQuantity" placeholder="literally a number goes here" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
-                <select id="quantityType" defaultValue={this.state.quantityType} onChange={this.handleFieldChange}>
-                    <option>Quantity Type</option>
-                    {
-                        this.props.quantityTypes.map(type => <option key={`type-${type.id}`}>{type.name}</option>)
-                    }
-                </select>
-                <div>
-                    <button onClick={this.handleIngredientAdd}>Add ingredient to recipe!</button>
+                <Input list="ingredients" fluid focus className="input-margin" id="recipeIngredient" onChange={this.handleFieldChange} placeholder="Search through the list or type what you seek!" defaultValue={this.state.recipeIngredient} />
+                    <datalist id="ingredients">
+                        {
+                            this.props.pantryItems.filter(item => item.visible).map(item => <option key={item.id} value={item.name}/>)
+                        }
+                    </datalist>
+                <div className="add-form-quantity-inputs">
+                    <div className="quantity-input-left">
+                        <Input label={{content: "Amount", color: "teal"}} labelPosition="left" size="mini" type="number" id="itemQuantity" placeholder="Number" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
+                    </div>
+                    <div className="quantity-input-right">
+                        <Input list="types" size="mini" label={{content: "Type", color: "teal"}} labelPosition="left" id="quantityType" placeholder="Select a Quantity Type" defaultValue={this.state.quantityType} onChange={this.handleFieldChange} />
+                            <datalist id="types">
+                                {
+                                    this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name}/>)
+                                }
+                            </datalist>
+                    </div>
                 </div>
+                <div className="button-center">
+                    <Button size="mini" basic animated color="teal" onClick={this.handleIngredientAdd}>
+                        <Button.Content visible>Queue Ingredient</Button.Content>
+                        <Button.Content hidden><Icon name="plus" size="large" /></Button.Content>
+                    </Button>
+                </div>
+                <Divider horizontal>Queued Ingredients</Divider>
                 <div>
-                    <h5>Is an ingredient you need for your recipe not in your pantry list yet?</h5>
                     {
-                        !this.state.pantryAdd &&
-                        <button onClick={this.renderPantryAddForm}>Add the Ingredient to your Pantry!</button>
+                        this.state.allIngredients.map(ingredient => 
+                            <div >
+                                <Message size="tiny" className="queued-ingredient" floated key={ingredient.pantryItemId}>
+                                    <Message.Content className="queued-details"><span>{ingredient.name}</span><span>{ingredient.quantity} {ingredient.quantityType}</span></Message.Content>
+                                    <div>
+                                        <Button basic color="red" size="mini" animated>
+                                            <Button.Content visible><Icon name="remove circle"/></Button.Content>
+                                            <Button.Content hidden>Remove</Button.Content>
+                                        </Button>
+                                    </div>
+                                </Message>
+                            </div>)
                     }
+                </div>
+                <Divider />
+                <div>
+                    <Message floating size="mini" className="centered">Is an ingredient you need for your recipe not in your pantry list yet?</Message>
+                    <div className="button-center">
+                        {
+                            !this.state.pantryAdd &&
+                            <Button basic color="teal" size="mini" onClick={this.renderPantryAddForm}>Add to your Pantry from here!</Button>
+                        }
+                    </div>
                     {
                         this.state.pantryAdd &&
                         <div>
@@ -181,13 +228,8 @@ export default class AddRecipeForm extends Component {
                         </div>
                     }
                 </div>
-                <div>
-                    <h5>Current Ingredients queued:</h5>
-                    {
-                        this.state.allIngredients.map(ingredient => <p key={ingredient.pantryItemId}>{ingredient.name} {ingredient.quantity}{ingredient.quantityType}</p>)
-                    }
-                </div>
-                <button onClick={this.handleRecipeAdd}>Complete and Add Recipe!</button>
+                <Divider horizontal>Finished?</Divider>
+                <Button color="teal" onClick={this.handleRecipeAdd}>Complete and Add Recipe!</Button>
             </div>
         )
     }

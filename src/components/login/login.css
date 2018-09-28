@@ -9,6 +9,12 @@
     background-position-y: -200px;
 }
 
+.login-container .ui.label>.icon {
+    margin: 0 !important;
+}
+
+
+
 .login-header {
     display: flex;
     justify-content: space-around;
@@ -22,8 +28,15 @@
     margin: 0 auto;
 }
 
+.log-in-card .logo {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+}
+
 .login-header h4 {
-    padding-top: 30%;
+    padding-top: 25%;
     color: rgb(76, 196, 155);
     margin: 0 .5em;
 }
@@ -75,6 +88,39 @@
     position: absolute;
     transition: 0.3s ease all;
     border-radius: 10px;
+}
+
+.ui.input.error>input {
+    background-color: #fff6f6 !important;
+    border-color: #e0b4b4 !important;
+    color: #9f3a38 !important;
+}
+
+.log-in-card .ui.label {
+    background: linear-gradient(to bottom, #fdc830, #f79767);
+    color: white;
+}
+
+
+.sign-up-card .ui.label {
+    background: linear-gradient(to bottom, rgb(76, 196, 155), #191654);
+    color: white;
+}
+
+.sign-up-card .ui.input>input:focus {
+    border-color:  #191654;
+}
+
+.log-in-card .ui.input>input:focus {
+    border-color: #f37335 !important;
+}
+
+.sign-up-card input {
+    background-color: rgba(223, 250, 240, 0.578)!important;
+}
+
+.log-in-card input {
+    background-color: #f9edcb93 !important;
 }
 
 .card-body {

@@ -19,7 +19,7 @@ const loginAnimation = (e) => {
                 }, 300);
             }, 10);
         }, 300);
-    }
+    } 
 }
 
 export default loginAnimation;

@@ -29,7 +29,7 @@ export default Object.create(null, {
             } else if(quantityType === "GALLON"){
                 return quantity / 768
             } else if(quantityType === "LB"){
-                return quantity / 80
+                return quantity / 96
             } else {
                 return null
             }
@@ -64,7 +64,7 @@ export default Object.create(null, {
             } else if(quantityType === "GALLON"){
                 return quantity * 768
             } else if(quantityType === "LB"){
-                return quantity * 80
+                return quantity * 96
             } else {
                 return null
             }

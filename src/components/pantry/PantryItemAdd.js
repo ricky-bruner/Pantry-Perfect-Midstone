@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QtyConverter from "../../modules/QtyConverter";
+import { Input, Button, Message, Icon } from "semantic-ui-react";
 
 export default class PantryItemAdd extends Component {
     state = {
@@ -11,13 +12,14 @@ export default class PantryItemAdd extends Component {
         emptyInput: false,
         similarRetired: false,
         reviveItem: false,
+        similarItemName: "",
         revivedItemName: ""
     }
 
     resetState = () => {
         document.querySelector("#itemName").value = "";
         document.querySelector("#itemAmount").value = "";
-        document.querySelector("#itemQuantityType").value = "Type";
+        document.querySelector("#itemQuantityType").value = "";
         this.setState({
             itemName: "",
             itemAmount: "",
@@ -27,6 +29,7 @@ export default class PantryItemAdd extends Component {
             emptyInput: false,
             similarRetired: false,
             reviveItem: false,
+            similarItemName: "",
             revivedItemName: ""
         })
     }
@@ -54,32 +57,38 @@ export default class PantryItemAdd extends Component {
                 this.setState({
                     duplicateItem: true,
                     similarItem: false,
-                    emptyField: false,
+                    emptyInput: false,
                     similarRetired: false,
                     reviveItem: false
                 })
             } else if(currentItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))){
+                let similarItem = currentItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase())) || 
+                currentItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
-                    emptyField: false,
+                    emptyInput: false,
                     similarRetired: false,
-                    reviveItem: false
+                    reviveItem: false, 
+                    similarItemName: similarItem.name
                 })
             } else if (currentItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase()))){
+                let similarItem = currentItems.find(item => item.name.toLowerCase().includes(newItem.name.toLowerCase())) || 
+                currentItems.find(item => newItem.name.toLowerCase().includes(item.name.toLowerCase()))
                 this.setState({
                     duplicateItem: false,
                     similarItem: true,
-                    emptyField: false,
+                    emptyInput: false,
                     similarRetired: false,
-                    reviveItem: false
+                    reviveItem: false,
+                    similarItemName: similarItem.name
                 })
             } else if(retiredItems.find(item => item.name.toLowerCase() === newItem.name.toLowerCase())){
                 this.setState({
                     reviveItem: true,
                     duplicateItem: false,
                     similarItem: false,
-                    emptyField: false,
+                    emptyInput: false,
                     similarRetired: false,
                     revivedItemName: this.state.itemName
                 })
@@ -134,48 +143,54 @@ export default class PantryItemAdd extends Component {
     render(){
         return (
             <div className="pantry-add-form">
-                <input type="text" id="itemName" placeholder="Name of Item" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
-                <input type="text" id="itemAmount" placeholder="Amount on hand" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
-                <select id="itemQuantityType" defaultValue="Type" onChange={this.handleFieldChange}>
-                    <option>Type</option>
-                    {
-                        this.props.quantityTypes.map(type => <option key={type.id}>{type.name}</option>)
-                    }   
-                </select>
+                <Input size="mini" label={{ color: 'teal', content: 'Name:'}} labelPosition='left' type="text" id="itemName" className="input-margin" placeholder="Name of Item" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                <Input size="mini" label={{ color: 'teal', content: 'Quantity:'}} labelPosition='left' type="text" id="itemAmount" className="input-margin" placeholder="Amount on hand" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
+                <div>
+                    <Input list='types' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'teal', content: 'Quantity Type:'}} labelPosition='left' placeholder="Type" onChange={this.handleFieldChange} />
+                    <datalist id='types'>
+                        {
+                            this.props.quantityTypes.map(type => <option key={type.id} value={type.name} />)
+                        }
+                    </datalist>
+                </div>
                 {
                     this.state.emptyInput &&
-                    <p className="error-p">Please Make sure everything is filled out!</p>
+                    <Message icon="arrow up" size="tiny" color="orange" header="Oops! It seems that something isn't filled out just yet." content="No worries, We'll be ready when you are :D" />
                 }
-                <button onClick={this.handleItemAdd}>Add Item!</button>
+                <div className="button-center">
+                    <Button compact basic animated size="mini" color="blue" onClick={this.handleItemAdd}>
+                        <Button.Content visible>Add Item</Button.Content>
+                        <Button.Content hidden><Icon name="checkmark" /></Button.Content>
+                    </Button>
+                </div>
                 {
                     this.state.similarItem &&
                     <div>
-                        <p className="error">You have a similar already in your pantry. Add anyways?</p>
-                        <button onClick={this.handleSimilarAdd}>Add Similar Item</button>
+                        <Message size="tiny" color="teal" header={this.state.similarItemName} content="is already in your pantry. Add this similar item anyways?" />
+                        <Button compact basic size="mini" color="green" onClick={this.handleSimilarAdd}>Add Similar Item</Button>
                     </div>
                 }
                 {
                     this.state.duplicateItem && 
                     <div>
-                        <p>You already have this item in your Pantry. Consider changing what you call it to add a similar item, or update your quantity instead</p>
-                        <button onClick={this.handleDuplicateAdd}>Update Quantity</button>
+                        <Message size="tiny" color="red" content="You already have this item in your Pantry. Consider changing what you call it to add a similar item, or update your quantity instead" />
+                        <Button compact basic size="mini" color="green" onClick={this.handleDuplicateAdd}>Update Quantity</Button>
                     </div>
                 }
                 {
                     this.state.similarRetired &&
                     <div>
-                        <p>This item is very similar to an item that used to live in your pantry! Would you like to add that item back, or go forth with this new item?</p>
-                        <p>Similar Item: {this.state.revivedItemName}</p>
-                        <button onClick={this.reviveItem}>Revive the item!</button>
-                        <button>Save Anyways</button>
+                        <Message size="tiny" color="teal" header={`Similar Item: ${this.state.revivedItemName}`} content="This item is very similar to an item that used to live in your pantry! Would you like to add that item back, or go forth with this new item?" />
+                        
+                        <Button basic compact size="mini" color="teal" onClick={this.reviveItem}>Revive the item!</Button>
+                        <Button basic compact size="mini" color="green" onClick={this.handleSimilarAdd}>Save Anyways</Button>
                     </div>
                 }
                 {
                     this.state.reviveItem &&
                     <div>
-                        <p>This item used to live in your pantry. Bring that item back from the grave?</p>
-                        <p>Item: {this.state.revivedItemName}</p>
-                        <button onClick={this.reviveItem}>Be a hero!</button>
+                        <Message size="tiny" color="teal" header={`Revive Item: ${this.state.revivedItemName}`} content="This item used to live in your pantry. Bring that item back from the grave?" />
+                        <Button basic compact size="mini" color="teal" onClick={this.reviveItem}>Be a hero!</Button>
                     </div>
                 }
                 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Input, Icon, Label, Message } from "semantic-ui-react";
 
 export default class QueuedIngredientCard extends Component {
     state = {
@@ -42,27 +43,52 @@ export default class QueuedIngredientCard extends Component {
             <div>
                 {
                     !this.state.updateQuantity &&
-                    <div>
-                        <p>{this.props.ingredient.name} {this.props.ingredient.quantity} {this.props.ingredient.quantityType}</p>
-                        <button onClick={this.updateQuantity}>Update Quantity</button>
-                    </div>
+                    <Message size="mini" floating className="ingredient-card">
+                        <p className="que-title">{this.props.ingredient.name} {this.props.ingredient.quantity} {this.props.ingredient.quantityType}</p>
+                        <div className="button-right">
+                            <div>
+                                <Button size="mini" basic animated color="orange" onClick={this.updateQuantity}>
+                                    <Button.Content visible>Update</Button.Content>
+                                    <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                                </Button>
+                            </div>
+                            <div>
+                                <Button color="red" basic animated size="mini" onClick={this.removeIngredient}>
+                                    <Button.Content visible>Remove</Button.Content>
+                                    <Button.Content hidden><Icon name="remove circle" /></Button.Content>
+                                </Button>
+                            </div>
+                        </div>
+                    </Message>
                 }
                 {
                     this.state.updateQuantity &&
-                    <div>
-                        <p>{this.props.ingredient.name}</p>
-                        <input type="number" id="newQuantity" placeholder="literally a number goes here" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
-                        <select id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange}>
-                            <option>Quantity Type</option>
-                            {
-                                this.props.quantityTypes.map(type => <option key={`type-${type.id}`}>{type.name}</option>)
-                            }
-                        </select>
-                        <button onClick={this.updateIngredientQuantity}>Save Changes</button>
-                    </div>
+                    <Message size="mini" floating>
+                        <div className="button-right">
+                            <Button size="mini" animated basic color="red" onClick={() => this.setState({updateQuantity: false})}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="ban" /></Button.Content>
+                            </Button>
+                        </div>
+                        <p className="centered que-title">{this.props.ingredient.name}</p>
+                        <div className="input-margin queued-edit">
+                            <Input type="number" label={{content: "Amount", color: "orange"}} labelPosition="left" id="newQuantity" placeholder="Number" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
+                            <Input list="types" label={{content: "Type", color: "orange"}} labelPosition="left" id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange} />
+                                <datalist id="types">
+                                {
+                                    this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name} />)
+                                }
+                                </datalist>
+                        </div>
+                        <div className="button-center">
+                            <Button size="mini" basic animated color="orange" onClick={this.updateIngredientQuantity}>
+                                <Button.Content visible>Save</Button.Content>
+                                <Button.Content hidden><Icon name="checkmark" /></Button.Content>
+                            </Button>
+                        </div>
+                    </Message>
 
                 }
-                <button onClick={this.removeIngredient}>Remove from Queue</button>
             </div>
         )
     }
