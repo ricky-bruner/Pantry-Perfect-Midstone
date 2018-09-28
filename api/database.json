@@ -38,8 +38,8 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 120,
-      "quantityTypeId": 14,
+      "quantity": 192,
+      "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 13,
       "id": 2
@@ -56,7 +56,7 @@
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 39,
+      "quantity": 12,
       "quantityTypeId": 2,
       "visible": true,
       "timesTrashed": 17,
@@ -65,7 +65,7 @@
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 30,
+      "quantity": 15,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 17,
@@ -83,7 +83,7 @@
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 72,
+      "quantity": 24,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 17,
@@ -155,7 +155,7 @@
     {
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 8,
+      "quantity": 86,
       "quantityTypeId": 14,
       "visible": true,
       "timesTrashed": 25,
@@ -164,7 +164,7 @@
     {
       "userId": 1,
       "name": "Salsa",
-      "quantity": 12,
+      "quantity": 69,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 26,
@@ -208,7 +208,7 @@
     {
       "userId": 1,
       "name": "Banana Peppers",
-      "quantity": 0,
+      "quantity": 60,
       "quantityTypeId": 4,
       "visible": true,
       "id": 23
@@ -216,10 +216,26 @@
     {
       "userId": 1,
       "name": "Pepparoni",
-      "quantity": 0,
+      "quantity": 48,
       "quantityTypeId": 3,
       "visible": true,
       "id": 24
+    },
+    {
+      "userId": 1,
+      "name": "White Rice",
+      "quantity": 192,
+      "quantityTypeId": 14,
+      "visible": true,
+      "id": 25
+    },
+    {
+      "userId": 1,
+      "name": "Pizza Sauce",
+      "quantity": 24,
+      "quantityTypeId": 3,
+      "visible": true,
+      "id": 26
     }
   ],
   "recipes": [
@@ -229,7 +245,8 @@
       "description": "Its low sodium, believe it or not!",
       "image": "",
       "instructions": "salsa is used in the marinade",
-      "timesCooked": 16,
+      "timesCooked": 17,
+      "favorite": true,
       "retired": false,
       "id": 1
     },
@@ -240,6 +257,7 @@
       "image": "",
       "instructions": "Let Kayla cook the glaze",
       "timesCooked": 9,
+      "favorite": true,
       "retired": false,
       "id": 5
     },
@@ -250,7 +268,8 @@
       "image": "",
       "instructions": "be liberal with the Dukkah Seasoning",
       "timesCooked": 4,
-      "retired": true,
+      "favorite": false,
+      "retired": false,
       "id": 6
     },
     {
@@ -260,7 +279,20 @@
       "image": "",
       "instructions": "Egg wash the dough for best results!",
       "timesCooked": 1,
+      "favorite": true,
+      "retired": false,
       "id": 7
+    },
+    {
+      "userId": 1,
+      "name": "Alex's Pizza",
+      "description": "a pizza for alex that does not have pasta",
+      "image": "",
+      "instructions": "make it good and with no pasta",
+      "timesCooked": 2,
+      "favorite": true,
+      "retired": false,
+      "id": 8
     }
   ],
   "recipePantryItems": [
@@ -286,46 +318,11 @@
       "id": 3
     },
     {
-      "recipeId": 2,
-      "pantryItemId": 4,
-      "quantity": 3,
-      "quantityTypeId": 3,
-      "id": 4
-    },
-    {
       "recipeId": 1,
       "pantryItemId": 7,
       "quantity": 1,
       "quantityTypeId": 4,
       "id": 6
-    },
-    {
-      "recipeId": 3,
-      "pantryItemId": 8,
-      "quantity": 3,
-      "quantityTypeId": 4,
-      "id": 7
-    },
-    {
-      "recipeId": 3,
-      "pantryItemId": 9,
-      "quantity": 3,
-      "quantityTypeId": 4,
-      "id": 8
-    },
-    {
-      "recipeId": 3,
-      "pantryItemId": 11,
-      "quantity": 4,
-      "quantityTypeId": 2,
-      "id": 9
-    },
-    {
-      "recipeId": 3,
-      "pantryItemId": 10,
-      "quantity": 2,
-      "quantityTypeId": 4,
-      "id": 10
     },
     {
       "recipeId": 1,
@@ -354,20 +351,6 @@
       "quantity": 5,
       "quantityTypeId": 2,
       "id": 15
-    },
-    {
-      "recipeId": 4,
-      "pantryItemId": 2,
-      "quantity": 12,
-      "quantityTypeId": 14,
-      "id": 16
-    },
-    {
-      "recipeId": 4,
-      "pantryItemId": 4,
-      "quantity": 12,
-      "quantityTypeId": 2,
-      "id": 17
     },
     {
       "recipeId": 5,
@@ -424,34 +407,37 @@
       "quantity": 1,
       "quantityTypeId": 4,
       "id": 25
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 9,
+      "quantity": 1,
+      "quantityTypeId": 4,
+      "id": 26
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 24,
+      "quantity": 4,
+      "quantityTypeId": 3,
+      "id": 27
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 22,
+      "quantity": 1,
+      "quantityTypeId": 14,
+      "id": 28
+    },
+    {
+      "recipeId": 8,
+      "pantryItemId": 23,
+      "quantity": 3,
+      "quantityTypeId": 3,
+      "id": 29
     }
   ],
-  "groceryItems": [
-    {
-      "userId": 1,
-      "pantryItemId": 12,
-      "recipeId": 1,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 14,
-      "recipeId": 1,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 15,
-      "recipeId": 1,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "pantryItemId": 16,
-      "recipeId": 1,
-      "id": 4
-    }
-  ],
+  "groceryItems": [],
   "quantityTypes": [
     {
       "id": 1,

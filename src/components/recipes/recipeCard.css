@@ -22,4 +22,9 @@
     text-align: left;
     font-size: 1.5em;
     width: 70%;
+    margin-top: 0;
+}
+
+.favorite-icon {
+    margin-top: .2em;
 }
