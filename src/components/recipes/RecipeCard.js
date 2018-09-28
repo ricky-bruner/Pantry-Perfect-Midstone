@@ -2,10 +2,21 @@ import React, { Component } from "react";
 import "./recipeCard.css";
 import { Button, Divider, Message, Icon } from "semantic-ui-react";
 import BuildGroceryList from "../grocerylist/BuildGroceryList";
+import DataManager from "../../modules/DataManager";
 
 export default class RecipeCard extends Component {
     state = {
         showDetails: false,
+    }
+
+    handleFavorite = () => {
+        if(this.props.recipe.favorite){
+            DataManager.edit("recipes", this.props.recipe.id, {favorite: false})
+            .then(() => this.props.updateRecipeState())
+        } else {
+            DataManager.edit("recipes", this.props.recipe.id, {favorite: true})
+            .then(() => this.props.updateRecipeState())
+        }
     }
 
     showDetails = () => {
@@ -20,6 +31,18 @@ export default class RecipeCard extends Component {
         return (
             <div className="recipe-card">
                 <div className="recipe-card-title">
+                    {
+                        this.props.recipe.favorite &&
+                        <div className="favorite-icon">
+                            <Icon color="red" size="large" name="like" onClick={this.handleFavorite} />
+                        </div>
+                    }
+                    {
+                        !this.props.recipe.favorite &&
+                        <div className="favorite-icon">
+                            <Icon color="grey" size="large" name="like" onClick={this.handleFavorite} />
+                        </div>
+                    }
                     <h3 className="recipe-title" onClick={this.showDetails}>{this.props.recipe.name}</h3>
                     {
                         this.state.showDetails &&
@@ -30,6 +53,7 @@ export default class RecipeCard extends Component {
                             </Button>
                         </div>
                     }
+                    
                     
                     <BuildGroceryList user={this.props.user} 
                             recipe={this.props.recipe} 
