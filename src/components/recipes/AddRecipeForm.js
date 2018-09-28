@@ -98,7 +98,9 @@ export default class AddRecipeForm extends Component {
                 description: this.state.recipeDescription,
                 image: "",
                 instructions: this.state.recipeInstructions,
-                timesCooked: 0
+                timesCooked: 0,
+                favorite: false,
+                retired: false
             }
             if(this.props.recipes.find(recipe => recipe.name.toLowerCase() ===  newRecipe.name.toLowerCase())){
                 this.setState({emptyForm: false, duplicateRecipe: true})
