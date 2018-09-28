@@ -3,13 +3,18 @@ import RecipeCard from "./RecipeCard";
 import AddRecipeForm from "./AddRecipeForm";
 import RecipeEditCard from "./RecipeEditCard";
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Input, Divider } from "semantic-ui-react";
 import "./recipeList.css";
 
 export default class RecipeList extends Component {
     state = {
         addForm: false,
-        edit: false
+        edit: false,
+        search: ""
+    }
+
+    updateSearch(e) {
+        this.setState({search: e.target.value.substr(0, 20)})
     }
 
     renderAddForm = () => {
@@ -31,6 +36,12 @@ export default class RecipeList extends Component {
     }
     
     render(){
+        let recipes = [];
+        if(this.state.search.length > 1){
+            recipes = this.props.recipes.filter(recipe => {
+                return recipe.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            })
+        }
         return (
             <div className="recipe-list-container">
                 <div className="recipe-list-header">
@@ -58,24 +69,68 @@ export default class RecipeList extends Component {
                         <Button size="mini" basic color="orange" onClick={this.hideEditCards}>Finish</Button>
                     }
                 </div>
+                <div className="add-recipe-container">
+                    {
+                        this.state.addForm &&
+                        <AddRecipeForm user={this.props.user} 
+                            updateRecipeState={this.props.updateRecipeState}    
+                            updateRecipeItemState={this.props.updateRecipeItemState}
+                            hideAddForm={this.hideAddForm}
+                            editPantryItem={this.props.editPantryItem} 
+                            addPantryItem={this.props.addPantryItem}    
+                            recipes={this.props.recipes}
+                            pantryItems={this.props.pantryItems} 
+                            recipeItems={this.props.recipeItems} 
+                            quantityTypes={this.props.quantityTypes}/>
+                    }
+                </div>
                 <h2 className="centered">Recipes</h2>
                 <div>
+                    <Input fluid icon="search" iconPosition="left" onChange={this.updateSearch.bind(this)} value={this.state.search} type="text" placeholder="Search for a specific Recipe"></Input>
+                </div>
+                <div>
+                    {
+                        !this.state.edit &&
+                        recipes.filter(r => !r.retired).filter(r => r.favorite).map(recipe => <RecipeCard key={recipe.id} 
+                            user={this.props.user}
+                            recipe={recipe} 
+                            recipeItems={this.props.recipeItems}
+                            pantryItems={this.props.pantryItems} 
+                            quantityTypes={this.props.quantityTypes}
+                            updateRecipeState={this.props.updateRecipeState}
+                            updateGroceryItemState={this.props.updateGroceryItemState}
+                            updatePantryItemState={this.props.updatePantryItemState} />)
+                    }
+                    {
+                        !this.state.edit &&
+                        recipes.filter(r => !r.retired).filter(r => !r.favorite).map(recipe => <RecipeCard key={recipe.id} 
+                            user={this.props.user}
+                            recipe={recipe} 
+                            recipeItems={this.props.recipeItems}
+                            pantryItems={this.props.pantryItems} 
+                            quantityTypes={this.props.quantityTypes}
+                            updateRecipeState={this.props.updateRecipeState}
+                            updateGroceryItemState={this.props.updateGroceryItemState}
+                            updatePantryItemState={this.props.updatePantryItemState} />)
+                    }
+                </div>
+                <Divider horizontal>or</Divider>
+                <div>
                 {
-                    this.state.addForm &&
-                    <AddRecipeForm user={this.props.user} 
-                        updateRecipeState={this.props.updateRecipeState}    
-                        updateRecipeItemState={this.props.updateRecipeItemState}
-                        hideAddForm={this.hideAddForm}
-                        editPantryItem={this.props.editPantryItem} 
-                        addPantryItem={this.props.addPantryItem}    
-                        recipes={this.props.recipes}
+                    !this.state.edit &&
+                    this.props.recipes.filter(r => !r.retired).filter(r => r.favorite).map(recipe => <RecipeCard key={recipe.id} 
+                        user={this.props.user}
+                        recipe={recipe} 
+                        recipeItems={this.props.recipeItems}
                         pantryItems={this.props.pantryItems} 
-                        recipeItems={this.props.recipeItems} 
-                        quantityTypes={this.props.quantityTypes}/>
+                        quantityTypes={this.props.quantityTypes}
+                        updateRecipeState={this.props.updateRecipeState}
+                        updateGroceryItemState={this.props.updateGroceryItemState}
+                        updatePantryItemState={this.props.updatePantryItemState} />)
                 }
                 {
                     !this.state.edit &&
-                    this.props.recipes.filter(r => !r.retired).map(recipe => <RecipeCard key={recipe.id} 
+                    this.props.recipes.filter(r => !r.retired).filter(r => !r.favorite).map(recipe => <RecipeCard key={recipe.id} 
                         user={this.props.user}
                         recipe={recipe} 
                         recipeItems={this.props.recipeItems}
