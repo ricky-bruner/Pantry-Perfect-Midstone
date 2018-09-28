@@ -44,20 +44,36 @@ export default class QueuedIngredientCard extends Component {
                 {
                     !this.state.updateQuantity &&
                     <Message size="mini" floating className="ingredient-card">
-                        <p>{this.props.ingredient.name} {this.props.ingredient.quantity} {this.props.ingredient.quantityType}</p>
+                        <p className="que-title">{this.props.ingredient.name} {this.props.ingredient.quantity} {this.props.ingredient.quantityType}</p>
                         <div className="button-right">
-                            <Button size="mini" basic color="orange" onClick={this.updateQuantity}>Update</Button>
-                            <Button color="red" basic size="mini" onClick={this.removeIngredient}>Remove</Button>
+                            <div>
+                                <Button size="mini" basic animated color="orange" onClick={this.updateQuantity}>
+                                    <Button.Content visible>Update</Button.Content>
+                                    <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                                </Button>
+                            </div>
+                            <div>
+                                <Button color="red" basic animated size="mini" onClick={this.removeIngredient}>
+                                    <Button.Content visible>Remove</Button.Content>
+                                    <Button.Content hidden><Icon name="remove circle" /></Button.Content>
+                                </Button>
+                            </div>
                         </div>
                     </Message>
                 }
                 {
                     this.state.updateQuantity &&
                     <Message size="mini" floating>
-                        <p>{this.props.ingredient.name}</p>
+                        <div className="button-right">
+                            <Button size="mini" animated basic color="red" onClick={() => this.setState({updateQuantity: false})}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="ban" /></Button.Content>
+                            </Button>
+                        </div>
+                        <p className="centered que-title">{this.props.ingredient.name}</p>
                         <div className="input-margin queued-edit">
-                            <Input type="number" label={{content: "Amount"}} labelPosition="left" id="newQuantity" placeholder="Number" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
-                            <Input list="types" label={{content: "Type"}} labelPosition="left" id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange} />
+                            <Input type="number" label={{content: "Amount", color: "orange"}} labelPosition="left" id="newQuantity" placeholder="Number" defaultValue={this.state.newQuantity} onChange={this.handleFieldChange} />
+                            <Input list="types" label={{content: "Type", color: "orange"}} labelPosition="left" id="newQuantityType" defaultValue={this.state.newQuantityType} onChange={this.handleFieldChange} />
                                 <datalist id="types">
                                 {
                                     this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name} />)
@@ -65,7 +81,10 @@ export default class QueuedIngredientCard extends Component {
                                 </datalist>
                         </div>
                         <div className="button-center">
-                            <Button size="mini" basic color="orange" onClick={this.updateIngredientQuantity}>Save</Button>
+                            <Button size="mini" basic animated color="orange" onClick={this.updateIngredientQuantity}>
+                                <Button.Content visible>Save</Button.Content>
+                                <Button.Content hidden><Icon name="checkmark" /></Button.Content>
+                            </Button>
                         </div>
                     </Message>
 
