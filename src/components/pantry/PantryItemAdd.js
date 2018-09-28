@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import QtyConverter from "../../modules/QtyConverter";
-import { Input, Button, Message } from "semantic-ui-react";
+import { Input, Button, Message, Icon } from "semantic-ui-react";
 
 export default class PantryItemAdd extends Component {
     state = {
@@ -143,16 +143,10 @@ export default class PantryItemAdd extends Component {
     render(){
         return (
             <div className="pantry-add-form">
-                <Input size="mini" label={{ color: 'teal', labelPosition: 'left', content: 'Name:'}} type="text" id="itemName" className="input-margin" placeholder="Name of Item" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
-                <Input size="mini" label={{ color: 'teal', labelPosition: 'left', content: 'Quantity:'}} type="text" id="itemAmount" className="input-margin" placeholder="Amount on hand" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
-                {/* <select id="itemQuantityType" defaultValue="Type" onChange={this.handleFieldChange}>
-                    <option>Type</option>
-                    {
-                        this.props.quantityTypes.map(type => <option key={type.id}>{type.name}</option>)
-                    }   
-                </select> */}
+                <Input size="mini" label={{ color: 'teal', content: 'Name:'}} labelPosition='left' type="text" id="itemName" className="input-margin" placeholder="Name of Item" defaultValue={this.state.itemName} onChange={this.handleFieldChange} />
+                <Input size="mini" label={{ color: 'teal', content: 'Quantity:'}} labelPosition='left' type="text" id="itemAmount" className="input-margin" placeholder="Amount on hand" defaultValue={this.state.itemAmount} onChange={this.handleFieldChange} />
                 <div>
-                    <Input list='types' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'teal', labelPosition: 'left', content: 'Quantity Type:'}} placeholder="Type" onChange={this.handleFieldChange} />
+                    <Input list='types' fluid id="itemQuantityType" className="input-margin" size="mini" label={{ color: 'teal', content: 'Quantity Type:'}} labelPosition='left' placeholder="Type" onChange={this.handleFieldChange} />
                     <datalist id='types'>
                         {
                             this.props.quantityTypes.map(type => <option key={type.id} value={type.name} />)
@@ -163,8 +157,11 @@ export default class PantryItemAdd extends Component {
                     this.state.emptyInput &&
                     <Message icon="arrow up" size="tiny" color="orange" header="Oops! It seems that something isn't filled out just yet." content="No worries, We'll be ready when you are :D" />
                 }
-                <div>
-                    <Button compact basic size="mini" color="blue" onClick={this.handleItemAdd}>Add Item!</Button>
+                <div className="button-center">
+                    <Button compact basic animated size="mini" color="blue" onClick={this.handleItemAdd}>
+                        <Button.Content visible>Add Item</Button.Content>
+                        <Button.Content hidden><Icon name="checkmark" /></Button.Content>
+                    </Button>
                 </div>
                 {
                     this.state.similarItem &&
