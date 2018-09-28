@@ -145,8 +145,8 @@ export default class AddIngredient extends Component {
                             })
                         }
                     </datalist>
-                <Input size="mini" label={{content: "Amount"}} labelPosition="left" type="number" className="input-margin" id="itemQuantity" placeholder="Number" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
-                <Input list="types" size="mini" label={{content: "Type"}} labelPosition="left" className="input-margin" id="quantityType" defaultValue={this.state.quantityType} onChange={this.handleFieldChange} />
+                <Input size="mini" label={{content: "Amount", color: "orange"}} labelPosition="left" type="number" className="input-margin" id="itemQuantity" placeholder="Number" defaultValue={this.state.itemQuantity} onChange={this.handleFieldChange} />
+                <Input list="types" size="mini" label={{content: "Type", color: "orange"}} labelPosition="left" className="input-margin" id="quantityType" defaultValue={this.state.quantityType} onChange={this.handleFieldChange} />
                     <datalist id="types">
                     {
                         this.props.quantityTypes.map(type => <option key={`type-${type.id}`} value={type.name} />)
@@ -183,12 +183,14 @@ export default class AddIngredient extends Component {
                     {
                         this.state.pantryAdd &&
                         <div>
+                            <div className="button-right">
+                                <Button size="mini" basic color="blue" onClick={this.hidePantryAddForm}>Finish</Button>
+                            </div>    
                             <PantryItemAdd user={this.props.user}  
                                         editPantryItem={this.props.editPantryItem} 
                                         addPantryItem={this.props.addPantryItem} 
                                         pantryItems={this.props.pantryItems} 
                                         quantityTypes={this.props.quantityTypes} />
-                            <button onClick={this.hidePantryAddForm}>Finished adding items?</button>
                         </div>
                     }
                     <Divider horizontal>Finish</Divider>
