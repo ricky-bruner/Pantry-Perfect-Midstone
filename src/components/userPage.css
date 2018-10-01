@@ -2,7 +2,9 @@
     display: flex;
     justify-content: space-around;
     padding-top: 8em;
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d17184680af7feac868978177c75c5ba&auto=format&fit=crop&w=1650&q=80") no-repeat fixed;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), 
+        url("https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d17184680af7feac868978177c75c5ba&auto=format&fit=crop&w=1650&q=80") no-repeat fixed;
     background-size: cover;
 }
 
@@ -39,7 +41,7 @@
 }
 
 .ui.secondary.pointing.menu .item {
-    border-color: rgba(76, 196, 156, 0.5) !important;
+    border-color: rgba(76, 196, 156, 0) !important;
     color: rgba(76, 196, 156, 0.5) !important;
 }
 

@@ -77,7 +77,7 @@ export default class UserPage extends Component {
 
     render(){
         const leftPanes = [
-            { menuItem: 'Recipes', render: () => <Tab.Pane><RecipeList user={this.state.user} 
+            { menuItem: 'Recipes', render: () => <RecipeList user={this.state.user} 
                     updateRecipeState={this.updateRecipeState}
                     updateRecipeItemState={this.updateRecipeItemState}
                     editPantryItem={this.editPantryItem}
@@ -87,7 +87,7 @@ export default class UserPage extends Component {
                     recipeItems={this.state.recipeItems} 
                     quantityTypes={this.state.quantityTypes}
                     updatePantryItemState={this.updatePantryItemState}
-                    updateGroceryItemState={this.updateGroceryItemState} /></Tab.Pane> },
+                    updateGroceryItemState={this.updateGroceryItemState} /> },
             { menuItem: 'Grocery List', render: () => <Tab.Pane><GroceryList user={this.state.user} 
                     editPantryItem={this.editPantryItem}
                     addPantryItem={this.addPantryItem}
@@ -100,11 +100,11 @@ export default class UserPage extends Component {
         ]
 
         const rightPanes = [
-            { menuItem: "Pantry", render: () => <Tab.Pane><PantryList user={this.state.user} 
+            { menuItem: "Pantry", render: () => <PantryList user={this.state.user} 
                     editPantryItem={this.editPantryItem}
                     addPantryItem={this.addPantryItem}
                     pantryItems={this.state.pantryItems} 
-                    quantityTypes={this.state.quantityTypes} /></Tab.Pane>},
+                    quantityTypes={this.state.quantityTypes} />},
             { menuItem: "Profile", render: () => <Tab.Pane><Tilt className="Tilt" options={{ max : 25 }} style={{ height: 300, width: 425}} >
                     <CookChart className="Tilt-inner" recipes={this.state.recipes} />
                     </Tilt></Tab.Pane>}

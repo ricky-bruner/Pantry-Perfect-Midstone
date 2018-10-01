@@ -59,7 +59,7 @@ export default class BuildGroceryList extends Component {
                     <Button.Content visible><Icon name="food" /></Button.Content>
                     <Button.Content hidden>Cook</Button.Content>
                 </Button>
-                <Modal dimmer={dimmer} open={open} onClose={this.close}>
+                <Modal dimmer={dimmer} size="tiny" open={open} onClose={this.close}>
                     <Modal.Header>Build Your Grocery List!</Modal.Header>
                     <Modal.Content>
                         <Modal.Description>
