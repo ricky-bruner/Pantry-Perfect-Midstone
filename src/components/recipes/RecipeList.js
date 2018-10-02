@@ -47,6 +47,7 @@ export default class RecipeList extends Component {
                 <div className="recipe-list-header">
                     {
                         !this.state.addForm &&
+                        !this.state.edit &&
                         <Button basic animated color="teal" size="mini" onClick={this.renderAddForm}>
                             <Button.Content visible>Add</Button.Content>
                             <Button.Content hidden><Icon name="add"/></Button.Content>
@@ -84,9 +85,9 @@ export default class RecipeList extends Component {
                             quantityTypes={this.props.quantityTypes}/>
                     }
                 </div>
-                <h2 className="centered">Recipes</h2>
+                <h2 className="centered logo-font">Recipes</h2>
                 <div>
-                    <Input fluid icon="search" iconPosition="left" onChange={this.updateSearch.bind(this)} value={this.state.search} type="text" placeholder="Search for a specific Recipe"></Input>
+                    <Input fluid icon="search" iconPosition="left" className="input-margin" onChange={this.updateSearch.bind(this)} value={this.state.search} type="text" placeholder="Search for a specific Recipe"></Input>
                 </div>
                 <div>
                     {
@@ -97,6 +98,7 @@ export default class RecipeList extends Component {
                             recipeItems={this.props.recipeItems}
                             pantryItems={this.props.pantryItems} 
                             quantityTypes={this.props.quantityTypes}
+                            groceryItems={this.props.groceryItems}
                             updateRecipeState={this.props.updateRecipeState}
                             updateGroceryItemState={this.props.updateGroceryItemState}
                             updatePantryItemState={this.props.updatePantryItemState} />)
@@ -109,36 +111,81 @@ export default class RecipeList extends Component {
                             recipeItems={this.props.recipeItems}
                             pantryItems={this.props.pantryItems} 
                             quantityTypes={this.props.quantityTypes}
+                            groceryItems={this.props.groceryItems}
                             updateRecipeState={this.props.updateRecipeState}
                             updateGroceryItemState={this.props.updateGroceryItemState}
                             updatePantryItemState={this.props.updatePantryItemState} />)
+                    }
+                    {
+                        this.state.edit &&
+                        recipes.filter(r => !r.retired).filter(r => r.favorite).map(recipe => <RecipeEditCard key={recipe.id} 
+                            recipe={recipe} 
+                            user={this.props.user}
+                            updateRecipeState={this.props.updateRecipeState}    
+                            updateRecipeItemState={this.props.updateRecipeItemState}
+                            allRecipes={this.props.recipes}
+                            recipeItems={this.props.recipeItems}
+                            pantryItems={this.props.pantryItems} 
+                            quantityTypes={this.props.quantityTypes}
+                            editPantryItem={this.props.editPantryItem} 
+                            addPantryItem={this.props.addPantryItem} />)
+                    }
+                    {
+                        this.state.edit &&
+                        recipes.filter(r => !r.retired).filter(r => !r.favorite).map(recipe => <RecipeEditCard key={recipe.id} 
+                            recipe={recipe} 
+                            user={this.props.user}
+                            updateRecipeState={this.props.updateRecipeState}    
+                            updateRecipeItemState={this.props.updateRecipeItemState}
+                            allRecipes={this.props.recipes}
+                            recipeItems={this.props.recipeItems}
+                            pantryItems={this.props.pantryItems} 
+                            quantityTypes={this.props.quantityTypes}
+                            editPantryItem={this.props.editPantryItem} 
+                            addPantryItem={this.props.addPantryItem} />)
                     }
                 </div>
                 <Divider horizontal>or</Divider>
                 <div>
                 {
                     !this.state.edit &&
-                    this.props.recipes.filter(r => !r.retired).filter(r => r.favorite).map(recipe => <RecipeCard key={recipe.id} 
-                        user={this.props.user}
-                        recipe={recipe} 
-                        recipeItems={this.props.recipeItems}
-                        pantryItems={this.props.pantryItems} 
-                        quantityTypes={this.props.quantityTypes}
-                        updateRecipeState={this.props.updateRecipeState}
-                        updateGroceryItemState={this.props.updateGroceryItemState}
-                        updatePantryItemState={this.props.updatePantryItemState} />)
+                    this.props.recipes.filter(r => !r.retired).filter(r => r.favorite).map(recipe => {
+                        let similar = recipes.find(r => r.id === recipe.id);
+                        if(!similar){
+                            return <RecipeCard key={recipe.id} 
+                                        user={this.props.user}
+                                        recipe={recipe} 
+                                        recipeItems={this.props.recipeItems}
+                                        pantryItems={this.props.pantryItems} 
+                                        quantityTypes={this.props.quantityTypes}
+                                        groceryItems={this.props.groceryItems}
+                                        updateRecipeState={this.props.updateRecipeState}
+                                        updateGroceryItemState={this.props.updateGroceryItemState}
+                                        updatePantryItemState={this.props.updatePantryItemState} />
+                        } else {
+                            return null
+                        }
+                    })
                 }
                 {
                     !this.state.edit &&
-                    this.props.recipes.filter(r => !r.retired).filter(r => !r.favorite).map(recipe => <RecipeCard key={recipe.id} 
-                        user={this.props.user}
-                        recipe={recipe} 
-                        recipeItems={this.props.recipeItems}
-                        pantryItems={this.props.pantryItems} 
-                        quantityTypes={this.props.quantityTypes}
-                        updateRecipeState={this.props.updateRecipeState}
-                        updateGroceryItemState={this.props.updateGroceryItemState}
-                        updatePantryItemState={this.props.updatePantryItemState} />)
+                    this.props.recipes.filter(r => !r.retired).filter(r => !r.favorite).map(recipe => {
+                        let similar = recipes.find(r => r.id === recipe.id);
+                        if(!similar){
+                            return <RecipeCard key={recipe.id} 
+                                        user={this.props.user}
+                                        recipe={recipe} 
+                                        recipeItems={this.props.recipeItems}
+                                        pantryItems={this.props.pantryItems} 
+                                        quantityTypes={this.props.quantityTypes}
+                                        groceryItems={this.props.groceryItems}
+                                        updateRecipeState={this.props.updateRecipeState}
+                                        updateGroceryItemState={this.props.updateGroceryItemState}
+                                        updatePantryItemState={this.props.updatePantryItemState} />
+                        } else {
+                            return null
+                        }
+                    })
                 }
                 {
                     this.state.edit &&

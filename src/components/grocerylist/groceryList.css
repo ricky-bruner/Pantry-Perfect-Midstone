@@ -5,10 +5,18 @@
     margin: .5em auto;
 }
 
+.grocery-list {
+    background: white;
+    padding: .5em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
 .grocery-item-name {
     display: flex;
     justify-content: space-between;
     width: 80%;
+    text-align: left;
 }
 .grocery-item-name span {
     display: block;
@@ -17,6 +25,23 @@
 .small-span {
     color: lightgray;
     font-size: .8em;
+    width: 35%;
+}
+.small-span-empty {
+    color: dimgrey;
+    font-size: .8em;
+    text-align: center;
+    margin: 2em auto;
+}
+
+.ingredient-name-span {
+    width: 50%;
+}
+
+.qty-span {
+    width: 15%;
+    font-size: .8em;
+    color: darkred;
 }
 
 .header-flex {
@@ -29,3 +54,27 @@
     width: 70%;
     text-align: center;
 }
+
+.grocery-dividers {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: darkgreen;
+}
+
+.recipe-divider {
+    width: 20%
+}
+
+.ingredient-divider {
+    width: 40%
+}
+
+.need-divider {
+    width: 15%
+}
+
+.bought-divider {
+    width: 20%
+}
+/* .grocery-dividers */

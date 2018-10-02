@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./pantryItemCard.css"
 import QtyConverter from "../../modules/QtyConverter"
-import { Card } from "semantic-ui-react";
+import { Message, Card } from "semantic-ui-react";
 
 export default class PantryItemCard extends Component {
 
@@ -17,20 +17,20 @@ export default class PantryItemCard extends Component {
         let title = this.props.pantryItem.name;
 
         return (
-            <div>
+            <div className="pantry-item-card">
                 {
                     quantity > 3 &&
-                    <Card fluid color='teal' className="pantry-item">
-                            <Card.Header className="pantry-item-header-left">{title}</Card.Header>
-                            <Card.Header className="pantry-item-header-right">{rounded}</Card.Header>
-                    </Card>
+                    <Message floating size="large" className="pantry-item pantry-teal-bg">
+                            <div className="pantry-item-header-left">{title}</div>
+                            <div className="pantry-item-header-right">{rounded}</div>
+                    </Message>
                 }
                 {
                     quantity < 3 &&
-                    <Card fluid color='teal' className="pantry-item">
-                            <Card.Header className="pantry-item-header-left">{title}</Card.Header>
-                            <Card.Header className="pantry-item-header-right">{regular}</Card.Header>
-                    </Card>
+                    <Message floating size="large" className="pantry-item pantry-teal-bg">
+                            <div className="pantry-item-header-left">{title}</div>
+                            <div className="pantry-item-header-right">{regular}</div>
+                    </Message>
                 }
             </div>
         )

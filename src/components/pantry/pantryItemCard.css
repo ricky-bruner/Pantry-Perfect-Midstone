@@ -1,10 +1,47 @@
 .pantry-list-container {
-    background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164));
+    background: white;
+    /* background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164)); */
     padding: .5em;
-    margin: 1em 0;
+    /* margin: 1em 0; */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
+
+
+/* .pantry-item-card .ui.message {
+    background: linear-gradient( #f8f8f9, rgba(165, 223, 204, 0.6));
+} */
+
+.pantry-teal-bg {
+    background: linear-gradient( #f8f8f9, rgba(165, 223, 204, 0.6)) !important;
+}
+
+/* .pantry-edit-card .ui.message {
+    background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775);
+} */
+
+.edit-orange-bg {
+    background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775) !important;
+}
+
+/* .pantry-convert-card .ui.message {
+    background: linear-gradient( #f8f8f9, #f8f8f9, #679cf775);
+} */
+
+.edit-blue-bg {
+    background: linear-gradient( #f8f8f9, #f8f8f9, #679cf775) !important;
+}
+
+.edit-red-bg {
+    background: linear-gradient( #f8f8f9, rgba(223, 165, 165, 0.6)) !important;
+}
+/* .pantry-card .ui.message {
+    background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775);
+}
+
+.qty-edit .ui.message {
+    background-color: #fff6f6 !important;
+} */
 
 .pantry-item {
     display: flex !important;
@@ -12,13 +49,13 @@
     justify-content: space-between !important;
     margin: 1em auto !important;
     width: 90% !important;
-    padding: .5em !important;
-    height: 40px !important;
+    padding: .9em !important;
+    height: 50px !important;
 }
 
-.pantry-item-header-left {
-    width: 70%;
-    text-align: left;
+.pantry-convert-header {
+    text-align: center;
+    margin: .5em auto !important;
 }
 .pantry-item-header-right {
     width: 30%;
@@ -49,10 +86,23 @@
     padding: .5em !important;
 }
 
+.convert-type {
+    width: 40%;
+    margin: 1em auto;
+}
+
 .edit-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: .5em;
+    margin-bottom: .7em !important; 
+}
+
+.pantry-item-card i.icon.outline {
+    font-size: 1.3em !important;
+    margin-top: .4em;
+}
+
+.pantry-item-card i.icon.outline:hover {
+    color: #db2828!important;
+    cursor: pointer;
 }
 
 .input-margin {
@@ -85,20 +135,9 @@
     border: 1px solid lightgrey;
 }
 
-.ui.blue.card {
-    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #2185d0, 0 1px 3px 0 #d4d4d5 !important;
+.header-margin {
+    margin-bottom: 1em !important;
 }
-
-.ui.red.card {
-    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #db2828, 0 1px 3px 0 #d4d4d5 !important;
-}
-
-.ui.orange.card {
-    box-shadow: 0 0 0 1px #d4d4d5, 0 3px 0 0 #f2711c, 0 1px 3px 0 #d4d4d5 !important;
-}
-
-
-
 
 
 
