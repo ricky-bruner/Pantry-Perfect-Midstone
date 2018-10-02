@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PantryItemAdd from "../pantry/PantryItemAdd";
 import DataManager from "../../modules/DataManager";
 import QueuedIngredientCard from "./QueuedIngredientCard";
-import { Message, Input, Button, Icon, Label, Divider } from "semantic-ui-react";
+import { Message, Input, Button, Icon, Divider } from "semantic-ui-react";
 
 export default class AddIngredient extends Component {
     state = {

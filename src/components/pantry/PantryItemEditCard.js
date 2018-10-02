@@ -17,7 +17,6 @@ export default class PantryItemEditCard extends Component {
         convertQuantity: false,
         rewriteQty: false,
         tossQty: false,
-        rewriteQty: false,
         editName: false,
         noRewrite: false,
         emptyToss: false

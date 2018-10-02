@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input, Icon, Label, Message } from "semantic-ui-react";
+import { Button, Input, Icon, Message } from "semantic-ui-react";
 
 export default class QueuedIngredientCard extends Component {
     state = {

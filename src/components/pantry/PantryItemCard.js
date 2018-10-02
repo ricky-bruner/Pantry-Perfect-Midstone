@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./pantryItemCard.css"
 import QtyConverter from "../../modules/QtyConverter"
-import { Message, Card } from "semantic-ui-react";
+import { Message } from "semantic-ui-react";
 
 export default class PantryItemCard extends Component {
 

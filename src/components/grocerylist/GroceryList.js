@@ -41,7 +41,7 @@ export default class GroceryList extends Component {
                     <div className="button-right">
                         {
                             this.state.edit &&
-                            <Button basic color="orange" size="mini" animated content="Finish" onClick={() => {this.setState({edit: false})}}>
+                            <Button basic color="orange" size="mini" animated onClick={() => {this.setState({edit: false})}}>
                                 <Button.Content visible>Finish</Button.Content>
                                 <Button.Content hidden><Icon name="checkmark" /></Button.Content>
                             </Button>
@@ -98,8 +98,8 @@ export default class GroceryList extends Component {
                             let pItem = this.props.pantryItems.find(pItem => pItem.id === gItem.pantryItemId)
                             let recipe = this.props.recipes.find(recipe => recipe.id === gItem.recipeId)
                             return (
-                                <div>
-                                    <div key={gItem.id} className="grocery-item-card">
+                                <div key={gItem.id}>
+                                    <div className="grocery-item-card">
                                         <p className="grocery-item-name"><span className="small-span">for: {recipe.name}</span><span>{pItem.name}</span></p>
                                         <div className="button-right">
                                             <div>

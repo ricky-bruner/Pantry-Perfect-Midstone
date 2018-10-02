@@ -38,7 +38,7 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 99,
+      "quantity": 291,
       "quantityTypeId": 14,
       "visible": true,
       "timesTrashed": 12,
@@ -56,7 +56,7 @@
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 93,
+      "quantity": 189,
       "quantityTypeId": 2,
       "visible": true,
       "timesTrashed": 3,
