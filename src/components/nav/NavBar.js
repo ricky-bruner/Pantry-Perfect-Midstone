@@ -15,10 +15,15 @@ export default class NavBar extends Component {
             <div className="main-nav">
                 <div className="nav-left">
                     <img src={PantryLogo} alt="Pantry Logo" className="logo" />
-                    <h3>Welcome Back, {this.props.user.username}</h3>
                 </div>
-                <div className="nav-right">
-                    <Button basic color='violet' content='Log Out' size="mini" onClick={this.handleLogout} />
+                <div className="nav-header">
+                    <h2>Welcome, <span className="logo-font">{this.props.user.username}</span>!</h2>
+                    <h5>Shall we find something to cook?</h5>
+                </div>
+                <div className="logout-container">
+                    <div>
+                        <Button basic color='teal' content='Log Out' size="mini" onClick={this.handleLogout} />
+                    </div>
                 </div>
             </div>
         )

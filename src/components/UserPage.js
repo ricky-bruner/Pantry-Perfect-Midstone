@@ -7,8 +7,7 @@ import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
 import GroceryList from "./grocerylist/GroceryList";
 import { Tab } from "semantic-ui-react";
-import CookChart from "./CookChart";
-import Tilt from 'react-tilt'
+import StatsList from "./stats/StatsList";
 
 
 
@@ -86,9 +85,10 @@ export default class UserPage extends Component {
                     pantryItems={this.state.pantryItems} 
                     recipeItems={this.state.recipeItems} 
                     quantityTypes={this.state.quantityTypes}
+                    groceryItems={this.state.groceryItems}
                     updatePantryItemState={this.updatePantryItemState}
                     updateGroceryItemState={this.updateGroceryItemState} /> },
-            { menuItem: 'Grocery List', render: () => <Tab.Pane><GroceryList user={this.state.user} 
+            { menuItem: 'Grocery List', render: () => <GroceryList user={this.state.user} 
                     editPantryItem={this.editPantryItem}
                     addPantryItem={this.addPantryItem}
                     recipes={this.state.recipes}
@@ -96,7 +96,7 @@ export default class UserPage extends Component {
                     quantityTypes={this.state.quantityTypes}
                     groceryItems={this.state.groceryItems}
                     updatePantryItemState={this.updatePantryItemState}
-                    updateGroceryItemState={this.updateGroceryItemState} /></Tab.Pane> }
+                    updateGroceryItemState={this.updateGroceryItemState} /> }
         ]
 
         const rightPanes = [
@@ -105,9 +105,9 @@ export default class UserPage extends Component {
                     addPantryItem={this.addPantryItem}
                     pantryItems={this.state.pantryItems} 
                     quantityTypes={this.state.quantityTypes} />},
-            { menuItem: "Profile", render: () => <Tab.Pane><Tilt className="Tilt" options={{ max : 25 }} style={{ height: 300, width: 425}} >
-                    <CookChart className="Tilt-inner" recipes={this.state.recipes} />
-                    </Tilt></Tab.Pane>}
+            { menuItem: "Profile", render: () => <StatsList user={this.state.user} 
+                    recipes={this.state.recipes} 
+                    pantryItems={this.state.pantryItems} />}
         ]
 
         return (

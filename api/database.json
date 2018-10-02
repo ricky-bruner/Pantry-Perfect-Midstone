@@ -32,16 +32,16 @@
       "quantity": 36,
       "quantityTypeId": 2,
       "visible": false,
-      "timesTrashed": 13,
+      "timesTrashed": 5,
       "id": 1
     },
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 42,
-      "quantityTypeId": 3,
+      "quantity": 99,
+      "quantityTypeId": 14,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 12,
       "id": 2
     },
     {
@@ -50,25 +50,25 @@
       "quantity": 12,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 13,
+      "timesTrashed": 0,
       "id": 3
     },
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 24,
+      "quantity": 93,
       "quantityTypeId": 2,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 3,
       "id": 4
     },
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 12,
+      "quantity": 9,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 0,
       "id": 5
     },
     {
@@ -77,13 +77,13 @@
       "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 4,
       "id": 6
     },
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 0,
+      "quantity": 96,
       "quantityTypeId": 4,
       "visible": true,
       "timesTrashed": 17,
@@ -95,7 +95,7 @@
       "quantity": 0,
       "quantityTypeId": 4,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 4,
       "id": 8
     },
     {
@@ -104,7 +104,7 @@
       "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 0,
       "id": 9
     },
     {
@@ -113,7 +113,7 @@
       "quantity": 0,
       "quantityTypeId": 14,
       "visible": true,
-      "timesTrashed": 17,
+      "timesTrashed": 0,
       "id": 10
     },
     {
@@ -122,16 +122,16 @@
       "quantity": 0,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 21,
+      "timesTrashed": 0,
       "id": 11
     },
     {
       "userId": 1,
       "name": "Green Bell Pepper",
-      "quantity": 0,
+      "quantity": 48,
       "quantityTypeId": 4,
       "visible": true,
-      "timesTrashed": 22,
+      "timesTrashed": 7,
       "id": 12
     },
     {
@@ -140,34 +140,34 @@
       "quantity": 6,
       "quantityTypeId": 4,
       "visible": true,
-      "timesTrashed": 23,
+      "timesTrashed": 6,
       "id": 13
     },
     {
       "userId": 1,
       "name": "Black Beans",
-      "quantity": 0,
+      "quantity": 24,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 24,
+      "timesTrashed": 0,
       "id": 14
     },
     {
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 0,
+      "quantity": 78,
       "quantityTypeId": 14,
       "visible": true,
-      "timesTrashed": 25,
+      "timesTrashed": 2,
       "id": 15
     },
     {
       "userId": 1,
       "name": "Salsa",
-      "quantity": 0,
+      "quantity": 57,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 26,
+      "timesTrashed": 0,
       "id": 16
     },
     {
@@ -176,7 +176,7 @@
       "quantity": 30,
       "quantityTypeId": 3,
       "visible": false,
-      "timesTrashed": 27,
+      "timesTrashed": 8,
       "id": 17
     },
     {
@@ -194,7 +194,7 @@
       "quantity": 6,
       "quantityTypeId": 3,
       "visible": true,
-      "timesTrashed": 29,
+      "timesTrashed": 0,
       "id": 21
     },
     {
@@ -202,14 +202,16 @@
       "name": "Shredded Mozarella Cheese",
       "quantity": 0,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 22
     },
     {
       "userId": 1,
       "name": "Banana Peppers",
-      "quantity": 6,
+      "quantity": 0,
       "quantityTypeId": 4,
+      "timesTrashed": 0,
       "visible": true,
       "id": 23
     },
@@ -218,6 +220,7 @@
       "name": "Pepparoni",
       "quantity": 0,
       "quantityTypeId": 3,
+      "timesTrashed": 0,
       "visible": true,
       "id": 24
     },
@@ -226,6 +229,7 @@
       "name": "White Rice",
       "quantity": 96,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 25
     },
@@ -234,6 +238,7 @@
       "name": "Pizza Sauce",
       "quantity": 24,
       "quantityTypeId": 3,
+      "timesTrashed": 2,
       "visible": true,
       "id": 26
     },
@@ -242,6 +247,7 @@
       "name": "Celery",
       "quantity": 96,
       "quantityTypeId": 14,
+      "timesTrashed": 3,
       "visible": true,
       "id": 27
     },
@@ -250,6 +256,7 @@
       "name": "Chickpeas",
       "quantity": 72,
       "quantityTypeId": 3,
+      "timesTrashed": 0,
       "visible": true,
       "id": 28
     },
@@ -258,6 +265,7 @@
       "name": "Shukshukkah Seasoning",
       "quantity": 48,
       "quantityTypeId": 3,
+      "timesTrashed": 0,
       "visible": true,
       "id": 29
     },
@@ -266,6 +274,7 @@
       "name": "Feta Cheese",
       "quantity": 96,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 30
     },
@@ -274,6 +283,7 @@
       "name": "Peas",
       "quantity": 0,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 32
     },
@@ -282,6 +292,7 @@
       "name": "Corn",
       "quantity": 0,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 33
     },
@@ -290,6 +301,7 @@
       "name": "Yellow Onion",
       "quantity": 48,
       "quantityTypeId": 4,
+      "timesTrashed": 3,
       "visible": true,
       "id": 34
     },
@@ -298,8 +310,36 @@
       "name": "Carrot",
       "quantity": 0,
       "quantityTypeId": 14,
+      "timesTrashed": 0,
       "visible": true,
       "id": 35
+    },
+    {
+      "userId": 1,
+      "name": "Honey",
+      "quantity": 72,
+      "quantityTypeId": 3,
+      "timesTrashed": 0,
+      "visible": true,
+      "id": 36
+    },
+    {
+      "userId": 1,
+      "name": "Broccoli",
+      "quantity": 96,
+      "quantityTypeId": 4,
+      "timesTrashed": 12,
+      "visible": true,
+      "id": 37
+    },
+    {
+      "userId": 1,
+      "name": "Sour Cream",
+      "quantity": 24,
+      "quantityTypeId": 6,
+      "timesTrashed": 0,
+      "visible": true,
+      "id": 38
     }
   ],
   "recipes": [
@@ -309,7 +349,7 @@
       "description": "Its low sodium, believe it or not!",
       "image": "",
       "instructions": "salsa is used in the marinade",
-      "timesCooked": 22,
+      "timesCooked": 23,
       "favorite": true,
       "retired": false,
       "id": 1
@@ -338,11 +378,11 @@
     },
     {
       "userId": 1,
-      "name": "Stromboli",
+      "name": "Kayla's Stromboli",
       "description": "Home mande Stromboli with Mozarella, Pepparonis, and Banana Peppers!",
       "image": "",
       "instructions": "Egg wash the dough for best results!",
-      "timesCooked": 1,
+      "timesCooked": 8,
       "favorite": true,
       "retired": false,
       "id": 7
@@ -559,6 +599,34 @@
       "quantity": 2,
       "quantityTypeId": 2,
       "id": 36
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 35,
+      "quantity": 2,
+      "quantityTypeId": 4,
+      "id": 37
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 4,
+      "quantity": 5,
+      "quantityTypeId": 2,
+      "id": 38
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 37,
+      "quantity": 2,
+      "quantityTypeId": 4,
+      "id": 39
+    },
+    {
+      "recipeId": 6,
+      "pantryItemId": 38,
+      "quantity": 3,
+      "quantityTypeId": 3,
+      "id": 40
     }
   ],
   "groceryItems": [],

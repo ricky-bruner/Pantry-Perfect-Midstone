@@ -47,6 +47,7 @@ export default class RecipeList extends Component {
                 <div className="recipe-list-header">
                     {
                         !this.state.addForm &&
+                        !this.state.edit &&
                         <Button basic animated color="teal" size="mini" onClick={this.renderAddForm}>
                             <Button.Content visible>Add</Button.Content>
                             <Button.Content hidden><Icon name="add"/></Button.Content>
@@ -84,7 +85,7 @@ export default class RecipeList extends Component {
                             quantityTypes={this.props.quantityTypes}/>
                     }
                 </div>
-                <h2 className="centered">Recipes</h2>
+                <h2 className="centered logo-font">Recipes</h2>
                 <div>
                     <Input fluid icon="search" iconPosition="left" className="input-margin" onChange={this.updateSearch.bind(this)} value={this.state.search} type="text" placeholder="Search for a specific Recipe"></Input>
                 </div>
@@ -97,6 +98,7 @@ export default class RecipeList extends Component {
                             recipeItems={this.props.recipeItems}
                             pantryItems={this.props.pantryItems} 
                             quantityTypes={this.props.quantityTypes}
+                            groceryItems={this.props.groceryItems}
                             updateRecipeState={this.props.updateRecipeState}
                             updateGroceryItemState={this.props.updateGroceryItemState}
                             updatePantryItemState={this.props.updatePantryItemState} />)
@@ -109,6 +111,7 @@ export default class RecipeList extends Component {
                             recipeItems={this.props.recipeItems}
                             pantryItems={this.props.pantryItems} 
                             quantityTypes={this.props.quantityTypes}
+                            groceryItems={this.props.groceryItems}
                             updateRecipeState={this.props.updateRecipeState}
                             updateGroceryItemState={this.props.updateGroceryItemState}
                             updatePantryItemState={this.props.updatePantryItemState} />)
@@ -155,6 +158,7 @@ export default class RecipeList extends Component {
                                         recipeItems={this.props.recipeItems}
                                         pantryItems={this.props.pantryItems} 
                                         quantityTypes={this.props.quantityTypes}
+                                        groceryItems={this.props.groceryItems}
                                         updateRecipeState={this.props.updateRecipeState}
                                         updateGroceryItemState={this.props.updateGroceryItemState}
                                         updatePantryItemState={this.props.updatePantryItemState} />
@@ -174,6 +178,7 @@ export default class RecipeList extends Component {
                                         recipeItems={this.props.recipeItems}
                                         pantryItems={this.props.pantryItems} 
                                         quantityTypes={this.props.quantityTypes}
+                                        groceryItems={this.props.groceryItems}
                                         updateRecipeState={this.props.updateRecipeState}
                                         updateGroceryItemState={this.props.updateGroceryItemState}
                                         updatePantryItemState={this.props.updatePantryItemState} />

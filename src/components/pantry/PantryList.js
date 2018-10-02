@@ -43,6 +43,7 @@ export default class PantryList extends Component {
                 <div className="button-right">
                     {
                         !this.state.addPantry &&
+                        !this.state.edit &&
                         <Button size="mini" basic animated color="teal" onClick={this.renderAddFrom}>
                             <Button.Content visible>Add</Button.Content>
                             <Button.Content hidden><Icon name="plus" /><Icon name="lemon" /></Button.Content>
@@ -57,6 +58,7 @@ export default class PantryList extends Component {
                     }
                     {
                         !this.state.edit &&
+                        !this.state.addPantry &&
                         <Button size="mini" animated basic color="teal" onClick={this.renderEditCards}>
                             <Button.Content visible>Edit</Button.Content>
                             <Button.Content hidden><Icon name="sync" /></Button.Content>
@@ -64,13 +66,13 @@ export default class PantryList extends Component {
                     }
                     {
                         this.state.edit &&
+                        !this.state.addPantry &&
                         <Button size="mini" animated basic color="orange" onClick={this.renderCards}>
                             <Button.Content visible>Finish</Button.Content>
                             <Button.Content hidden><Icon name="checkmark" /></Button.Content>
                         </Button>
                     }
                 </div>
-                <h2 className="centered">Pantry Items</h2>
                 {
                     this.state.addPantry &&
                     <div>
@@ -81,6 +83,7 @@ export default class PantryList extends Component {
                                         quantityTypes={this.props.quantityTypes} />
                     </div>
                 }
+                <h2 className="centered logo-font">Pantry</h2>
                 <div>
                     <Input fluid icon="search" iconPosition="left" size="large" className="input-margin" onChange={this.updateSearch.bind(this)} value={this.state.search} type="text" placeholder="Search for a Pantry Item"></Input>
                 </div>

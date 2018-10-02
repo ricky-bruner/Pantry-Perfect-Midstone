@@ -1,8 +1,10 @@
+@import "https://fonts.googleapis.com/css?family=Engagement";
+
 .main-nav {
     display: flex;
     justify-content: space-between;
     padding: .5em;
-    background: whitesmoke;
+    background: linear-gradient( #f8f8f9, rgba(165, 223, 204, 0.6)), whitesmoke;
     box-shadow: 0 8px 6px -6px black;
     position: fixed;
     width: 100%;
@@ -14,7 +16,38 @@
 }
 
 .nav-left .logo {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     margin-right: 2em;
+}
+
+.nav-header {
+    width: 70%;
+    padding-top: 1em;
+}
+
+.nav-header h2 {
+    text-align: center;
+    /* padding-left: 4em; */
+}
+
+.nav-header span {
+    font-size: 2em;
+}
+
+.nav-header h5 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.logo-font {
+    font-family: 'Engagement', cursive;
+    text-transform: capitalize;
+    font-size: 3.5em;
+}
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

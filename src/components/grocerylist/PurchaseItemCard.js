@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Message } from "semantic-ui-react";
+import { Message, Input, Button, Icon, Divider } from "semantic-ui-react";
 
 export default class PurchasedItemCard extends Component {
     state = {
@@ -37,12 +37,20 @@ export default class PurchasedItemCard extends Component {
     render(){
         return (
             <div>
-                <p>{this.props.pItem.name}:</p>
+                
                 {
                     this.state.saved &&
-                    <div>
-                        <p>{this.state.quantity} {this.state.quantityType.toLowerCase()}</p>
-                        <button onClick={this.renderUpdate}>Update?</button>
+                    <div className="grocery-buy-resolved">
+                        <p className="buy-title">{this.props.pItem.name}</p>
+                        <p className="buy-title">{this.state.quantity} {this.state.quantityType}</p>
+                        <div className="button-right">
+                            <div>
+                                <Button basic color="orange" size="mini" animated onClick={this.renderUpdate}>
+                                    <Button.Content visible>Update</Button.Content>
+                                    <Button.Content hidden><Icon name="exchange" /></Button.Content>
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 }
                 {
@@ -50,18 +58,35 @@ export default class PurchasedItemCard extends Component {
                     <div>
                         {
                             this.state.enterQuantity &&
-                            <Message floating size="tiny" color='red' className="align-center">Please enter an amount greater than 0 and a type :D</Message>
+                            <Message floating size="mini" color='red' className="align-center">Please fill out all of the fields</Message>
                         }
-                        <input type="number" id="quantity" placeholder="How much did you buy?" defaultValue={this.state.quantity} onChange={this.handleFieldChange} />
-                            <select id="quantityType" onChange={this.handleFieldChange} defaultValue={this.state.quantityType}>
-                                <option>Select Quantity Type</option>
-                                {
-                                    this.props.quantityTypes.map(type => <option key={type.id}>{type.name}</option>)
-                                }
-                            </select>
-                        <button onClick={this.saveAmount}>Save Amount!</button>
+                        <div className="grocery-buy">
+                            <p className="buy-title">{this.props.pItem.name}:</p>
+                            <div className="buy-inputs">
+                                <div>
+                                    <Input size="mini" type="number" id="quantity" placeholder="How much?" defaultValue={this.state.quantity} onChange={this.handleFieldChange} />
+                                </div>
+                                <div>
+                                    <Input list="types" size="mini" id="quantityType" onChange={this.handleFieldChange} placeholder="Select a Type" />
+                                        <datalist id="types">
+                                        {
+                                            this.props.quantityTypes.map(type => <option key={type.id} value={type.name} />)
+                                        }
+                                        </datalist>
+                                </div>
+                            </div>
+                            <div className="button-right">
+                                <div>
+                                    <Button size="mini" color="teal" basic animated onClick={this.saveAmount}>
+                                        <Button.Content visible>Save</Button.Content>
+                                        <Button.Content hidden><Icon name="checkmark" /></Button.Content>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 }
+                <Divider />
             </div>
         )
     }

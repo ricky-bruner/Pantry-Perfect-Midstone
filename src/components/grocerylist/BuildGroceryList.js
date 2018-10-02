@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Header, Modal, Icon } from 'semantic-ui-react';
+import { Button, Header, Modal, Icon, Divider } from 'semantic-ui-react';
 import "./buildGroceryList.css";
 import QtyConverter from "../../modules/QtyConverter";
 import GroceryItemCard from "./GroceryItemCard";
@@ -60,7 +60,16 @@ export default class BuildGroceryList extends Component {
                     <Button.Content hidden>Cook</Button.Content>
                 </Button>
                 <Modal dimmer={dimmer} size="tiny" open={open} onClose={this.close}>
-                    <Modal.Header>Build Your Grocery List!</Modal.Header>
+                    <Modal.Actions className="button-right cancel-red-bg">
+                        <div>
+                            <Button color="red" animated size="mini" onClick={this.close}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="arrow left" /></Button.Content>
+                            </Button>
+                        </div>
+                    </Modal.Actions>
+                    <h3 className="centered">Build Your Grocery List</h3>
+                    <Divider horizontal>{this.props.recipe.name}</Divider>
                     <Modal.Content>
                         <Modal.Description>
                             <div className="grocery-build-flex">
@@ -91,7 +100,16 @@ export default class BuildGroceryList extends Component {
                                             let quantity = QtyConverter.convertFromTSP(pItem.quantity, quantityType)
                                             let rItemQuantity = QtyConverter.convertToTSP(rItem.quantity, quantityType)
                                             return (
-                                                <GroceryItemCard key={rItem.id} user={this.props.user} recipe={this.props.recipe} pItem={pItem} quantityType={quantityType} quantity={quantity} rItemQuantity={rItemQuantity} loadGroceryItems={this.loadGroceryItems}/>
+                                                <GroceryItemCard key={rItem.id} user={this.props.user} 
+                                                        rItem={rItem} 
+                                                        recipe={this.props.recipe} 
+                                                        pItem={pItem} 
+                                                        quantityType={quantityType} 
+                                                        quantity={quantity} 
+                                                        rItemQuantity={rItemQuantity}
+                                                        loadGroceryItems={this.loadGroceryItems} 
+                                                        groceryItems={this.props.groceryItems}
+                                                        quantityTypes={this.props.quantityTypes}/>
                                             )
                                         })
                                     }
@@ -99,11 +117,11 @@ export default class BuildGroceryList extends Component {
                             </div>
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Actions>
-                        <Button color='red' onClick={this.close}>Cancel</Button>
-                        <Button positive icon='checkmark' labelPosition='right' content="Add to You Grocery List!" onClick={this.buildGroceryList} />
-                        <Button color="olive" content="Subtract Amounts" onClick={this.subtractTotals} />
-                    </Modal.Actions>
+                    <Divider horizontal>Shop or Cook</Divider>
+                    <div className="build-modal-footer button-center pantry-teal-bg">
+                        <Button positive icon='shopping basket' labelPosition='right' content="Add to Grocery List!" onClick={this.buildGroceryList} />
+                        <Button color="orange" icon="food" labelPosition="left" content="Mark as Cooked!" onClick={this.subtractTotals} />
+                    </div>
                 </Modal>
             </div>
         )

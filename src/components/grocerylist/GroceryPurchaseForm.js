@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Modal, Message } from 'semantic-ui-react';
+import { Button, Header, Modal, Message, Icon, Divider } from 'semantic-ui-react';
 import PurchasedItemCard from './PurchaseItemCard';
 import QtyConverter from "../../modules/QtyConverter";
 import DataManager from "../../modules/DataManager";
@@ -40,13 +40,13 @@ export default class GroceryPurchaseForm extends Component {
             .then(() => this.setState({ open: false, noChanges: false, newAmounts: []}))
         }
     }
-
+    
     show = dimmer => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false, noChanges: false, newAmounts: [] })
-
+    
     render() {
         const { open, dimmer } = this.state
-
+        
         return (
             <div>
                 {
@@ -57,11 +57,20 @@ export default class GroceryPurchaseForm extends Component {
                     this.props.boughtGroceries.length > 0 &&
                     <Button positive icon='checkmark' labelPosition='right' content="Update Grocery List!" onClick={this.show('blurring')} />
                 }
-                <Modal dimmer={dimmer} open={open} onClose={this.close}>
-                    <Modal.Header>Lets set the Pantry</Modal.Header>
+                <Modal dimmer={dimmer} size="tiny" open={open} onClose={this.close}>
+                    <Modal.Actions className="cancel-red-bg">
+                        <div className="button-right">
+                            <Button color='red' animated size="mini" onClick={this.close}>
+                                <Button.Content visible>Cancel</Button.Content>
+                                <Button.Content hidden><Icon name="arrow left" /></Button.Content>
+                            </Button>
+                        </div>
+                    </Modal.Actions>
+                    <Modal.Header className="centered">Lets set the Pantry</Modal.Header>
                     <Modal.Content>
                         <Modal.Description>
-                        <Header>Purchased Items:</Header>
+                        <Header className="centered">Purchased Items:</Header>
+                        <Divider />
                         {
                             this.props.boughtGroceries.map(grocery => {
                                 let pItem = this.props.pantryItems.find(p => p.id === grocery.pantryItemId)
@@ -72,16 +81,14 @@ export default class GroceryPurchaseForm extends Component {
                         }
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Actions>
+                    <Modal.Actions className="purchase-grocery-footer">
                         {
                             this.state.noChanges &&
                             <Message floating size="tiny" color='red' className="align-center">You didn't select anything to update!</Message>
                         }
-                        <Button.Group>
-                            <Button color='red' onClick={this.close}>Cancel</Button>
-                            <Button.Or />
-                            <Button color="green" icon='checkmark' labelPosition='right' content="Save" onClick={this.updatePantry} />
-                        </Button.Group>
+                        <div className="button-center">
+                            <Button color="green" icon='calculator' size="tiny" labelPosition='right' content="Update Pantry!" onClick={this.updatePantry} />
+                        </div>
                     </Modal.Actions>
                 </Modal>
             </div>

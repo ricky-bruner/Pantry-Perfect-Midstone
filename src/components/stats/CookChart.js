@@ -30,16 +30,15 @@ export default class CookChart extends Component {
                                 label:'Cook Percentage',
                                 data: recipeCookNum,
                                 backgroundColor:[
-                                    'rgba(255, 99, 132, 0.6)',
-                                    'rgba(54, 162, 235, 0.6)',
-                                    'rgba(255, 206, 86, 0.6)',
-                                    'rgba(75, 192, 192, 0.6)',
-                                    'rgba(153, 102, 255, 0.6)',
-                                    'rgba(255, 159, 64, 0.6)',
-                                    'rgba(255, 99, 132, 0.6)'
+                                    'rgba(255, 99, 132, 0.9)',
+                                    'rgba(54, 162, 235, 0.9)',
+                                    'rgba(255, 206, 86, 0.9)',
+                                    'rgba(75, 192, 192, 0.9)',
+                                    'rgba(153, 102, 255, 0.9)',
+                                    'rgba(255, 159, 64, 0.9)',
+                                    'rgba(255, 99, 132, 0.9)'
                                 ],
                                 borderColor: "white",
-                                hoverBackgroundColor: "rgb(92, 201, 164)",
                                 fontColor: "white"
                             }
                         ]
