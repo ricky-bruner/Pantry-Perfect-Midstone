@@ -13,7 +13,7 @@ export default class App extends Component {
             <React.Fragment>
                 {
                     !this.isAuthenticated() &&
-                    <Route exact path="/login" render={(props) => {
+                    <Route exact path="/" render={(props) => {
                         return <Login {...props} isAuthenticated={this.isAuthenticated} />
                     }} />
                 }
