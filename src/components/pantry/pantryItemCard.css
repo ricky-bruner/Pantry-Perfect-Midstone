@@ -1,32 +1,19 @@
 .pantry-list-container {
     background: white;
-    /* background: linear-gradient(to bottom, whitesmoke, rgb(92, 201, 164)); */
     padding: .5em;
-    /* margin: 1em 0; */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
-
-
-/* .pantry-item-card .ui.message {
-    background: linear-gradient( #f8f8f9, rgba(165, 223, 204, 0.6));
-} */
 
 .pantry-teal-bg {
     background: linear-gradient( #f8f8f9, rgba(165, 223, 204, 0.6)) !important;
 }
 
-/* .pantry-edit-card .ui.message {
-    background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775);
-} */
 
 .edit-orange-bg {
     background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775) !important;
 }
 
-/* .pantry-convert-card .ui.message {
-    background: linear-gradient( #f8f8f9, #f8f8f9, #679cf775);
-} */
 
 .edit-blue-bg {
     background: linear-gradient( #f8f8f9, #f8f8f9, #679cf775) !important;
@@ -35,13 +22,6 @@
 .edit-red-bg {
     background: linear-gradient( #f8f8f9, rgba(223, 165, 165, 0.6)) !important;
 }
-/* .pantry-card .ui.message {
-    background: linear-gradient( #f8f8f9, #f8f8f9, #f7976775);
-}
-
-.qty-edit .ui.message {
-    background-color: #fff6f6 !important;
-} */
 
 .pantry-item {
     display: flex !important;

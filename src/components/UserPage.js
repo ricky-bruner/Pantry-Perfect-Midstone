@@ -118,41 +118,11 @@ export default class UserPage extends Component {
                         <div className="tab-container">
                             <Tab menu={{ secondary: true, pointing: true }} panes={leftPanes} />
                         </div>
-                        {/* <RecipeList user={this.state.user} 
-                                    updateRecipeState={this.updateRecipeState}
-                                    updateRecipeItemState={this.updateRecipeItemState}
-                                    editPantryItem={this.editPantryItem}
-                                    addPantryItem={this.addPantryItem}
-                                    recipes={this.state.recipes}
-                                    pantryItems={this.state.pantryItems} 
-                                    recipeItems={this.state.recipeItems} 
-                                    quantityTypes={this.state.quantityTypes}
-                                    updatePantryItemState={this.updatePantryItemState}
-                                    updateGroceryItemState={this.updateGroceryItemState} />
-                        <GroceryList user={this.state.user} 
-                                    editPantryItem={this.editPantryItem}
-                                    addPantryItem={this.addPantryItem}
-                                    recipes={this.state.recipes}
-                                    pantryItems={this.state.pantryItems} 
-                                    quantityTypes={this.state.quantityTypes}
-                                    groceryItems={this.state.groceryItems}
-                                    updatePantryItemState={this.updatePantryItemState}
-                                    updateGroceryItemState={this.updateGroceryItemState} /> */}
                     </div>
                     <div className="right-container">
                         <div className="tab-container">
                             <Tab menu={{ secondary: true, pointing: true }} panes={rightPanes} />
                         </div>
-                        {/* <div className="white">
-                            <Tilt className="Tilt" options={{ max : 25 }} style={{ height: 300, width: 450}} >
-                                <CookChart className="Tilt-inner" recipes={this.state.recipes} />
-                            </Tilt>
-                        </div>
-                        <PantryList user={this.state.user} 
-                                    editPantryItem={this.editPantryItem}
-                                    addPantryItem={this.addPantryItem}
-                                    pantryItems={this.state.pantryItems} 
-                                    quantityTypes={this.state.quantityTypes} /> */}
                     </div>
                 </div>
             </div>

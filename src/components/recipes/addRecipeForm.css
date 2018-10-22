@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    /* background: lightgray; */
     background: linear-gradient(to bottom, #ece9e6, #ffffff);
     padding: .5em;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
