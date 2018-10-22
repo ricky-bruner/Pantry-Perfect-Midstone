@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
 import DataManager from "../modules/DataManager";
-import "./applicationViews.css";
 import PantryList from "./pantry/PantryList";
 import RecipeList from "./recipes/RecipeList";
 import "./userPage.css";
