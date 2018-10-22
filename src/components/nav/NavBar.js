@@ -7,7 +7,7 @@ export default class NavBar extends Component {
     
     handleLogout = () => {
         sessionStorage.removeItem("user");
-        this.props.props.history.push("/login");
+        this.props.props.history.push("/");
     }
 
     render(){
