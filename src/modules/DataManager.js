@@ -1,5 +1,5 @@
 
-const remoteURL = "http://localhost:5002"
+const remoteURL = "https://pantry-perfect-server.herokuapp.com"
 
 export default Object.create(null, {
     get: {

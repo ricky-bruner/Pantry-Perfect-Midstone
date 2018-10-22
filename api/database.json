@@ -23,6 +23,14 @@
       "image": "Edit your profile to add an image!",
       "birthday": "Edit your profile to add your birthday",
       "id": 2
+    },
+    {
+      "username": "angie",
+      "password": "123",
+      "email": "angie@me.com",
+      "image": "Edit your profile to add an image!",
+      "birthday": "Edit your profile to add your birthday",
+      "id": 3
     }
   ],
   "pantryItems": [
@@ -38,7 +46,7 @@
     {
       "userId": 1,
       "name": "Chicken Breast",
-      "quantity": 291,
+      "quantity": 126,
       "quantityTypeId": 14,
       "visible": true,
       "timesTrashed": 12,
@@ -47,7 +55,7 @@
     {
       "userId": 1,
       "name": "Soy Sauce",
-      "quantity": 12,
+      "quantity": 72,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 0,
@@ -56,7 +64,7 @@
     {
       "userId": 1,
       "name": "Lime Juice",
-      "quantity": 189,
+      "quantity": 42,
       "quantityTypeId": 2,
       "visible": true,
       "timesTrashed": 3,
@@ -65,7 +73,7 @@
     {
       "userId": 1,
       "name": "Mrs. Dash Fiesta Lime Seasoning",
-      "quantity": 9,
+      "quantity": 78,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 0,
@@ -83,7 +91,7 @@
     {
       "userId": 1,
       "name": "Romain Lettuce",
-      "quantity": 96,
+      "quantity": 0,
       "quantityTypeId": 4,
       "visible": true,
       "timesTrashed": 17,
@@ -128,7 +136,7 @@
     {
       "userId": 1,
       "name": "Green Bell Pepper",
-      "quantity": 48,
+      "quantity": 0,
       "quantityTypeId": 4,
       "visible": true,
       "timesTrashed": 7,
@@ -146,7 +154,7 @@
     {
       "userId": 1,
       "name": "Black Beans",
-      "quantity": 24,
+      "quantity": 0,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 0,
@@ -155,8 +163,8 @@
     {
       "userId": 1,
       "name": "Shredded Mexican Cheese",
-      "quantity": 78,
-      "quantityTypeId": 14,
+      "quantity": 93,
+      "quantityTypeId": 2,
       "visible": true,
       "timesTrashed": 2,
       "id": 15
@@ -164,7 +172,7 @@
     {
       "userId": 1,
       "name": "Salsa",
-      "quantity": 57,
+      "quantity": 66,
       "quantityTypeId": 3,
       "visible": true,
       "timesTrashed": 0,
@@ -340,6 +348,24 @@
       "timesTrashed": 0,
       "visible": true,
       "id": 38
+    },
+    {
+      "userId": 3,
+      "name": "Spinache",
+      "quantity": 96,
+      "quantityTypeId": 14,
+      "timesTrashed": 0,
+      "visible": true,
+      "id": 39
+    },
+    {
+      "userId": 1,
+      "name": "car tire",
+      "quantity": 48,
+      "quantityTypeId": 4,
+      "timesTrashed": 0,
+      "visible": true,
+      "id": 40
     }
   ],
   "recipes": [
@@ -349,7 +375,7 @@
       "description": "Its low sodium, believe it or not!",
       "image": "",
       "instructions": "salsa is used in the marinade",
-      "timesCooked": 23,
+      "timesCooked": 29,
       "favorite": true,
       "retired": false,
       "id": 1
@@ -629,7 +655,17 @@
       "id": 40
     }
   ],
-  "groceryItems": [],
+  "groceryItems": [
+    {
+      "userId": 1,
+      "pantryItemId": 12,
+      "recipeId": 1,
+      "qtyCalledFor": 48,
+      "qtyTypeCalledFor": 4,
+      "qtyNeeded": 48,
+      "id": 1
+    }
+  ],
   "quantityTypes": [
     {
       "id": 1,
