@@ -20,7 +20,7 @@ export default class ApplicationViews extends Component {
                 }
                 {
                     !this.props.isAuthenticated() &&
-                    <Redirect to="/login" />
+                    <Redirect to="/" />
                 }
             </React.Fragment>
         )
