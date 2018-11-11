@@ -12,9 +12,10 @@ Visit Pantry Perfect: https://pantry-perfect.herokuapp.com
 
 Below are some helpful gifs for how to make use of pantry perfect once you visit!
 
-For the best demonstraction of all of the features, a base profile has been built with quite a bit of starter data to play with. At the login screen, type 
+For the best demonstration of all of the features, a base profile has been built with quite a bit of starter data to play with. At the login screen, type 
 
 username: ricky
+
 password: 123
 
 ![Login Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/login.gif?raw=true)
@@ -23,7 +24,7 @@ Once logged in, there are several pantry items already entered for perusal. You 
 
 ![Pantry Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/pantry-search-convert.gif?raw=true)
 
-On the recipes side, you may add a recipe and the ingredients that you track for it. Recipes can be "favorited" or "unfavorited" by clicking the heart icon next to the title. Details can be viewed and hidden as well. When the *cook?* icon is clicked, a popup will appear giving you a view of that the recipe calls for vs what if currently "in stock" in the pantry. Green means you have more than enough to cook the meal, blue means you have exactly enough, and red means you are short and need to shop. You may select the ingredients that youd like to buy with the slider next to it, and select *Add to Grocery List* below to build a grocery list. 
+On the recipes side, you may add a recipe and the ingredients that you track for it. Recipes can be "favorited" or "unfavorited" by clicking the heart icon next to the title. Details can be viewed and hidden as well. When the ***cook?*** icon is clicked, a popup will appear giving you a view of what the recipe calls for vs what is currently "in stock" in the pantry. Green means you have more than enough to cook the meal, blue means you have exactly enough, and red means you are short and need to shop. You may select the ingredients that youd like to buy with the slider next to it, and select ***Add to Grocery List*** below to build a grocery list. 
 
 ![Recipes Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/recipe-features.gif?raw=true)
 
