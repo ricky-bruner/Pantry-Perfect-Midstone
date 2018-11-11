@@ -76,13 +76,13 @@ In order to get the project running, make sure to install npm if you haven't alr
 If you need it, [Install npm here](https://www.npmjs.com/get-npm).
 
 
-to check if you have it:
+To check if you have it:
 ```
 node -v
 npm -v
 ```
-this will tell you if you have node, and what version (which you need for npm)
-and the latter will spill the beans on npm for you.
+This will tell you if you have node, and what version (which you need for npm)
+and the latter will tell you about npm.
 
 You can also run this in your terminal of choice to install globally:
 ```
@@ -94,7 +94,7 @@ npm install npm@latest -g
 First, fork the repo and clone it down. 
 
 Once it finished downloading, I recommend working in **Visual Studio Code**.
-from the root directory of the project, run:
+From the root directory of the project, run:
 ```
 npm install
 ```
@@ -119,7 +119,7 @@ json-server database.json database.json -p 5002
 
 These steps will let you run a json server with the database.json from the api directory, and allow all of the fetch calls in DataManager.js to interact with that instead of the deployed JSON file on Heroku. This is preferred and essential for testing, and the Heroku deployment is not a true API.
 
-For reference, here is an Entity Relationship Diagram for the database. Please refer to it for general structureing of the types of data that will be returned to you from the database.
+For reference, here is an Entity Relationship Diagram for the database. Please refer to it for general structuring of the types of data that will be returned to you from the database.
 
 ![Pantry Perfect ERD](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/PantryAppERD.png)
 
