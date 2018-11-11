@@ -72,8 +72,21 @@ Here's a preview of the package-json:
   }
 ```
 
+In order to get the project running, make sure to install npm if you haven't already.
+If you need it, [Install npm here](https://www.npmjs.com/get-npm).
+
+
+to check if you have it:
 ```
-Give examples
+node -v
+npm -v
+```
+this will tell you if you have node, and what version (which you need for npm)
+and the latter will spill the beans on npm for you.
+
+You can also run this in your terminal of choice to install globally:
+```
+npm install npm@latest -g
 ```
 
 ### Installing
