@@ -24,19 +24,53 @@ Once logged in, there are several pantry items already entered for perusal. You 
 
 ![Pantry Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/pantry-search-convert.gif?raw=true)
 
-On the recipes side, you may add a recipe and the ingredients that you track for it. Recipes can be "favorited" or "unfavorited" by clicking the heart icon next to the title. Details can be viewed and hidden as well. When the ***cook?*** icon is clicked, a popup will appear giving you a view of what the recipe calls for vs what is currently "in stock" in the pantry. Green means you have more than enough to cook the meal, blue means you have exactly enough, and red means you are short and need to shop. You may select the ingredients that youd like to buy with the slider next to it, and select ***Add to Grocery List*** below to build a grocery list. 
+On the recipes side, you may add a recipe and the ingredients that you track for it. Recipes can be "favorited" or "unfavorited" by clicking the heart icon next to the title. Details can be viewed and hidden as well. When the **Cook?** icon is clicked, a popup will appear giving you a view of what the recipe calls for vs what is currently "in stock" in the pantry. Green means you have more than enough to cook the meal, blue means you have exactly enough, and red means you are short and need to shop. You may select the ingredients that youd like to buy with the slider next to it, and select **Add to Grocery List** below to build a grocery list. 
 
 ![Recipes Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/recipe-features.gif?raw=true)
 
+As you grocery shop, you may update the grocery list with the amount of the item you purchase, and the pantry will update with the new added total. Then you may revist the **Cook?** feature and select **Mark As Cooked**. The pantry will have those totals subtracted from each ingredient used, and the stats will reflect that you cooked that meal. 
+
 ![Stats Demo](https://github.com/ricky-bruner/Pantry-Perfect-Midstone/blob/master/readmegifs/stats-tracking.gif?raw=true)
+
+With that, you've viewed most of Pantry Perfect's features from it's initial build!
+
+Current plans for v2 are to restructure the page layout in a way that allows for a more mobile friendly user experience. Media queries will be implemented to change everything for ideal support. 
+
+## Tech Talk
+
+Pantry Perfect is build in **React.js** and styled with **Semantic UI** for React. Many components are used and heavily altered for the current look of the project, with CSS handling the bulk of the styled look. **Charts.js** was implemented for the stats views, with **tilt.js** sprinkled in mostly because I wanted to be "extra" and implement as many things as I could find to build my experience with those types of plugins.
+
+The "database" is a JSON file hosted off of json server, deployed to Heroku. The app has been updated with the new appropriate fetch calls. 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+NPM is a major for this project. It was created with npx create-react-app and makes use of react-router-dom as well as the various plugins for the style base.
+
+Here's a preview of the package-json:
+```
+"dependencies": {
+    "chart.js": "^2.1.1",
+    "react": "^16.5.2",
+    "react-chartjs": "^1.2.0",
+    "react-chartjs-2": "^2.7.4",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "react-tilt": "^0.1.4",
+    "semantic-ui-css": "^2.4.0",
+    "semantic-ui-react": "^0.82.5"
+  },
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+```
 
 ```
 Give examples
