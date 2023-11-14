@@ -6,7 +6,7 @@ The true purpose for this application is to remove the pain point of having to g
 
 The target user is one who wants to be fiscally and socially responsible about food waste and would shop for one or two meals at a time to help fight that. The application is designed to eliminate the pain points of that reality.
 
-Visit Pantry Perfect: https://pantry-perfect.herokuapp.com
+Visit Pantry Perfect soon (deployment being migrated to github pages from heroku)
 
 ## Pantry UI
 
@@ -144,9 +144,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thanks to Nashville Software School for teaching me everything used in this project and how to think like a dev and figure things out!
-* Special Thanks to [Kayla Reid](http://github.com/KaylaReid) for all of the advice, guidance, and wisdom that helped solve the many crises that arose during the development of this project
-* Every student in Cohort 27 at NSS for all of the advice and suggestions that helped make this vision and reality.
+* Thanks to Nashville Software School for teaching me everything used in this project and how to think like a dev!
+* Special Thanks to [Kayla Reid](http://github.com/KaylaReid) for all of the advice, guidance, and wisdom that helped solve the many complications that arose during the development of this project under a time crunch.
+* Every student in Cohort 27 at NSS for all of the advice and suggestions that helped make this vision a reality.
 
 
 
